@@ -26,6 +26,19 @@
       <!-- The datasource is deployed as WEB-INF/dmit2015-fall2017-northwind-assignments-ds.xml, you
          can find it in the source at src/main/webapp/WEB-INF/dmit2015-fall2017-northwind-assignments-ds.xml -->
       <jta-data-source>java:jboss/datasources/dmit2015-fall2017-northwind-assignmentsDS</jta-data-source>
+      <class>northwind.model.Category</class>
+      <class>northwind.model.Customer</class>
+      <class>northwind.model.EmployeeTerritory</class>
+      <class>northwind.model.EmployeeTerritoryPK</class>
+      <class>northwind.model.Employee</class>
+      <class>northwind.model.OrderDetail</class>
+      <class>northwind.model.OrderDetailPK</class>
+      <class>northwind.model.Order</class>
+      <class>northwind.model.Product</class>
+      <class>northwind.model.Region</class>
+      <class>northwind.model.Shipper</class>
+      <class>northwind.model.Supplier</class>
+      <class>northwind.model.Territory</class>
       <properties>
          <!-- Properties for Hibernate -->
 <!--          <property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
