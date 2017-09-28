@@ -13,7 +13,7 @@ import northwind.model.Supplier;
 public class SupplierController {
 
 	@Inject
-	private SupplierController supplierRepository;
+	private SupplierRepository supplierRepository;
 	
 	private List<Supplier> suppliers;
 	
