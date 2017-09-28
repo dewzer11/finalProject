@@ -23,7 +23,24 @@
 	<ui:define name="maincontent">
 		<h1>List of Employees</h1>
 		
-		[PUT PAGE CONTENT CODE HERE]
+		<b:messages id="messages"></b:messages>		
+		
+		<h:form>
+			<b:dataTable value="#{employeeController.employees}" var="employee">
+				<b:dataTableColumn value="#{employee.employeeID}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{employee.lastName}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{employee.firstName}">
+				</b:dataTableColumn>	
+				<b:dataTableColumn value="#{employee.title}">
+				</b:dataTableColumn>								
+				<b:dataTableColumn value="#{employee.homePhone}">
+				</b:dataTableColumn>		
+				<b:dataTableColumn value="#{employee.extension}">
+				</b:dataTableColumn>							
+			</b:dataTable>
+		</h:form>
 				
 	</ui:define>
 

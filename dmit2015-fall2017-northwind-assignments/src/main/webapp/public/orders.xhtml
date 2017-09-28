@@ -25,18 +25,30 @@
 				<b:messages id="messages"></b:messages>		
 		
 		<h:form>
-			<b:dataTable value="#{OrderController.orders}" var="order">
-				<b:dataTableColumn value="#{order.orderId}">
+			<b:dataTable value="#{orderController.orders}" var="order">
+				<b:dataTableColumn value="#{order.orderID}">
 				</b:dataTableColumn>
-				<b:dataTableColumn value="#{order.customer}">
+				<b:dataTableColumn value="#{order.customer.companyName}">
 				</b:dataTableColumn>
-				<b:dataTableColumn value="#{order.employee}">
+				<b:dataTableColumn value="#{order.employee.firstName} #{order.employee.lastName}">
 				</b:dataTableColumn>	
-				<b:dataTableColumn value="#{order.orderdate}">
-				</b:dataTableColumn>						
-				<b:dataTableColumn value="#{order.shipper}">
+				<b:dataTableColumn>
+					<f:facet name="header">
+						Order Date
+					</f:facet>
+					<h:outputText value="#{order.orderDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+				</b:dataTableColumn>							
+				<b:dataTableColumn value="#{order.shipper.companyName}">
 				</b:dataTableColumn>			
-				<b:dataTableColumn value="#{order.freight}">
+				<b:dataTableColumn>
+					<f:facet name="header">
+						Freight
+					</f:facet>
+					<h:outputText value="#{order.freight}">
+						<f:convertNumber type="currency" />
+					</h:outputText>
 				</b:dataTableColumn>		
 					
 			</b:dataTable>
