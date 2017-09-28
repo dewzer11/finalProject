@@ -22,7 +22,25 @@
 
 	<ui:define name="maincontent">
 		<h1>List of Orders</h1>
-		[PUT PAGE CONTENT CODE HERE]
+				<b:messages id="messages"></b:messages>		
+		
+		<h:form>
+			<b:dataTable value="#{OrderController.orders}" var="order">
+				<b:dataTableColumn value="#{order.orderId}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{order.customer}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{order.employee}">
+				</b:dataTableColumn>	
+				<b:dataTableColumn value="#{order.orderdate}">
+				</b:dataTableColumn>						
+				<b:dataTableColumn value="#{order.shipper}">
+				</b:dataTableColumn>			
+				<b:dataTableColumn value="#{order.freight}">
+				</b:dataTableColumn>		
+					
+			</b:dataTable>
+		</h:form>
 				
 	</ui:define>
 
