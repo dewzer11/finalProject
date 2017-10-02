@@ -21,10 +21,26 @@
 	</ui:define>
 
 	<ui:define name="maincontent">
-		<h1>List of Products</h1>
+		<h1>List of Employees</h1>
 		
-		[PUT PAGE CONTENT CODE HERE]
-				
+		<b:messages id="messages"></b:messages>		
+		
+		<h:form>
+			<b:dataTable value="#{productController.products}" var="product">
+				<b:dataTableColumn value="#{product.productID}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{product.productName}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{product.unitPrice}">
+				</b:dataTableColumn>	
+				<b:dataTableColumn value="#{product.quantityPerUnit}">
+				</b:dataTableColumn>								
+				<b:dataTableColumn value="#{product.supplier.companyName}">
+				</b:dataTableColumn>		
+				<b:dataTableColumn value="#{product.discontinued}">
+				</b:dataTableColumn>							
+			</b:dataTable>
+		</h:form>
 	</ui:define>
 
 </ui:composition>
