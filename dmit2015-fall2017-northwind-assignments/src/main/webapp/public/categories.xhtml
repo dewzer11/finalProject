@@ -24,8 +24,16 @@
 		<h1>List of Categories</h1>
 		
 		<!-- REBECCA IS DOING THIS -->
-		[PUT PAGE CONTENT CODE HERE]
-				
+		<b:dataTable value="#{categoriesController.categories}" var="Category">
+		<b:dataTableColumn value="#{Category.categoryID}">
+				</b:dataTableColumn>	
+			<b:dataTableColumn value="#{Category.categoryName}">
+				</b:dataTableColumn>	
+				<b:dataTableColumn value="#{Category.description}">
+				</b:dataTableColumn>	
+				<b:dataTableColumn value="#{Category.picture}">
+				</b:dataTableColumn>	
+		</b:dataTable>
 	</ui:define>
 
 </ui:composition>
