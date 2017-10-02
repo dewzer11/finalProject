@@ -22,7 +22,7 @@ public class SupplierController {
 		suppliers = supplierRepository.findAll();
 	}
 
-	public List<Supplier> getCustomers() {
+	public List<Supplier> getSuppliers() {
 		return suppliers;
 	}
 	
