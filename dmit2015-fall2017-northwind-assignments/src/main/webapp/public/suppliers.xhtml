@@ -22,7 +22,23 @@
 
 	<ui:define name="maincontent">
 		<h1>List of Suppliers</h1>
-		
+		<b:dataTable value="#{supplierController.suppliers}" var="Supplier">
+		<b:dataTableColumn value="#{Supplier.supplierID}">
+				</b:dataTableColumn>
+		<b:dataTableColumn value="#{Supplier.companyName}">
+				</b:dataTableColumn>
+		<b:dataTableColumn value="#{Supplier.contactName}">
+				</b:dataTableColumn>
+		<b:dataTableColumn value="#{Supplier.contactTitle}">
+				</b:dataTableColumn>	
+		<b:dataTableColumn value="#{Supplier.city}">
+				</b:dataTableColumn>
+		<b:dataTableColumn value="#{Supplier.country}">
+				</b:dataTableColumn>
+		<b:dataTableColumn value="#{Supplier.phone}">
+				</b:dataTableColumn>
+				
+		</b:dataTable>
 		[PUT PAGE CONTENT CODE HERE]
 				
 	</ui:define>
