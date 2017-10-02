@@ -1,5 +1,12 @@
 package northwind.data;
-//REBECCA IS DOING THIS
-public class CategoriesRepository {
+
+import northwind.model.Category;
+
+public class CategoriesRepository extends AbstractJpaRepository<Category> {
+	private static final long serialVersionUID = 1L;
+
+	public CategoriesRepository() {
+		super(Category.class);
+	}
 
 }
