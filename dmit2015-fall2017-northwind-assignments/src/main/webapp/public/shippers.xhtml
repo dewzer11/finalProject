@@ -21,10 +21,16 @@
 	</ui:define>
 
 	<ui:define name="maincontent">
-		<h1>List of Shippers</h1>
+				<h1>List of Shippers</h1>
 		
-		[PUT PAGE CONTENT CODE HERE]
-				
+		<b:dataTable value="#{shipperController.shippers}" var="Shipper">
+		<b:dataTableColumn value="#{Shipper.shipperID}">
+				</b:dataTableColumn>	
+			<b:dataTableColumn value="#{Shipper.companyName}">
+				</b:dataTableColumn>	
+				<b:dataTableColumn value="#{Shipper.phone}">
+				</b:dataTableColumn>	
+		</b:dataTable>
 	</ui:define>
 
 </ui:composition>

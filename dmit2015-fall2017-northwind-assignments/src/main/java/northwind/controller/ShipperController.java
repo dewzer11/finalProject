@@ -22,7 +22,7 @@ import northwind.model.Shipper;
 			shippers = shipperRepository.findAll();
 		}
 
-		public List<Shipper> getCustomers() {
+		public List<Shipper> getShippers() {
 			return shippers;
 		}
 

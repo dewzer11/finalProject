@@ -10,7 +10,8 @@
 	xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions"
 	xmlns:b="http://bootsfaces.net/ui"
-	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
+	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml"
+                   xmlns:p="http://primefaces.org/ui">
 	
 	<ui:param name="title" value="Northwind - Categories" />
 	
@@ -31,7 +32,12 @@
 				</b:dataTableColumn>	
 				<b:dataTableColumn value="#{Category.description}">
 				</b:dataTableColumn>	
-				<b:dataTableColumn value="#{Category.picture}">
+				<b:dataTableColumn>
+					<f:facet name="header">
+						Picture
+					</f:facet>
+					<o:graphicImage value="#{Category.picture}" dataURI="true">
+					</o:graphicImage>
 				</b:dataTableColumn>	
 		</b:dataTable>
 	</ui:define>
