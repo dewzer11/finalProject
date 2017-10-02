@@ -22,7 +22,37 @@
 
 	<ui:define name="maincontent">
 		<h1>List of Orders</h1>
-		[PUT PAGE CONTENT CODE HERE]
+				<b:messages id="messages"></b:messages>		
+		
+		<h:form>
+			<b:dataTable value="#{orderController.orders}" var="order">
+				<b:dataTableColumn value="#{order.orderID}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{order.customer.companyName}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{order.employee.firstName} #{order.employee.lastName}">
+				</b:dataTableColumn>	
+				<b:dataTableColumn>
+					<f:facet name="header">
+						Order Date
+					</f:facet>
+					<h:outputText value="#{order.orderDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+				</b:dataTableColumn>							
+				<b:dataTableColumn value="#{order.shipper.companyName}">
+				</b:dataTableColumn>			
+				<b:dataTableColumn>
+					<f:facet name="header">
+						Freight
+					</f:facet>
+					<h:outputText value="#{order.freight}">
+						<f:convertNumber type="currency" />
+					</h:outputText>
+				</b:dataTableColumn>		
+					
+			</b:dataTable>
+		</h:form>
 				
 	</ui:define>
 

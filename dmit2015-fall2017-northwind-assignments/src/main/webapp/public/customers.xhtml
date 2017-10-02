@@ -12,7 +12,7 @@
 	xmlns:b="http://bootsfaces.net/ui"
 	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
 	
-	<ui:param name="title" value="Northwind - Products" />
+	<ui:param name="title" value="Northwind - Customers" />
 	
 	<ui:define name="externalstyles">
 	</ui:define>
@@ -21,9 +21,26 @@
 	</ui:define>
 
 	<ui:define name="maincontent">
-		<h1>List of Products</h1>
+		<h1>List of Customers</h1>
 		
-		[PUT PAGE CONTENT CODE HERE]
+		<b:messages id="messages"></b:messages>		
+		
+		<h:form>
+			<b:dataTable value="#{customerController.customers}" var="customer">
+				<b:dataTableColumn value="#{customer.customerID}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{customer.companyName}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{customer.contactName}">
+				</b:dataTableColumn>	
+				<b:dataTableColumn value="#{customer.contactTitle}">
+				</b:dataTableColumn>						
+				<b:dataTableColumn value="#{customer.country}">
+				</b:dataTableColumn>			
+				<b:dataTableColumn value="#{customer.phone}">
+				</b:dataTableColumn>								
+			</b:dataTable>
+		</h:form>
 				
 	</ui:define>
 
