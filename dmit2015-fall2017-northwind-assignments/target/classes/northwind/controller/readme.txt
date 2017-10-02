@@ -1,0 +1,2 @@
+Put your JSF managed bean classes in this package.
+
