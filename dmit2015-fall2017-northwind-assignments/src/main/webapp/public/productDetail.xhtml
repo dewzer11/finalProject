@@ -12,7 +12,7 @@
 	xmlns:b="http://bootsfaces.net/ui"
 	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
 	
-	<ui:param name="title" value="Northwind - Products By Category" />
+	<ui:param name="title" value="Northwind - Product Details" />
 	
 	<ui:define name="externalstyles">
 	</ui:define>
@@ -21,17 +21,18 @@
 	</ui:define>
 
 	<ui:define name="maincontent">
-		
-		<f:metadata>
-			<f:viewParam name="id" value="#{productController.currentSelectedCategoryId}" />
-			<f:event listener="#{productController.findProductsByCategory()}" type="preRenderView" />
+	<f:metadata>
+			<f:viewParam name="id" value="#{productController.currentSelectedProductId}" />
+			<f:event listener="#{productController.findProduct()}" type="preRenderView" />
 		</f:metadata>
-		<h1>#{param.categoryName} Products </h1>
+		<h1>#{param.productName}</h1>
 		
 		<b:messages id="messages"></b:messages>		
 		
 		<h:form>
-			<b:dataTable value="#{productController.productsByCategory}" var="product">
+
+	
+			<b:dataTable value="#{productController.products}" var="product">
 				<b:dataTableColumn value="#{product.productID}">
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{product.productName}">
@@ -44,17 +45,8 @@
 				</b:dataTableColumn>		
 				<b:dataTableColumn value="#{product.discontinued}">
 				</b:dataTableColumn>	
-				<b:dataTableColumn>
-				<f:facet name="header">
-						View Details
-					</f:facet>
-					<b:navCommandLink outcome="productDetail.xhtml">
-						<f:param name="id" value="#{product.productID}" />
-						view details
-					</b:navCommandLink>
-				</b:dataTableColumn>							
+							
 			</b:dataTable>
 		</h:form>
 	</ui:define>
-
 </ui:composition>

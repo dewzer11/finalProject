@@ -15,7 +15,35 @@ import northwind.model.Product;
 
 @Model
 public class ProductController {
+	private int currentSelectedProductId;		// getter/setter
+	public int getCurrentSelectedProductId() {
+		return currentSelectedProductId;
+	}
 
+	public void setCurrentSelectedProductId(int currentSelectedProductId) {
+		this.currentSelectedProductId = currentSelectedProductId;
+	}
+
+	public Product getCurrentSelectedProduct() {
+		return currentSelectedProduct;
+	}
+	private Product currentSelectedProduct;	// getter
+	
+	public void findProduct() {
+		if( !FacesContext.getCurrentInstance().isPostback() ) {
+			if( currentSelectedProductId > 0 ) {
+				currentSelectedProduct = productRepository.find(currentSelectedProductId);
+				if( currentSelectedProduct == null ) {
+					Messages.addGlobalInfo("There is no Product with ProductID {0}", 
+							currentSelectedProductId);
+				} else {
+					Messages.addGlobalInfo("Successfully retreived Product info.");
+				}
+			} else {
+				Messages.addGlobalError("Bad request. A valid ProductID is required.");
+			}
+		}		
+	}
 	@Inject
 	private ProductRepository productRepository;
 	
