@@ -1,5 +1,6 @@
 package northwind.data;
 
+
 import northwind.model.Category;
 
 public class CategoriesRepository extends AbstractJpaRepository<Category> {

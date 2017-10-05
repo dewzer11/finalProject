@@ -38,6 +38,16 @@
 					</f:facet>
 					<o:graphicImage value="#{Category.picture}" dataURI="true">
 					</o:graphicImage>
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+				<f:facet name="header">
+						View Products
+					</f:facet>
+					<b:navCommandLink outcome="productsbyCategory.xhtml">
+						<f:param name="id" value="#{Category.categoryID}" />
+						<f:param name="categoryName" value="#{Category.categoryName}" />
+						view products
+					</b:navCommandLink>
 				</b:dataTableColumn>	
 		</b:dataTable>
 	</ui:define>

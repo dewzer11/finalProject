@@ -1,5 +1,8 @@
 package northwind.data;
 
+import java.util.List;
+
+
 import northwind.model.Product;
 
 public class ProductRepository extends AbstractJpaRepository<Product> {
@@ -9,5 +12,10 @@ public class ProductRepository extends AbstractJpaRepository<Product> {
 		super(Product.class);
 		
 	}
-
+	public List<Product> findAllByCategoryId(int categoryId) {
+		return getEntityManager().createQuery(
+			"SELECT prod FROM Product prod WHERE prod.category.categoryID = :idValue", Product.class)
+			.setParameter("idValue", categoryId)
+			.getResultList();
+	}
 }
