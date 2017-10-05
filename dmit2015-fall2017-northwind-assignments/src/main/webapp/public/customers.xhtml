@@ -38,7 +38,17 @@
 				<b:dataTableColumn value="#{customer.country}">
 				</b:dataTableColumn>			
 				<b:dataTableColumn value="#{customer.phone}">
-				</b:dataTableColumn>								
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+				<f:facet name="header">
+						View Orders
+					</f:facet>
+					<b:navCommandLink outcome="ordersByCustomer.xhtml">
+						<f:param name="id" value="#{customer.customerID}" />
+						<f:param name="customerName" value="#{customer.companyName}" />
+						view orders
+					</b:navCommandLink>
+				</b:dataTableColumn>							
 			</b:dataTable>
 		</h:form>
 				
