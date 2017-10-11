@@ -38,7 +38,27 @@
 				<b:dataTableColumn value="#{employee.homePhone}">
 				</b:dataTableColumn>		
 				<b:dataTableColumn value="#{employee.extension}">
-				</b:dataTableColumn>							
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+				<f:facet name="header">
+						View Details
+					</f:facet>
+					<b:navCommandLink outcome="employeeDetails.xhtml">
+						<f:param name="id" value="#{Category.categoryID}" />
+						<f:param name="categoryName" value="#{Category.categoryName}" />
+						view products
+					</b:navCommandLink>
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+				<f:facet name="header">
+						View Orders
+					</f:facet>
+					<b:navCommandLink outcome="ordersByEmployee.xhtml">
+						<f:param name="id" value="#{employee.employeeID}" />
+ 						<f:param name="employeeName" value="#{employee.firstName}" /> 
+						view orders
+					</b:navCommandLink>
+				</b:dataTableColumn>									
 			</b:dataTable>
 		</h:form>
 				

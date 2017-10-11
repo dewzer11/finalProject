@@ -12,7 +12,7 @@
 	xmlns:b="http://bootsfaces.net/ui"
 	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
 	
-	<ui:param name="title" value="Northwind - Orders by Customer" />
+	<ui:param name="title" value="Northwind - Order By Employee" />
 	
 	<ui:define name="externalstyles">
 	</ui:define>
@@ -23,15 +23,15 @@
 	<ui:define name="maincontent">
 		
 		<f:metadata>
-			<f:viewParam name="id" value="#{orderController.currentSelectedCustomerId}" />
-			<f:event listener="#{orderController.findOrderByCustomer()}" type="preRenderView" />
+			<f:viewParam name="id" value="#{orderController.currentSelectedEmployeeId}" />
+			<f:event listener="#{orderController.findOrderByEmployee()}" type="preRenderView" />
 		</f:metadata>
-		<h1>#{param.categoryName} Products </h1>
+		<h1>#{param.employeeName} Orders </h1>
 		
 		<b:messages id="messages"></b:messages>		
 		
 		<h:form>
-			<b:dataTable value="#{orderController.ordersByCustomer}" var="order">
+			<b:dataTable value="#{orderController.ordersByEmployee}" var="order">
 				<b:dataTableColumn value="#{order.orderID}">
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{order.customer.companyName}">
@@ -45,15 +45,12 @@
 					<h:outputText value="#{order.orderDate}">
 						<f:convertDateTime pattern="yyyy-MM-dd" />
 					</h:outputText>
-				</b:dataTableColumn>							
-				<b:dataTableColumn value="#{order.shipper.companyName}">
-				</b:dataTableColumn>			
+				</b:dataTableColumn>										
 				<b:dataTableColumn>
 					<f:facet name="header">
-						Freight
+						Action
 					</f:facet>
-					<h:outputText value="#{order.freight}">
-						<f:convertNumber type="currency" />
+					<h:outputText>View Detail
 					</h:outputText>
 				</b:dataTableColumn>		
 					

@@ -29,6 +29,7 @@ public class OrderController {
 		return orders;
 	}
 	
+	
 	private List<Order> ordersByCustomer;	// getter
 	private String currentSelectedCustomerId;	// getter/setter
 	
@@ -47,19 +48,51 @@ public class OrderController {
 		}
 		}
 		
-		public String getCurrentSelectedCustomerId() {
-			return currentSelectedCustomerId;
-		}
+	public String getCurrentSelectedCustomerId() {
+		return currentSelectedCustomerId;
+	}
 
-		public void setCurrentSelectedGenreId(String currentSelectedCustomerId) {
-			this.currentSelectedCustomerId = currentSelectedCustomerId;
-		}
+	public void setCurrentSelectedGenreId(String currentSelectedCustomerId) {
+		this.currentSelectedCustomerId = currentSelectedCustomerId;
+	}
 
-		public List<Order> ordersByCustomer() {
-			return ordersByCustomer;
-		}
+	public List<Order> ordersByCustomer() {
+		return ordersByCustomer;
+	}
 
-		public void setCurrentSelectedCustomerId(String currentSelectedCustomerId) {
-			this.currentSelectedCustomerId = currentSelectedCustomerId;
-		}
+	public void setCurrentSelectedCustomerId(String currentSelectedCustomerId) {
+		this.currentSelectedCustomerId = currentSelectedCustomerId;
+	}
+		
+		
+	//Orders by Employee
+	private List<Order> ordersByEmployee;	// getter
+	private int currentSelectedEmployeeId;	// getter/setter
+		
+	public int getCurrentSelectedEmployeeId() {
+		return currentSelectedEmployeeId;
+	}
+
+	public void setCurrentSelectedEmployeeId(int currentSelectedEmployeeId) {
+		this.currentSelectedEmployeeId = currentSelectedEmployeeId;
+	}
+
+	public List<Order> getOrdersByEmployee() {
+		return ordersByEmployee;
+	}
+		
+		public void findOrderByEmployee() {
+			if( !FacesContext.getCurrentInstance().isPostback() ) {
+				// verify that a valid genreId was set
+				if( currentSelectedEmployeeId > 0) {
+					ordersByEmployee = orderRepository.findAllByEmployeeId(currentSelectedEmployeeId);
+					if( ordersByEmployee.size() == 0 ) {
+						Messages.addGlobalInfo("There are no orders for employeeID {0}", 
+								currentSelectedEmployeeId);
+					}
+				} else {
+					Messages.addGlobalError("Bad request. A valid employeeID is required.");
+				}
+			}
+			}
 	}

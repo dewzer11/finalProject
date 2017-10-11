@@ -19,4 +19,10 @@ public class OrderRepository extends AbstractJpaRepository<Order> {
 				.getResultList();
 	}
 
+	public List<Order> findAllByEmployeeId(int employeeId) {
+		return getEntityManager().createQuery(
+				"SELECT o FROM Order o WHERE o.employee.employeeID = :idValue", Order.class)
+				.setParameter("idValue", employeeId)
+				.getResultList();
+	}
 }
