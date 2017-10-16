@@ -1,0 +1,60 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
+	
+	<ui:param name="title" value="Northwind - Product Details" />
+	
+	<ui:define name="externalstyles">
+	</ui:define>
+	
+	<ui:define name="internalstyles">
+	</ui:define>
+
+	<ui:define name="maincontent">
+	<f:metadata>
+			<f:viewParam name="id" value="#{customerController.currentSelectedCustomerId}" />
+			<f:event listener="#{customerController.findCustomer()}" type="preRenderView" />
+		</f:metadata>
+		<h1>Customer Details</h1>
+		
+		<b:messages id="messages"></b:messages>		
+		
+	
+
+	<b:form id="customerForm">
+			<b:panel collapsible="false" 
+			rendered="#{customerController.currentSelectedCustomer != null}">
+				<f:facet name="header">Customer Details</f:facet>
+				<b:inputText label="Customer ID" 
+					value="#{customerController.currentSelectedCustomer.customerID}" 
+					readonly="true" />
+				<b:inputText label="Company Name:"
+					value="#{customerController.currentSelectedCustomer.companyName}" 
+					readonly="true" />
+				<b:inputText label="Contact Name:"
+					value="#{customerController.currentSelectedCustomer.contactName}" 
+					readonly="true" />
+				<b:inputText label="Contact Title" 
+					value="#{customerController.currentSelectedCustomer.contactTitle}" 
+					readonly="true" />
+				<b:inputText label="Address" 
+					value="#{customerController.currentSelectedCustomer.address}" 
+					readonly="true" />
+				<b:inputText label="City" 
+					value="#{customerController.currentSelectedCustomer.city}" 
+					readonly="true" />			
+			</b:panel>
+		
+		</b:form>
+	</ui:define>
+</ui:composition>

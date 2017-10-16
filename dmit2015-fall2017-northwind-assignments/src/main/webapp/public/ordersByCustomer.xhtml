@@ -26,12 +26,12 @@
 			<f:viewParam name="id" value="#{orderController.currentSelectedCustomerId}" />
 			<f:event listener="#{orderController.findOrderByCustomer()}" type="preRenderView" />
 		</f:metadata>
-		<h1>#{param.categoryName} Products </h1>
+		<h1>#{param.customerName}'s Orders </h1>
 		
 		<b:messages id="messages"></b:messages>		
 		
 		<h:form>
-			<b:dataTable value="#{orderController.ordersByCustomer}" var="order">
+			<b:dataTable value="#{orderController.ordersByCustomer()}" var="order">
 				<b:dataTableColumn value="#{order.orderID}">
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{order.customer.companyName}">

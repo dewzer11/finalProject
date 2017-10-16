@@ -25,34 +25,50 @@
 			<f:viewParam name="id" value="#{employeeController.currentSelectedEmployeeId}" />
 			<f:event listener="#{employeeController.findEmployee()}" type="preRenderView" />
 		</f:metadata>
-		<h1>#{param.employeeName}</h1>
+		<h1>Employee Details</h1>
 		
 		<b:messages id="messages"></b:messages>		
 		
-		<h:form>
-
 	
-			<b:dataTable value="#{employeeController.employees}" var="employee">
-				<b:dataTableColumn value="#{employee.employeeID}">
-				</b:dataTableColumn>
-				<b:dataTableColumn value="#{employee.lastName}">
-				</b:dataTableColumn>
-				<b:dataTableColumn value="#{employee.firstName}">
-				</b:dataTableColumn>	
-				<b:dataTableColumn value="#{employee.title}">
-				</b:dataTableColumn>								
-				<b:dataTableColumn value="#{employee.titleOfCourtesy}">
-				</b:dataTableColumn>		
-				<b:dataTableColumn value="#{employee.birthDate}">
-				</b:dataTableColumn>	
-				<b:dataTableColumn value="#{employee.hireDate}">
-				</b:dataTableColumn>
-				<b:dataTableColumn value="#{employee.address}">
-				</b:dataTableColumn>
-				<b:dataTableColumn value="#{employee.city}">
-				</b:dataTableColumn>
-							
-			</b:dataTable>
-		</h:form>
+
+	<b:form id="employeeForm">
+			<b:panel collapsible="false" 
+			rendered="#{employeeController.currentSelectedEmployee != null}">
+				<f:facet name="header">Employee Details</f:facet>
+				<b:inputText label="Employee ID" 
+					value="#{employeeController.currentSelectedEmployee.employeeID}" 
+					readonly="true" />
+				<b:inputText label="Last Name:"
+					value="#{employeeController.currentSelectedEmployee.lastName}" 
+					readonly="true" />
+				<b:inputText label="First Name:"
+					value="#{employeeController.currentSelectedEmployee.firstName}" 
+					readonly="true" />
+				<b:inputText label="Title" 
+					value="#{employeeController.currentSelectedEmployee.title}" 
+					readonly="true" />
+				<b:inputText label="Title Of Courtesy" 
+					value="#{employeeController.currentSelectedEmployee.titleOfCourtesy}" 
+					readonly="true" />
+				<b:inputText label="Birth Date" 
+					value="#{employeeController.currentSelectedEmployee.birthDate}" 
+					readonly="true">
+					<f:convertDateTime pattern="yyyy-MM-dd"/>
+				</b:inputText>
+				<b:inputText label="Hire Date" 
+					value="#{employeeController.currentSelectedEmployee.hireDate}" 
+					readonly="true" >
+					<f:convertDateTime pattern="yyyy-MM-dd"/>
+				</b:inputText>
+				<b:inputText label="Address" 
+					value="#{employeeController.currentSelectedEmployee.address}" 
+					readonly="true" />
+				<b:inputText label="City" 
+					value="#{employeeController.currentSelectedEmployee.city}" 
+					readonly="true" />		
+					
+			</b:panel>
+		
+		</b:form>
 	</ui:define>
 </ui:composition>
