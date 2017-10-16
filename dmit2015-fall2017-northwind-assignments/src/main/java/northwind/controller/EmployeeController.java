@@ -15,6 +15,36 @@ import northwind.model.Product;
 
 @Model
 public class EmployeeController {
+	private int currentSelectedEmployeeId;
+	public int getCurrentSelectedEmployeeId() {
+		return currentSelectedEmployeeId;
+	}
+
+	public void setCurrentSelectedEmployeeId(int currentSelectedEmployeeId) {
+		this.currentSelectedEmployeeId = currentSelectedEmployeeId;
+	}
+
+	public Employee getCurrentSelectedEmployee() {
+		return currentSelectedEmployee;
+	}
+
+	private Employee currentSelectedEmployee;
+	
+	public void findEmployee() {
+		if( !FacesContext.getCurrentInstance().isPostback() ) {
+			if( currentSelectedEmployeeId > 0 ) {
+				currentSelectedEmployee = employeeRepository.find(currentSelectedEmployeeId);
+				if( currentSelectedEmployee == null ) {
+					Messages.addGlobalInfo("There is no Employee with Employee ID {0}", 
+							currentSelectedEmployeeId);
+				} else {
+					Messages.addGlobalInfo("Successfully retreived Employee info.");
+				}
+			} else {
+				Messages.addGlobalError("Bad request. A valid Employee ID is required.");
+			}
+		}		
+	}
 	
 	@Inject
 	private EmployeeRepository employeeRepository;
@@ -29,9 +59,6 @@ public class EmployeeController {
 	public List<Employee> getEmployees() {
 		return employees;
 	}
-	private List<Product> ordersByEmployee;	// getter
+	
 
-	
-	
-	
 }
