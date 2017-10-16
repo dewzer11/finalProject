@@ -25,28 +25,49 @@
 			<f:viewParam name="id" value="#{productController.currentSelectedProductId}" />
 			<f:event listener="#{productController.findProduct()}" type="preRenderView" />
 		</f:metadata>
-		<h1>#{param.productName}</h1>
+		<h1>Product Detail</h1>
 		
 		<b:messages id="messages"></b:messages>		
 		
-		<h:form>
-
 	
-			<b:dataTable value="#{productController.products}" var="product">
-				<b:dataTableColumn value="#{product.productID}">
-				</b:dataTableColumn>
-				<b:dataTableColumn value="#{product.productName}">
-				</b:dataTableColumn>
-				<b:dataTableColumn value="#{product.unitPrice}">
-				</b:dataTableColumn>	
-				<b:dataTableColumn value="#{product.quantityPerUnit}">
-				</b:dataTableColumn>								
-				<b:dataTableColumn value="#{product.supplier.companyName}">
-				</b:dataTableColumn>		
-				<b:dataTableColumn value="#{product.discontinued}">
-				</b:dataTableColumn>	
-							
-			</b:dataTable>
-		</h:form>
+
+	<b:form id="productForm">
+			<b:panel collapsible="false" 
+			rendered="#{productController.currentSelectedProduct != null}">
+				<f:facet name="header">Product Detail</f:facet>
+				<b:inputText label="Product ID" 
+					value="#{productController.currentSelectedProduct.productID}" 
+					readonly="true" />
+				<b:inputText label="Product Name:"
+					value="#{productController.currentSelectedProduct.productName}" 
+					readonly="true" />
+				<b:inputText label="Supplier" 
+					value="#{productController.currentSelectedProduct.supplier.companyName}" 
+					readonly="true" />
+				<b:inputText label="Category" 
+					value="#{productController.currentSelectedProduct.category.categoryName}" 
+					readonly="true" />
+				<b:inputText label="Quantity Per Unit" 
+					value="#{productController.currentSelectedProduct.quantityPerUnit}" 
+					readonly="true" />
+				<b:inputText label="Unit Price" 
+					value="#{productController.currentSelectedProduct.unitPrice}" 
+					readonly="true" />
+				<b:inputText label="Units in Stock" 
+					value="#{productController.currentSelectedProduct.unitsInStock}" 
+					readonly="true" />
+				<b:inputText label="Units on Order" 
+					value="#{productController.currentSelectedProduct.unitsOnOrder}" 
+					readonly="true" />
+				<b:inputText label="Reorder Level" 
+					value="#{productController.currentSelectedProduct.reorderLevel}" 
+					readonly="true" />
+				<b:selectBooleanCheckbox label="Discontinued" value="#{productController.currentSelectedProduct.discontinued}" disabled="#{not checkboxBean.editable}" />
+			
+				
+					
+			</b:panel>
+		
+		</b:form>
 	</ui:define>
 </ui:composition>
