@@ -74,7 +74,7 @@
 		<b:panel collapsible="false" 
 			rendered="#{orderController.currentSelectedOrder != null}">
 				<f:facet name="header">Invoice Detail</f:facet>
-				<b:inputText label="Customer ID" 
+				<h:outputText label="Customer ID" 
 					value="#{orderController.currentSelectedOrder.customer.customerID}" 
 					readonly="true" />
 				<b:inputText label="Order ID" 
@@ -92,7 +92,18 @@
 				<b:inputText label="Customer ID" 
 					value="#{orderController.currentSelectedOrder.shipper.companyName}" 
 					readonly="true" />
-				
+				<b:dataTable value="#{orderController.currentSelectedOrder.orderDetails}" var="o">
+				<b:dataTableColumn value="#{o.product.productID}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{o.product.productName}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{o.quantity}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{o.discount}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{o.unitPrice}">
+				</b:dataTableColumn>
+				</b:dataTable>
 		</b:panel>
 		</b:form>
 	
