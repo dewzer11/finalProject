@@ -22,13 +22,79 @@
 
 	<ui:define name="maincontent">
 	<f:metadata>
-			<f:viewParam name="id" value="#{}" />
-			<f:event listener="#{}" type="preRenderView" />
+			<f:viewParam name="id" value="#{orderController.currentSelectedOrderId}" />
+			<f:event listener="#{orderController.findOrder()}" type="preRenderView" />
 		</f:metadata>
 		<h1>Order Detail</h1>
 		
 		<b:messages id="messages"></b:messages>		
 		
+		<b:form id="orderForm">
+		
+		<b:panel collapsible="false" 
+			rendered="#{orderController.currentSelectedOrder != null}">
+				<f:facet name="header">Billing Address</f:facet>
+				<b:inputText  
+					value="#{orderController.currentSelectedOrder.customer.companyName}" 
+					readonly="true" />
+				<b:inputText  
+					value="#{orderController.currentSelectedOrder.customer.contactName}" 
+					readonly="true" />
+				<b:inputText  
+					value="#{orderController.currentSelectedOrder.customer.contactTitle}" 
+					readonly="true" />
+				<b:inputText  
+					value="#{orderController.currentSelectedOrder.customer.address}" 
+					readonly="true" />
+				<b:inputText  
+					value="#{orderController.currentSelectedOrder.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}" 
+					readonly="true" />
+				<b:inputText  
+					value="#{orderController.currentSelectedOrder.customer.country}" 
+					readonly="true" />
+		</b:panel>
+		<b:panel collapsible="false" 
+			rendered="#{orderController.currentSelectedOrder != null}">
+				<f:facet name="header">Shipping Address</f:facet>
+				<b:inputText  
+					value="#{orderController.currentSelectedOrder.customer.companyName}" 
+					readonly="true" />
+				
+				<b:inputText  
+					value="#{orderController.currentSelectedOrder.customer.address}" 
+					readonly="true" />
+				<b:inputText  
+					value="#{orderController.currentSelectedOrder.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}" 
+					readonly="true" />
+				<b:inputText  
+					value="#{orderController.currentSelectedOrder.customer.country}" 
+					readonly="true" />
+		</b:panel>
+		
+		<b:panel collapsible="false" 
+			rendered="#{orderController.currentSelectedOrder != null}">
+				<f:facet name="header">Invoice Detail</f:facet>
+				<b:inputText label="Customer ID" 
+					value="#{orderController.currentSelectedOrder.customer.customerID}" 
+					readonly="true" />
+				<b:inputText label="Order ID" 
+					value="#{orderController.currentSelectedOrder.orderID}" 
+					readonly="true" />
+				<b:inputText label="Order Date" 
+					value="#{orderController.currentSelectedOrder.orderDate}" 
+					readonly="true" />
+				<b:inputText label="Required Date" 
+					value="#{orderController.currentSelectedOrder.requiredDate}" 
+					readonly="true" />
+				<b:inputText label="Shipped Date" 
+					value="#{orderController.currentSelectedOrder.shippedDate}" 
+					readonly="true" />
+				<b:inputText label="Customer ID" 
+					value="#{orderController.currentSelectedOrder.shipper.companyName}" 
+					readonly="true" />
+				
+		</b:panel>
+		</b:form>
 	
 
 	
