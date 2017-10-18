@@ -32,35 +32,35 @@
 	
 
 	<b:form id="productForm">
-			<b:panel collapsible="false" 
+			<b:panel collapsible="true" 
 			rendered="#{productController.currentSelectedProduct != null}">
 				<f:facet name="header">Product Detail</f:facet>
-				<b:inputText label="Product ID" 
+				<h:outputText label="Product ID" 
 					value="#{productController.currentSelectedProduct.productID}" 
 					readonly="true" />
-				<b:inputText label="Product Name:"
+				<h:outputText label="Product Name:"
 					value="#{productController.currentSelectedProduct.productName}" 
 					readonly="true" />
-				<b:inputText label="Supplier" 
+				<h:outputText label="Supplier" 
 					value="#{productController.currentSelectedProduct.supplier.companyName}" 
 					readonly="true" />
-				<b:inputText label="Category" 
+				<h:outputText label="Category" 
 					value="#{productController.currentSelectedProduct.category.categoryName}" 
 					readonly="true" />
-				<b:inputText label="Quantity Per Unit" 
+				<h:outputText label="Quantity Per Unit" 
 					value="#{productController.currentSelectedProduct.quantityPerUnit}" 
 					readonly="true" />
-				<b:inputText label="Unit Price" 
+				<h:outputText label="Unit Price" 
 					value="#{productController.currentSelectedProduct.unitPrice}" 
 					
 					readonly="true" />
-				<b:inputText label="Units in Stock" 
+				<h:outputText label="Units in Stock" 
 					value="#{productController.currentSelectedProduct.unitsInStock}" 
 					readonly="true" />
-				<b:inputText label="Units on Order" 
+				<h:outputText label="Units on Order" 
 					value="#{productController.currentSelectedProduct.unitsOnOrder}" 
 					readonly="true" />
-				<b:inputText label="Reorder Level" 
+				<h:outputText label="Reorder Level" 
 					value="#{productController.currentSelectedProduct.reorderLevel}" 
 					readonly="true" />
 				<b:selectBooleanCheckbox label="Discontinued" value="#{productController.currentSelectedProduct.discontinued}" disabled="#{not checkboxBean.editable}" />
