@@ -45,13 +45,16 @@
 					<h:outputText value="#{order.orderDate}">
 						<f:convertDateTime pattern="yyyy-MM-dd" />
 					</h:outputText>
-				</b:dataTableColumn>										
-				<b:dataTableColumn>
-					<f:facet name="header">
-						Action
+				</b:dataTableColumn>
+				<b:dataTableColumn>									
+				<f:facet name="header">
+						View Details
 					</f:facet>
-					<h:outputText>View Detail
-					</h:outputText>
+					<b:navCommandLink outcome="orderDetail.xhtml">
+						<f:param name="id" value="#{order.orderID}" />
+						<f:param name="employeeName" value="#{employee.firstName}" />
+						view details
+					</b:navCommandLink>
 				</b:dataTableColumn>		
 					
 			</b:dataTable>

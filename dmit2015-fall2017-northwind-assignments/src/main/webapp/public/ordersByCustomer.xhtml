@@ -55,6 +55,15 @@
 					<h:outputText value="#{order.freight}">
 						<f:convertNumber type="currency" />
 					</h:outputText>
+				</b:dataTableColumn>	
+				<b:dataTableColumn>									
+				<f:facet name="header">
+						View Details
+					</f:facet>
+					<b:navCommandLink outcome="orderDetail.xhtml">
+						<f:param name="id" value="#{order.orderID}" />
+						view details
+					</b:navCommandLink>
 				</b:dataTableColumn>		
 					
 			</b:dataTable>
