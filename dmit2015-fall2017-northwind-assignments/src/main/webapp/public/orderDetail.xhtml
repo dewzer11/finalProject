@@ -31,6 +31,7 @@
 		
 		<b:form id="orderForm">
 		
+		<b:panelGrid colSpans="6,6" size="sm">
 		<b:panel  
 			rendered="#{orderController.currentSelectedOrder != null}">
 				<f:facet name="heading">Billing Address</f:facet>
@@ -53,6 +54,7 @@
 					value="#{orderController.currentSelectedOrder.customer.country}" 
 					 />
 		</b:panel>
+		
 		<b:panel 
 			rendered="#{orderController.currentSelectedOrder != null}">
 				<f:facet name="heading">Shipping Address</f:facet>
@@ -70,6 +72,7 @@
 					value="#{orderController.currentSelectedOrder.customer.country}" 
 					 /> <br/>
 		</b:panel>
+		</b:panelGrid>
 		
 		<b:panel collapsible="false" 
 			rendered="#{orderController.currentSelectedOrder != null}">
