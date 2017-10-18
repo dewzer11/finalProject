@@ -31,50 +31,53 @@
 		
 		<b:form id="orderForm">
 		
-		<b:panel collapsible="false" 
+		<b:panelGrid colSpans="6,6" size="sm">
+		<b:panel  
 			rendered="#{orderController.currentSelectedOrder != null}">
-				<f:facet name="header">Billing Address</f:facet>
-				<b:inputText  
+				<f:facet name="heading">Billing Address</f:facet>
+				<h:outputText  
 					value="#{orderController.currentSelectedOrder.customer.companyName}" 
-					readonly="true" />
-				<b:inputText  
+					 /> <br/>
+				<h:outputText  
 					value="#{orderController.currentSelectedOrder.customer.contactName}" 
-					readonly="true" />
-				<b:inputText  
+					 /> <br/>
+				<h:outputText  
 					value="#{orderController.currentSelectedOrder.customer.contactTitle}" 
-					readonly="true" />
-				<b:inputText  
+					 /> <br/>
+				<h:outputText 
 					value="#{orderController.currentSelectedOrder.customer.address}" 
-					readonly="true" />
-				<b:inputText  
+					 /> <br/>
+				<h:outputText  
 					value="#{orderController.currentSelectedOrder.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}" 
-					readonly="true" />
-				<b:inputText  
+					 /> <br/>
+				<h:outputText  
 					value="#{orderController.currentSelectedOrder.customer.country}" 
-					readonly="true" />
+					 />
 		</b:panel>
-		<b:panel collapsible="false" 
+		
+		<b:panel 
 			rendered="#{orderController.currentSelectedOrder != null}">
-				<f:facet name="header">Shipping Address</f:facet>
-				<b:inputText  
+				<f:facet name="heading">Shipping Address</f:facet>
+				<h:outputText  
 					value="#{orderController.currentSelectedOrder.customer.companyName}" 
-					readonly="true" />
+					 /> <br/>
 				
-				<b:inputText  
+				<h:outputText  
 					value="#{orderController.currentSelectedOrder.customer.address}" 
-					readonly="true" />
-				<b:inputText  
+				/> <br/>
+				<h:outputText  
 					value="#{orderController.currentSelectedOrder.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}" 
-					readonly="true" />
-				<b:inputText  
+					/> <br/>
+				<h:outputText  
 					value="#{orderController.currentSelectedOrder.customer.country}" 
-					readonly="true" />
+					 /> <br/>
 		</b:panel>
+		</b:panelGrid>
 		
 		<b:panel collapsible="false" 
 			rendered="#{orderController.currentSelectedOrder != null}">
-				<f:facet name="header">Invoice Detail</f:facet>
-				<h:outputText label="Customer ID" 
+				<f:facet name="heading">Invoice Detail</f:facet>
+				<b:inputText label="Customer ID" 
 					value="#{orderController.currentSelectedOrder.customer.customerID}" 
 					readonly="true" />
 				<b:inputText label="Order ID" 
