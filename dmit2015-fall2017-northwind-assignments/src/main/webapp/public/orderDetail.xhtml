@@ -103,6 +103,14 @@
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{o.unitPrice}">
 				</b:dataTableColumn>
+
+				<b:dataTableColumn >
+					<f:facet name="header">
+						Extended Price
+					</f:facet>
+					<h:outputText value="#{o.discount /100 * o.unitPrice * o.quantity}" />
+				</b:dataTableColumn>	
+				
 				</b:dataTable>
 		</b:panel>
 		</b:form>
