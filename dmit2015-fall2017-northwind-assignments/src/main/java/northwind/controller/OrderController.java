@@ -32,7 +32,7 @@ public class OrderController {
 	public void findOrder() {
 		if( !FacesContext.getCurrentInstance().isPostback() ) {
 			if( currentSelectedOrderId > 0 ) {
-				currentSelectedOrder = orderRepository.find(currentSelectedOrderId);
+				currentSelectedOrder = orderRepository.findOne(currentSelectedOrderId);
 				if( currentSelectedOrder == null ) {
 					Messages.addGlobalInfo("There is no Order with OrderID {0}", 
 							currentSelectedOrderId);

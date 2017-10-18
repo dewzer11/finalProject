@@ -25,5 +25,12 @@ public class OrderRepository extends AbstractJpaRepository<Order> {
 				.setParameter("idValue", employeeId)
 				.getResultList();
 	}
-}
+
 // need to add a find thing for the products something something idunno ** ask sam later
+public Order findOne(int orderId) {
+	return getEntityManager().createQuery(
+"SELECT o from Order o JOIN FETCH o.orderDetails WHERE o.orderID =:idValue", Order.class)
+			.setParameter("idValue",  orderId)
+			.getSingleResult();
+}
+}
