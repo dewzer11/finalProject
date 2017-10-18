@@ -32,39 +32,39 @@
 	
 
 	<b:form id="productForm">
-			<b:panel collapsible="true" 
+			<b:panel collapsible="false" 
 			rendered="#{productController.currentSelectedProduct != null}">
-				<f:facet name="header">Product Detail</f:facet>
+				<b:panelGrid colSpans="2,10">
 				<h:outputText label="Product ID" 
 					value="#{productController.currentSelectedProduct.productID}" 
-					readonly="true" />
+					 /> <br/>
 				<h:outputText label="Product Name:"
 					value="#{productController.currentSelectedProduct.productName}" 
-					readonly="true" />
+					 /> <br/>
 				<h:outputText label="Supplier" 
 					value="#{productController.currentSelectedProduct.supplier.companyName}" 
-					readonly="true" />
+					 /> <br/>
 				<h:outputText label="Category" 
 					value="#{productController.currentSelectedProduct.category.categoryName}" 
-					readonly="true" />
+					 /> <br/>
 				<h:outputText label="Quantity Per Unit" 
 					value="#{productController.currentSelectedProduct.quantityPerUnit}" 
-					readonly="true" />
+					 /> <br/>
 				<h:outputText label="Unit Price" 
 					value="#{productController.currentSelectedProduct.unitPrice}" 
 					
-					readonly="true" />
+					 /> <br/>
 				<h:outputText label="Units in Stock" 
 					value="#{productController.currentSelectedProduct.unitsInStock}" 
-					readonly="true" />
+					/> <br/>
 				<h:outputText label="Units on Order" 
 					value="#{productController.currentSelectedProduct.unitsOnOrder}" 
-					readonly="true" />
+					/> <br/>
 				<h:outputText label="Reorder Level" 
 					value="#{productController.currentSelectedProduct.reorderLevel}" 
-					readonly="true" />
+					 />  <br/>
 				<b:selectBooleanCheckbox label="Discontinued" value="#{productController.currentSelectedProduct.discontinued}" disabled="#{not checkboxBean.editable}" />
-			
+				</b:panelGrid>
 				
 					
 			</b:panel>
