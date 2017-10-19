@@ -35,6 +35,7 @@
 			<b:panel collapsible="false" 
 			rendered="#{productController.currentSelectedProduct != null}">
 				<b:panelGrid colSpans="2,10">
+				<b:panel>
 				<h:outputText label="Product ID" 
 					value="#{productController.currentSelectedProduct.productID}" 
 					 /> <br/>
@@ -64,6 +65,7 @@
 					value="#{productController.currentSelectedProduct.reorderLevel}" 
 					 />  <br/>
 				<b:selectBooleanCheckbox label="Discontinued" value="#{productController.currentSelectedProduct.discontinued}" disabled="#{not checkboxBean.editable}" />
+				</b:panel>
 				</b:panelGrid>
 				
 					
