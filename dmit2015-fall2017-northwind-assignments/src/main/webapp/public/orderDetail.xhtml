@@ -114,6 +114,11 @@
 					<h:outputText value="#{(1-o.discount) * o.unitPrice * o.quantity}" />
 				</b:dataTableColumn>	
 				
+								
+				<b:inputText label="Sub Total" value="#{o.}" readonly="true" />
+				<b:inputText label="Freight" value="" readonly="true" />
+				<b:inputText label="Sales Total" value="" readonly="true" />
+				
 				</b:dataTable>
 		</b:panel>
 		</b:form>

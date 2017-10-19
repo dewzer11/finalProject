@@ -1,7 +1,7 @@
 package northwind.data;
 
+import java.math.BigDecimal;
 import java.util.List;
-
 import northwind.model.Order;
 
 public class OrderRepository extends AbstractJpaRepository<Order> {
@@ -26,11 +26,17 @@ public class OrderRepository extends AbstractJpaRepository<Order> {
 				.getResultList();
 	}
 
-// need to add a find thing for the products something something idunno ** ask sam later
 public Order findOne(int orderId) {
 	return getEntityManager().createQuery(
 "SELECT o from Order o JOIN FETCH o.orderDetails WHERE o.orderID =:idValue", Order.class)
 			.setParameter("idValue",  orderId)
+			.getSingleResult();
+}
+
+public BigDecimal findSubTotal(int orderID) {
+	
+	return getEntityManager().createQuery("SELECT SUM((1-o.discount) * o.unitPrice * o.quantity) FROM Order o WHERE o.order.orderID = :idValue", BigDecimal.class)
+			.setParameter("idValue", orderID)
 			.getSingleResult();
 }
 }
