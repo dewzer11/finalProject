@@ -39,4 +39,5 @@ public Double findSubTotal(int orderID) {
 			.setParameter("idValue", orderID)
 			.getSingleResult();
 }
+
 }

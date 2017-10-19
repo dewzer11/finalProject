@@ -50,6 +50,9 @@ public class OrderController {
 	public Double getSubtotal() {
 		return orderRepository.findSubTotal(getCurrentSelectedOrderId());
 	}
+	
+	
+	
 	@Inject
 	private OrderRepository orderRepository;
 	
