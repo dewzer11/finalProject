@@ -115,8 +115,8 @@
 				</b:dataTableColumn>	
 				
 								
-				<b:inputText label="Sub Total" value="#{o.}" readonly="true" />
-				<b:inputText label="Freight" value="" readonly="true" />
+				<b:inputText label="Sub Total" value="#{order}" readonly="true" />
+				<b:inputText label="Freight" value="#{orderController.currentSelectedOrder.freight}" readonly="true" />
 				<b:inputText label="Sales Total" value="" readonly="true" />
 				
 				</b:dataTable>
