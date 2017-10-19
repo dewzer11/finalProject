@@ -1,6 +1,6 @@
 package northwind.controller;
 
-import java.math.BigDecimal;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -43,9 +43,13 @@ public class OrderController {
 			} else {
 				Messages.addGlobalError("Bad request. A valid OrderID is required.");
 			}
-		}		
+		}
+		
 	}
 	
+	public Double getSubtotal() {
+		return orderRepository.findSubTotal(getCurrentSelectedOrderId());
+	}
 	@Inject
 	private OrderRepository orderRepository;
 	

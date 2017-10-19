@@ -1,6 +1,6 @@
 package northwind.data;
 
-import java.math.BigDecimal;
+
 import java.util.List;
 import northwind.model.Order;
 
@@ -33,9 +33,9 @@ public Order findOne(int orderId) {
 			.getSingleResult();
 }
 
-public BigDecimal findSubTotal(int orderID) {
+public Double findSubTotal(int orderID) {
 	
-	return getEntityManager().createQuery("SELECT SUM((1-o.discount) * o.unitPrice * o.quantity) FROM Order o WHERE o.order.orderID = :idValue", BigDecimal.class)
+	return getEntityManager().createQuery("SELECT SUM((1-o.discount) * o.unitPrice * o.quantity) FROM OrderDetail o WHERE o.order.orderID = :idValue", Double.class)
 			.setParameter("idValue", orderID)
 			.getSingleResult();
 }

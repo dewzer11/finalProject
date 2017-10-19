@@ -104,22 +104,47 @@
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{o.discount}">
 				</b:dataTableColumn>
-				<b:dataTableColumn value="#{o.unitPrice}">
+				<b:dataTableColumn>
+					<f:facet name="header">
+						Unit Price
+					</f:facet>
+					<h:outputText value="#{o.unitPrice}">
+						<f:convertNumber type="currency" />
+					</h:outputText>
 				</b:dataTableColumn>
 
 				<b:dataTableColumn >
 					<f:facet name="header">
 						Extended Price
 					</f:facet>
-					<h:outputText value="#{(1-o.discount) * o.unitPrice * o.quantity}" />
-				</b:dataTableColumn>	
+					<h:outputText value="#{(1-o.discount) * o.unitPrice * o.quantity}" >
+					<f:convertNumber type="currency" />
+					</h:outputText>
+				</b:dataTableColumn>
+				</b:dataTable>	
+			
+			<b:panel collapsible="false" 
+			rendered="#{orderController.currentSelectedOrder != null}">
+				<f:facet name="header">
+					Sub Total
+				</f:facet>
+				<h:inputText  label="Sub Total" 
+				value="#{orderController.subtotal}"  readonly="true"> 
+					<f:convertNumber type="currency" />
+				</h:inputText>
+			
+				<h:inputText  label="Freight" 
+				value="#{orderController.currentSelectedOrder.freight}" readonly="true"> 
+					<f:convertNumber type="currency" />
+				</h:inputText>
 				
-								
-				<b:inputText label="Sub Total" value="#{order}" readonly="true" />
-				<b:inputText label="Freight" value="#{orderController.currentSelectedOrder.freight}" readonly="true" />
-				<b:inputText label="Sales Total" value="" readonly="true" />
+				<h:inputText label="Sales Total" 
+					value="#{orderController.subtotal + orderController.currentSelectedOrder.freight}" readonly="true">
+					<f:convertNumber type="currency" />
+				</h:inputText> 
+			</b:panel>
 				
-				</b:dataTable>
+				
 		</b:panel>
 		</b:form>
 	
