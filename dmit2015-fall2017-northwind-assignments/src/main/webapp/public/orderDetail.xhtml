@@ -111,7 +111,7 @@
 					<f:facet name="header">
 						Extended Price
 					</f:facet>
-					<h:outputText value="#{o.discount /100 * o.unitPrice * o.quantity}" />
+					<h:outputText value="#{(1-o.discount) * o.unitPrice * o.quantity}" />
 				</b:dataTableColumn>	
 				
 				</b:dataTable>
