@@ -22,9 +22,9 @@ public class ProductRepository extends AbstractJpaRepository<Product> {
 	public List<Product> findTenMostExpensiveProducts() {
 		return getEntityManager().createQuery(
 						"SELECT new northwind.report.Product (productName unitPrice " 
-						+ " FROM Products "  
+						+ " FROM Product "  
 						+ " ORDER BY unitPrice DESC " 
-						+ " LIMIT 10 ",
+						+ " WHERE ROWNUM < 11",
 						Product.class)
 				.getResultList();
 	}	

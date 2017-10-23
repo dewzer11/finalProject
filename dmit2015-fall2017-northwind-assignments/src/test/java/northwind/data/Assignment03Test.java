@@ -55,25 +55,25 @@ public class Assignment03Test {
 	@Inject
 	private CustomerRepository customerRepository;
 	
-//	@Test
-//	public void shouldFindTenMostExpensiveProducts() {
-//		List<Product> queryResults = productRepository.findTopNMostExpensiveProducts(10);
-//		assertEquals(10, queryResults.size());
-//		
-//		// verify the first, last, and middle result
-//		Product firstResult = queryResults.get(0);
-//		assertEquals("Cte de Blaye", firstResult.getProductName());
-//		assertEquals(263.50, firstResult.getUnitPrice().doubleValue(), 0);
-//		
-//		Product lastResult = queryResults.get(queryResults.size() - 1);
-//		assertEquals("Rssle Sauerkraut", lastResult.getProductName());
-//		assertEquals(45.60, lastResult.getUnitPrice().doubleValue(), 0);
-//
-//		Product middleResult = queryResults.get(queryResults.size()/2 - 1);
-//		assertEquals("Carnarvon Tigers", middleResult.getProductName());
-//		assertEquals(62.50, middleResult.getUnitPrice().doubleValue(), 0);
-//
-//	}
+	@Test
+	public void shouldFindTenMostExpensiveProducts() {
+		List<Product> queryResults = productRepository.findTenMostExpensiveProducts();
+		assertEquals(10, queryResults.size());
+		
+		// verify the first, last, and middle result
+		Product firstResult = queryResults.get(0);
+		assertEquals("Cte de Blaye", firstResult.getProductName());
+		assertEquals(263.50, firstResult.getUnitPrice().doubleValue(), 0);
+		
+		Product lastResult = queryResults.get(queryResults.size() - 1);
+		assertEquals("Rssle Sauerkraut", lastResult.getProductName());
+		assertEquals(45.60, lastResult.getUnitPrice().doubleValue(), 0);
+
+		Product middleResult = queryResults.get(queryResults.size()/2 - 1);
+		assertEquals("Carnarvon Tigers", middleResult.getProductName());
+		assertEquals(62.50, middleResult.getUnitPrice().doubleValue(), 0);
+
+	}
 	
 	@Test
 	public void shouldFindCategorySalesForYear() {

@@ -3,19 +3,19 @@ package northwind.report;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class TenExpensiveProjects {
+public class TenExpensiveProducts {
 	
 
 	private String productName;
 	private BigDecimal unitPrice;
 	
-		public TenExpensiveProjects(String productName, BigDecimal unitPrice) {
+		public TenExpensiveProducts(String productName, BigDecimal unitPrice) {
 		super();
 		this.productName = productName;
 		this.unitPrice = unitPrice;
 	}
 		
-		public TenExpensiveProjects(String productName, Double unitPrice) {
+		public TenExpensiveProducts(String productName, Double unitPrice) {
 		super();
 		this.productName = productName;
 		this.unitPrice = BigDecimal.valueOf(unitPrice).setScale(2, RoundingMode.HALF_UP);
