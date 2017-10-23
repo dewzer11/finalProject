@@ -28,28 +28,28 @@
 			<h1>Genre Sales</h1>
 		</b:jumbotron>
 		
-		<hf:chart type="pie" title="Genre Sales">
-			<hf:chartSerie value="#{genreController.retrieveGenreSales()}" 
+		<hf:chart type="pie" title="Category Sales for 1997">
+			<hf:chartSerie value="#{categoriesController.retrieveCategorySales()}" 
 			name="Total Sales"
 			var="point"
 			point="#{point.totalSales}"
-			tickLabel="#{point.genreName}"/>
+			tickLabel="#{point.categoryName}"/>
 		</hf:chart>
 		
-		<hf:chart type="bar" title="Genre Sales">
-			<hf:chartSerie value="#{genreController.retrieveGenreSales()}" 
+		<hf:chart type="bar" title="Category Sales for 1997">
+			<hf:chartSerie value="#{categoriesController.retrieveCategorySales()}" 
 			name="Total Sales"
 			var="point"
 			point="#{point.totalSales}"
-			tickLabel="#{point.genreName}"/>
+			tickLabel="#{point.categoryName}"/>
 		</hf:chart>
 		
-		<hf:chart type="column" title="Genre Sales">
-			<hf:chartSerie value="#{genreController.retrieveGenreSales()}" 
+		<hf:chart type="column" title="Category Sales for 1997">
+			<hf:chartSerie value="#{categoriesController.retrieveCategorySales()}" 
 			name="Total Sales"
 			var="point"
 			point="#{point.totalSales}"
-			tickLabel="#{point.genreName}"/>
+			tickLabel="#{point.categoryName}"/>
 		</hf:chart>
 		
 				

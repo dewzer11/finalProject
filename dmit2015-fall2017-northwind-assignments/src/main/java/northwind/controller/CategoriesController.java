@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import northwind.data.CategoriesRepository;
 import northwind.model.Category;
+import northwind.report.CategorySales1997;
 
 @Model
 public class CategoriesController {
@@ -26,4 +27,7 @@ public class CategoriesController {
 		return Categories;
 	}
 	
+	public List<CategorySales1997> retrieveCategorySales() {
+		return CategoriesRepository.findCategorySales();
+	}
 }
