@@ -123,26 +123,28 @@
 				</b:dataTableColumn>
 				</b:dataTable>	
 			
+
 			<b:panel collapsible="false" 
 			rendered="#{orderController.currentSelectedOrder != null}">
 				<f:facet name="header">
 					Sub Total
 				</f:facet>
-				<b:inputText  label="Sub Total" 
+				<h:inputText  label="Sub Total" 
 				value="#{orderController.subtotal}"  readonly="true"> 
 					<f:convertNumber type="currency" />
-				</b:inputText>
+				</h:inputText>
 			
-				<b:inputText  label="Freight" 
+				<h:inputText  label="Freight" 
 				value="#{orderController.currentSelectedOrder.freight}" readonly="true"> 
 					<f:convertNumber type="currency" />
-				</b:inputText>
+				</h:inputText>
 				
-				<b:inputText label="Sales Total" 
+				<h:inputText label="Sales Total" 
 					value="#{orderController.subtotal + orderController.currentSelectedOrder.freight}" readonly="true">
 					<f:convertNumber type="currency" />
-				</b:inputText> 
+				</h:inputText> 
 			</b:panel>
+
 				
 				
 		</b:panel>
