@@ -33,7 +33,8 @@
 			name="Total Sales"
 			var="point"
 			point="#{point.totalSales}"
-			tickLabel="#{point.categoryName}"/>
+			tickLabel="#{point.categoryName}"
+			dataLabel="&lt;b>{point.name}&lt;/b>: {point.percentage:.1f} % &lt;i>({point.y})&lt;/i>"/>
 		</hf:chart>
 		
 		<hf:chart type="bar" title="Sales by Category for 1997">
@@ -41,7 +42,8 @@
 			name="Total Sales"
 			var="point"
 			point="#{point.totalSales}"
-			tickLabel="#{point.categoryName}"/>
+			tickLabel="#{point.categoryName}"
+			dataLabel="&lt;b>{point.name}&lt;/b>{point.y}&lt;/i>"/>
 		</hf:chart>
 		
 		<hf:chart type="column" title="Category Sales for 1997">
@@ -49,7 +51,8 @@
 			name="Total Sales"
 			var="point"
 			point="#{point.totalSales}"
-			tickLabel="#{point.categoryName}"/>
+			tickLabel="#{point.categoryName}"
+			dataLabel="&lt;b>{point.name}&lt;/b>{point.y}&lt;/i>"/>
 		</hf:chart>
 		
 				
