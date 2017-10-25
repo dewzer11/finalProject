@@ -25,33 +25,33 @@
 	<ui:define name="maincontent">
 		
 		<b:jumbotron>
-			<h1>Category Sales for 1997</h1>
+			<h1>Employee Sales for 1997</h1>
 		</b:jumbotron>
 		
-		<hf:chart type="pie" title="Category Sales for 1997">
-			<hf:chartSerie value="#{categoriesController.retrieveCategorySales()}" 
-			name="Total Sales"
+		<hf:chart type="pie" title="Employee Sales for 1997">
+			<hf:chartSerie value="#{employeeController.retrieveEmployeeSales()}" 
+			name="Employee Sales for 1997"
 			var="point"
 			point="#{point.totalSales}"
-			tickLabel="#{point.categoryName}"
-			dataLabel="&lt;b>{point.name}&lt;/b>: {point.percentage:.1f} % &lt;i>({point.y})&lt;/i>"/>
+			tickLabel="#{point.employeeName}"
+			dataLabel="&lt;b>{point.name}&lt;/b>:"/>
 		</hf:chart>
 		
-		<hf:chart type="bar" title="Sales by Category for 1997">
-			<hf:chartSerie value="#{categoriesController.retrieveCategorySales()}" 
-			name="Total Sales"
+		<hf:chart type="bar" title="Employee Sales for 1997">
+			<hf:chartSerie value="#{employeeController.retrieveEmployeeSales()}" 
+			name="Employee Sales for 1997"
 			var="point"
 			point="#{point.totalSales}"
-			tickLabel="#{point.categoryName}"
+			tickLabel="#{point.employeeName}"
 			dataLabel="&lt;b>{point.name}&lt;/b>{point.y}&lt;/i>"/>
 		</hf:chart>
 		
-		<hf:chart type="column" title="Category Sales 1997">
-			<hf:chartSerie value="#{categoriesController.retrieveCategorySales()}" 
-			name="Total Sales"
+		<hf:chart type="column" title="Employee Sales for 1997">
+			<hf:chartSerie value="#{employeeController.retrieveEmployeeSales()}" 
+			name="Employee Sales for 1997"
 			var="point"
 			point="#{point.totalSales}"
-			tickLabel="#{point.categoryName}"
+			tickLabel="#{point.employeeName}"
 			dataLabel="&lt;b>{point.name}&lt;/b>{point.y}&lt;/i>"/>
 		</hf:chart>
 		

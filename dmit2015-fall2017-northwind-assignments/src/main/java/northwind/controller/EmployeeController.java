@@ -12,6 +12,8 @@ import org.omnifaces.util.Messages;
 import northwind.data.EmployeeRepository;
 import northwind.model.Employee;
 import northwind.model.Product;
+import northwind.report.CategorySales1997;
+import northwind.report.EmployeeSales1997;
 
 @Model
 public class EmployeeController {
@@ -60,5 +62,8 @@ public class EmployeeController {
 		return employees;
 	}
 	
+	public List<EmployeeSales1997> retrieveEmployeeSales() {
+		return employeeRepository.findEmployeeSales();
+	}
 
 }
