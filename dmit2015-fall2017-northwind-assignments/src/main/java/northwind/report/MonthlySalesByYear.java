@@ -7,8 +7,17 @@ public class MonthlySalesByYear {
 
 	private BigDecimal totalSales;
 	private Date month;
+	private Date Year;
 	
-	public MonthlySalesByYear(BigDecimal totalSales, Date month) {
+	public Date getYear() {
+		return Year;
+	}
+
+	public void setYear(Date year) {
+		Year = year;
+	}
+
+	public MonthlySalesByYear(BigDecimal totalSales, Date month, Date year) {
 		super();
 		this.totalSales = totalSales;
 		this.month = month;

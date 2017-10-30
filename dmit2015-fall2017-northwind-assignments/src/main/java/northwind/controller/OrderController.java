@@ -12,6 +12,8 @@ import org.omnifaces.util.Messages;
 
 import northwind.data.OrderRepository;
 import northwind.model.Order;
+import northwind.report.EmployeeSales1997;
+import northwind.report.MonthlySalesByYear;
 
 
 @Model
@@ -118,8 +120,6 @@ public class OrderController {
 	public List<Order> getOrdersByEmployee() {
 		return ordersByEmployee;
 	}
-	
-
 		
 		public void findOrderByEmployee() {
 			if( !FacesContext.getCurrentInstance().isPostback() ) {
@@ -135,5 +135,9 @@ public class OrderController {
 				}
 			}
 			}
+	
+		public List<MonthlySalesByYear> retrieveMonthlySales() {
+			return orderRepository.findMonthSales();
+		}
 		
 	}

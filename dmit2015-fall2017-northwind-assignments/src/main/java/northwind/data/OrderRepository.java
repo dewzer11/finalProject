@@ -3,6 +3,8 @@ package northwind.data;
 
 import java.util.List;
 import northwind.model.Order;
+import northwind.report.EmployeeSales1997;
+import northwind.report.MonthlySalesByYear;
 
 public class OrderRepository extends AbstractJpaRepository<Order> {
 	private static final long serialVersionUID = 1L;
@@ -38,6 +40,23 @@ public Double findSubTotal(int orderID) {
 	return getEntityManager().createQuery("SELECT SUM((1-o.discount) * o.unitPrice * o.quantity) FROM OrderDetail o WHERE o.order.orderID = :idValue", Double.class)
 			.setParameter("idValue", orderID)
 			.getSingleResult();
+}
+
+public Double findSalesAmountForYearAndMonth(int year, int month) {
+	return getEntityManager().createQuery(
+			" SELECT SUM(od.unitPrice * od.quantity * (1-od.discount)) As TotalSales " 
+			+" FROM OrderDetail od, IN (od.order) o "
+			+" WHERE extract(year from o.shippedDate) = year and extract(month from o.shippedDate) = month  "
+			,Double.class)
+			.getSingleResult();		
+}
+
+public List<MonthlySalesByYear> findMonthSales() {
+	for (iterable_type iterable_element : iterable) {
+		
+	} 
+	return List<MonthlySalesByYear>;
+					
 }
 
 }
