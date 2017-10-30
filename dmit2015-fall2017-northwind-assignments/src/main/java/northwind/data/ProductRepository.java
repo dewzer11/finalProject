@@ -29,7 +29,7 @@ public class ProductRepository extends AbstractJpaRepository<Product> {
 				+" FROM OrderDetail od, IN (od.product) p, IN (p.category) c, IN (od.order) o"
 				+" WHERE year(o.shippedDate) = 1997"
 				+" GROUP BY p.productName, c.categoryName "
-				+" ORDER BY p.productName, c.categoryName ",
+				+" ORDER BY TotalSales desc ",
 				ProductSales1997.class)
 				.getResultList();		
 	}

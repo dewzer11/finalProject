@@ -36,7 +36,14 @@
 				</b:dataTableColumn>
 				<b:dataTableColumn label="Product Name" value="#{product.productName}">
 				</b:dataTableColumn>
-				<b:dataTableColumn label="Product Sales" value="#{product.totalSales}">
+				<b:dataTableColumn >
+					<f:facet name="header">
+						Product Sales
+					</f:facet>
+					<h:outputText value="#{product.totalSales}" >
+					
+					<f:convertNumber type="currency" />
+					</h:outputText>
 				</b:dataTableColumn>
 			</b:dataTable>	
 						
