@@ -28,7 +28,15 @@
 			<h1>Ten Most Expensive Products</h1>
 		</b:jumbotron>
 		
-		
+				<h:form>
+			<b:dataTable value="#{productController.retrieveTenExpensiveProducts()}" var="product">
+				<b:dataTableColumn label="Product Name" value="#{product.productName}">
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Product Sales" value="#{product.unitPrice}">
+				</b:dataTableColumn>
+			</b:dataTable>	
+						
+		</h:form>
 		
 				
 	</ui:define>
