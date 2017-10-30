@@ -4,6 +4,8 @@ import java.util.List;
 
 
 import northwind.model.Product;
+import northwind.report.CategorySales1997;
+import northwind.report.ProductSales1997;
 
 public class ProductRepository extends AbstractJpaRepository<Product> {
 	private static final long serialVersionUID = 1L;
@@ -28,4 +30,14 @@ public class ProductRepository extends AbstractJpaRepository<Product> {
 						Product.class)
 				.getResultList();
 	}	
+	public List<ProductSales1997> findProductSales() {
+		return getEntityManager().createQuery(
+				" SELECT new northwind.report.CategorySales1997(c.categoryName, SUM(od.unitPrice * od.quantity * (1-od.discount)) As TotalSales)" 
+				+" FROM OrderDetail od, IN (od.product) p, IN (p.category) c, IN (od.order) o"
+				+" WHERE year(o.shippedDate) = 1997"
+				+" GROUP BY c.categoryName "
+				+" ORDER BY c.categoryName ",
+				ProductSales1997.class)
+				.getResultList();		
+	}
 }
