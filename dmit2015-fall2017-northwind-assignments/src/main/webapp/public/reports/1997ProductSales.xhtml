@@ -31,12 +31,12 @@
 		<b:messages id="messages"></b:messages>		
 		
 		<h:form>
-			<b:dataTable value="" var="product">
+			<b:dataTable value="#{productController.retrieveProductSales()}" var="product">
 				<b:dataTableColumn label="Category Name" value="">
 				</b:dataTableColumn>
-				<b:dataTableColumn label="Product Name" value="">
+				<b:dataTableColumn label="Product Name" value="#{product.productName}">
 				</b:dataTableColumn>
-				<b:dataTableColumn label="Product Sales" value="">
+				<b:dataTableColumn label="Product Sales" value="#{product.totalSales}">
 				</b:dataTableColumn>
 			</b:dataTable>	
 						

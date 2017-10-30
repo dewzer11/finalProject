@@ -94,6 +94,6 @@ public class ProductController {
 		return productRepository.findTenMostExpensiveProducts();
 	}
 	public List<ProductSales1997> retrieveProductSales() {
-		return ProductRepository.findProductSales();
+		return productRepository.findProductSales();
 	}
 }

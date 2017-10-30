@@ -32,11 +32,11 @@ public class ProductRepository extends AbstractJpaRepository<Product> {
 	}	
 	public List<ProductSales1997> findProductSales() {
 		return getEntityManager().createQuery(
-				" SELECT new northwind.report.CategorySales1997(c.categoryName, SUM(od.unitPrice * od.quantity * (1-od.discount)) As TotalSales)" 
+				" SELECT new northwind.report.ProductSales1997(c.productName, SUM(od.unitPrice * od.quantity * (1-od.discount)) As TotalSales)" 
 				+" FROM OrderDetail od, IN (od.product) p, IN (p.category) c, IN (od.order) o"
 				+" WHERE year(o.shippedDate) = 1997"
-				+" GROUP BY c.categoryName "
-				+" ORDER BY c.categoryName ",
+				+" GROUP BY c.productName "
+				+" ORDER BY c.productName ",
 				ProductSales1997.class)
 				.getResultList();		
 	}
