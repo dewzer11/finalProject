@@ -6,6 +6,7 @@ import java.util.List;
 import northwind.model.Product;
 import northwind.report.CategorySales1997;
 import northwind.report.ProductSales1997;
+import northwind.report.TenExpensiveProducts;
 
 public class ProductRepository extends AbstractJpaRepository<Product> {
 	private static final long serialVersionUID = 1L;
@@ -21,15 +22,7 @@ public class ProductRepository extends AbstractJpaRepository<Product> {
 			.getResultList();
 	}
 	
-	public List<Product> findTenExpensiveProducts() {
-		return getEntityManager().createQuery(
-						"SELECT new northwind.report.Product (productName unitPrice " 
-						+ " FROM Product "  
-						+ " ORDER BY unitPrice DESC " 
-						+ " WHERE ROWNUM < 11",
-						Product.class)
-				.getResultList();
-	}	
+	
 	public List<ProductSales1997> findProductSales() {
 		return getEntityManager().createQuery(
 				" SELECT new northwind.report.ProductSales1997(c.productName, SUM(od.unitPrice * od.quantity * (1-od.discount)) As TotalSales)" 
@@ -40,4 +33,14 @@ public class ProductRepository extends AbstractJpaRepository<Product> {
 				ProductSales1997.class)
 				.getResultList();		
 	}
+	
+	public List<TenExpensiveProducts> findTenExpensiveProducts() {
+		return getEntityManager().createQuery(
+				" SELECT new northwind.report.TenExpensiveProducts (productName, unitPrice) FROM Product ORDER BY unitPrice DESC ",
+				TenExpensiveProducts.class)
+				.setMaxResults(10)
+				.getResultList();
+		
+	}
+
 }
