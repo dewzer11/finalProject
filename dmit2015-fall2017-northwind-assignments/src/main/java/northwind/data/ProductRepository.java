@@ -21,7 +21,7 @@ public class ProductRepository extends AbstractJpaRepository<Product> {
 			.getResultList();
 	}
 	
-	public List<Product> findTenMostExpensiveProducts() {
+	public List<Product> findTenExpensiveProducts() {
 		return getEntityManager().createQuery(
 						"SELECT new northwind.report.Product (productName unitPrice " 
 						+ " FROM Product "  
