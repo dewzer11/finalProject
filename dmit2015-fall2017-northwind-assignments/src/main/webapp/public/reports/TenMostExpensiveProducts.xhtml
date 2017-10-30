@@ -14,7 +14,7 @@
 	xmlns:hf="http://highfaces.org" 
 	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
 	
-	<ui:param name="title" value="Category Sales for 1997" />
+	<ui:param name="title" value="Top Ten Most Expensive Products" />
 	
 	<ui:define name="externalstyles">
 	</ui:define>
@@ -32,8 +32,15 @@
 			<b:dataTable value="#{productController.retrieveTenExpensiveProducts()}" var="product">
 				<b:dataTableColumn label="Product Name" value="#{product.productName}">
 				</b:dataTableColumn>
-				<b:dataTableColumn label="Product Sales" value="#{product.unitPrice}">
-				</b:dataTableColumn>
+					<b:dataTableColumn>
+					<f:facet name="Product Sales">
+						Product Sales
+					</f:facet>
+					<h:outputText value="#{product.unitPrice}">
+						<f:convertNumber type="currency" />
+					</h:outputText>
+				</b:dataTableColumn>	
+
 			</b:dataTable>	
 						
 		</h:form>

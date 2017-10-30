@@ -90,8 +90,11 @@ public class ProductController {
 		return productsByCategory;
 	}
 	
-	public List<Product> retrieveTenExpensiveProducts() {
-		return productRepository.findTenMostExpensiveProducts();
+
+
+	public List<TenExpensiveProducts> retrieveTenExpensiveProducts() {
+		return productRepository.findTenExpensiveProducts();
+
 	}
 	
 	public List<ProductSales1997> retrieveProductSales() {
