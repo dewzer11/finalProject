@@ -12,6 +12,7 @@ import org.omnifaces.util.Messages;
 
 import northwind.data.ProductRepository;
 import northwind.model.Product;
+import northwind.report.ProductSales1997;
 import northwind.report.TenExpensiveProducts;
 
 @Model
