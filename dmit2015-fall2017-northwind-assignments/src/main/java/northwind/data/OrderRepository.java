@@ -1,6 +1,7 @@
 package northwind.data;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import northwind.model.Order;
 import northwind.report.EmployeeSales1997;
@@ -46,16 +47,22 @@ public Double findSalesAmountForYearAndMonth(int year, int month) {
 	return getEntityManager().createQuery(
 			" SELECT SUM(od.unitPrice * od.quantity * (1-od.discount)) As TotalSales " 
 			+" FROM OrderDetail od, IN (od.order) o "
-			+" WHERE extract(year from o.shippedDate) = year and extract(month from o.shippedDate) = month  "
+			+" WHERE Year(o.shippedDate) = :year and MONTH(o.shippedDate) = :month  "
 			,Double.class)
+			.setParameter("year", year)
+			.setParameter("month", month-1)
 			.getSingleResult();		
 }
 
-public List<MonthlySalesByYear> findMonthSales() {
-	for(int i=1; i<=12; i++){
-        ;
+public List<MonthlySalesByYear> findMonthSales(int year) {
+	List<MonthlySalesByYear> monthlysalesbyyear = new ArrayList<>();
+	for(int month=1; month<=12; month++){
+		Double totalSales = findSalesAmountForYearAndMonth(year, month);
+        MonthlySalesByYear monthlydata =  new MonthlySalesByYear(totalSales, month, year);
+        monthlysalesbyyear.add(monthlydata);
+             
    }
-	return List<MonthlySalesByYear>;
+	return monthlysalesbyyear;
 					
 }
 

@@ -6,20 +6,25 @@ import java.util.Date;
 public class MonthlySalesByYear {
 
 	private BigDecimal totalSales;
-	private Date month;
-	private Date Year;
+	private int month;
+	private int Year;
 	
-	public Date getYear() {
+	public int getYear() {
 		return Year;
 	}
 
-	public void setYear(Date year) {
+	public void setYear(int year) {
 		Year = year;
 	}
 
-	public MonthlySalesByYear(BigDecimal totalSales, Date month, Date year) {
+	public MonthlySalesByYear(BigDecimal totalSales, int month, int year) {
 		super();
 		this.totalSales = totalSales;
+		this.month = month;
+	}
+	public MonthlySalesByYear(Double totalSales, int month, int year) {
+		super();
+		this.totalSales = BigDecimal.valueOf(totalSales);
 		this.month = month;
 	}
 
@@ -31,11 +36,11 @@ public class MonthlySalesByYear {
 		this.totalSales = totalSales;
 	}
 
-	public Date getMonth() {
+	public int getMonth() {
 		return month;
 	}
 
-	public void setMonth(Date month) {
+	public void setMonth(int month) {
 		this.month = month;
 	}
 	

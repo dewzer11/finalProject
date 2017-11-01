@@ -137,7 +137,7 @@ public class OrderController {
 			}
 	
 		public List<MonthlySalesByYear> retrieveMonthlySales() {
-			return orderRepository.findMonthSales();
+			return orderRepository.findMonthSales(1997);
 		}
 		
 	}
