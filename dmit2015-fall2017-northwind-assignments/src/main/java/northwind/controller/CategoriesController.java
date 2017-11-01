@@ -41,8 +41,8 @@ public class CategoriesController {
 	
 	private CategoryService categoryService;
 	
-	@NotBlank(message="Categor Name value is required")
-	@Length
+	@NotBlank(message="Category Name value is required")
+	@Length(min=3, max=20, message="Name must be between 3 and 20 characters")
 	private String categoryName; // +getter+setter
 	
 	public void createNewCategory() {
