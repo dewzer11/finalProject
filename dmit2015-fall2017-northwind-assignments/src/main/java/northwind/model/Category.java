@@ -2,6 +2,10 @@ package northwind.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 import java.util.List;
 
 
@@ -20,6 +24,8 @@ public class Category implements Serializable {
 	@Column(name="CategoryID")
 	private int categoryID;
 
+	@NotBlank(message="Category Name Must not be blank")
+	@Length(min=3, max=20, message="Category Name must be between 3 and 15 characters")
 	@Column(name="CategoryName")
 	private String categoryName;
 
