@@ -1,0 +1,41 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
+	
+	<ui:param name="title" value="Create new Category" />
+	
+	<ui:define name="externalstyles">
+	</ui:define>
+	
+	<ui:define name="internalstyles">
+	</ui:define>
+
+	<ui:define name="maincontent">
+		
+		<b:jumbotron>
+			<h2>New Category Details</h2>
+		</b:jumbotron>
+		<b:messages id="messages"></b:messages>
+		<b:form>
+			<b:inputText placeholder="enter new Category Name"
+				value="#{categoriesController.categoryName}"
+			></b:inputText>
+			<b:commandButton value="Submit"
+				actionListener="#{categoriesController.createNewCategory()}"
+				ajax="false"
+				look="primary" />
+		</b:form>
+				
+	</ui:define>
+
+</ui:composition>
