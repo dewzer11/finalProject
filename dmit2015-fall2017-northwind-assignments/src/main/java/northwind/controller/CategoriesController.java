@@ -49,6 +49,7 @@ public class CategoriesController {
 		try	{
 			categoryService.createCategory(categoryName);
 			Messages.addGlobalInfo("Create Category was successful");
+			categoryName="";
 		} catch (Exception e) {
 			Messages.addGlobalError("Error creating category with exception: {0}", e.getMessage());
 			//Messages.addGlobalWarn("Create Category was not successful");
