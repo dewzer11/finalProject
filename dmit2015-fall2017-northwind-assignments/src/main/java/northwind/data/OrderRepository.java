@@ -52,9 +52,9 @@ public Double findSalesAmountForYearAndMonth(int year, int month) {
 }
 
 public List<MonthlySalesByYear> findMonthSales() {
-	for (iterable_type iterable_element : iterable) {
-		
-	} 
+	for(int i=1; i<=12; i++){
+        ;
+   }
 	return List<MonthlySalesByYear>;
 					
 }
