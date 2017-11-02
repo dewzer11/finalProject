@@ -7,13 +7,15 @@ import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.omnifaces.util.Messages;
 
-
+import chinook.service.ArtistService;
 import northwind.data.ProductRepository;
 import northwind.model.Product;
 import northwind.report.ProductSales1997;
 import northwind.report.TenExpensiveProducts;
+import northwind.service.ProductService;
 
 @Model
 public class ProductController {
@@ -99,5 +101,31 @@ public class ProductController {
 	
 	public List<ProductSales1997> retrieveProductSales() {
 		return productRepository.findProductSales();
+	}
+	
+	
+	@NotBlank(message="Product Name is required")
+	private String productName; // getter and setter
+	
+	
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	@Inject
+	private ProductService productService;
+	
+	public void createNewProduct() {
+		try {
+			productService.createProduct(productName);
+			Messages.addGlobalInfo("Create product was successful.");
+			productName="";
+		} catch (Exception e) {
+			Messages.addGlobalWarn("Create product was not succesful.");
+			//Messages.addGlobalError("Error creating artist with exception: {0} ", e.getMessage());  -----Use this for debugging
+		}
 	}
 }
