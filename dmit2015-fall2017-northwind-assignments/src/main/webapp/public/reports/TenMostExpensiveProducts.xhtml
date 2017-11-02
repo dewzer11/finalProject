@@ -32,13 +32,14 @@
 			<b:dataTable value="#{productController.retrieveTenExpensiveProducts()}" var="product">
 				<b:dataTableColumn label="Product Name" value="#{product.productName}">
 				</b:dataTableColumn>
-					<b:dataTableColumn>
-					<f:facet name="Product Sales">
-						Product Sales
-					</f:facet>
+
+					
+					<b:dataTableColumn label="Unit Price">
+					
 					<h:outputText value="#{product.unitPrice}">
-						<f:convertNumber type="currency" />
+					<f:convertNumber type="currency" />
 					</h:outputText>
+
 				</b:dataTableColumn>	
 
 			</b:dataTable>	

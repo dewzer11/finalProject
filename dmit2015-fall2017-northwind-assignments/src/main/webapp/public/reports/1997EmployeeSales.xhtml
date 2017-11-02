@@ -14,7 +14,7 @@
 	xmlns:hf="http://highfaces.org" 
 	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
 	
-	<ui:param name="title" value="Category Sales for 1997" />
+	<ui:param name="title" value="Employee Sales for 1997" />
 	
 	<ui:define name="externalstyles">
 	</ui:define>
@@ -28,14 +28,7 @@
 			<h1>Employee Sales for 1997</h1>
 		</b:jumbotron>
 		
-		<hf:chart type="pie" title="Employee Sales for 1997">
-			<hf:chartSerie value="#{employeeController.retrieveEmployeeSales()}" 
-			name="Employee Sales for 1997"
-			var="point"
-			point="#{point.totalSales}"
-			tickLabel="#{point.employeeName}"
-			dataLabel="&lt;b>{point.name}&lt;/b>:"/>
-		</hf:chart>
+		
 		
 		<hf:chart type="bar" title="Employee Sales for 1997">
 			<hf:chartSerie value="#{employeeController.retrieveEmployeeSales()}" 
@@ -53,6 +46,15 @@
 			point="#{point.totalSales}"
 			tickLabel="#{point.employeeName}"
 			dataLabel="&lt;b>{point.name}&lt;/b>{point.y}&lt;/i>"/>
+		</hf:chart>
+		
+		<hf:chart type="pie" title="Employee Sales for 1997">
+			<hf:chartSerie value="#{employeeController.retrieveEmployeeSales()}" 
+			name="Employee Sales for 1997"
+			var="point"
+			point="#{point.totalSales}"
+			tickLabel="#{point.employeeName}"
+			dataLabel="&lt;b>{point.name}&lt;/b>:"/>
 		</hf:chart>
 		
 				
