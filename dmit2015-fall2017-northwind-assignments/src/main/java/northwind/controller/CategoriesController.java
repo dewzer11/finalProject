@@ -8,9 +8,8 @@ import javax.inject.Inject;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.omnifaces.util.Faces;
+import org.omnifaces.util.Messages;
 
-import net.bootsfaces.component.messages.Messages;
 import northwind.data.CategoriesRepository;
 import northwind.model.Category;
 import northwind.report.CategorySales1997;
@@ -48,7 +47,7 @@ public class CategoriesController {
 	public void createNewCategory() {
 		try	{
 			categoryService.createCategory(categoryName);
-			Messages.addGlobalInfo("Create Category was successful");
+			Messages.addGlobalError("Create Category was successful");
 			categoryName="";
 		} catch (Exception e) {
 			Messages.addGlobalError("Error creating category with exception: {0}", e.getMessage());
