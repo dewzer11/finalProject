@@ -29,22 +29,45 @@
 		</b:jumbotron>
 
 		
-		<hf:chart type="bar" title="Monthly Sales by Year">
-			<hf:chartSerie value="#{orderController.retrieveMonthlySales()}" 
-			name="Monthly Sales By Year"
+		<hf:chart type="line" title="Monthly Sales by Year">
+			<hf:chartSerie value="#{orderController.retrieveMonthlySales96()}" 
+			name="1996"
 			var="point"
 			point="#{point.totalSales}"
-			tickLabel="#{point.month}"
-			dataLabel="&lt;b>{point.name}&lt;/b>{point.y}&lt;/i>"/>
+			tickLabel="#{point.month+1}"/>
+			<hf:chartSerie value="#{orderController.retrieveMonthlySales()}" 
+			name="1997"
+			var="point"
+			point="#{point.totalSales}"
+			tickLabel="#{point.month+1}"/>
+			<hf:chartSerie value="#{orderController.retrieveMonthlySales98()}" 
+			name="1998"
+			var="point"
+			point="#{point.totalSales}"
+			tickLabel="#{point.month+1}"/>
+			
+			
 		</hf:chart>
 		
-		<hf:chart type="column" title="Monthly Sales by Year">
-			<hf:chartSerie value="#{orderController.retrieveMonthlySales()}" 
-			name="Monthly Sales By Year"
+		
+		 <hf:chart type="column" title="Monthly Sales by Year">
+		 <hf:chartSerie value="#{orderController.retrieveMonthlySales96()}" 
+			name="1996"
 			var="point"
 			point="#{point.totalSales}"
-			tickLabel="#{point.month}"
-			dataLabel="&lt;b>{point.name}&lt;/b>{point.y}&lt;/i>"/>
+			tickLabel="#{point.month+1}"/>
+			<hf:chartSerie value="#{orderController.retrieveMonthlySales()}" 
+			name="1997"
+			var="point"
+			point="#{point.totalSales}"
+			tickLabel="#{point.month+1}"/>
+			<hf:chartSerie value="#{orderController.retrieveMonthlySales98()}" 
+			name="1998"
+			var="point"
+			point="#{point.totalSales}"
+			tickLabel="#{point.month+1}"/>
+			
+			
 		</hf:chart>
 		
 				

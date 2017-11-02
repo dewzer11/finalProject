@@ -1,6 +1,7 @@
 package northwind.data;
 
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import northwind.model.Order;
@@ -50,15 +51,18 @@ public Double findSalesAmountForYearAndMonth(int year, int month) {
 			+" WHERE Year(o.shippedDate) = :year and MONTH(o.shippedDate) = :month  "
 			,Double.class)
 			.setParameter("year", year)
-			.setParameter("month", month-1)
-			.getSingleResult();		
+			.setParameter("month", month)
+			.getSingleResult();	
 }
 
 public List<MonthlySalesByYear> findMonthSales(int year) {
 	List<MonthlySalesByYear> monthlysalesbyyear = new ArrayList<>();
 	for(int month=1; month<=12; month++){
 		Double totalSales = findSalesAmountForYearAndMonth(year, month);
-        MonthlySalesByYear monthlydata =  new MonthlySalesByYear(totalSales, month, year);
+		if (totalSales == null) {
+			totalSales = Double.valueOf(0);
+		}
+        MonthlySalesByYear monthlydata =  new MonthlySalesByYear(totalSales, month - 1, year);
         monthlysalesbyyear.add(monthlydata);
              
    }

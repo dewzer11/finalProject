@@ -1,9 +1,14 @@
 package northwind.controller;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -135,9 +140,17 @@ public class OrderController {
 				}
 			}
 			}
+		
+		
 	
 		public List<MonthlySalesByYear> retrieveMonthlySales() {
 			return orderRepository.findMonthSales(1997);
+		}
+		public List<MonthlySalesByYear> retrieveMonthlySales96() {
+				return orderRepository.findMonthSales(1996);
+			}
+		public List<MonthlySalesByYear> retrieveMonthlySales98() {
+			return orderRepository.findMonthSales(1998);
 		}
 		
 	}

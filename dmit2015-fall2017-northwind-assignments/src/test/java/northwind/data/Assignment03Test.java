@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
 import northwind.model.Product;
 import northwind.report.CategorySales1997;
 import northwind.report.EmployeeSales1997;
+import northwind.report.MonthlySalesByYear;
 import northwind.report.TenExpensiveProducts;
 //import northwind.report.CategorySalesForYear;
 //import northwind.report.EmployeeSalesForYear;
@@ -96,25 +97,25 @@ public class Assignment03Test {
 		assertEquals(114749.77, middleResult.getTotalSales().doubleValue(), 0);
 	}
 	
-//	@Test
-//	public void shouldFindMonthlySalesByYear() {
-//		List<MonthlySales> salesFor1996 = orderRepository.findMonthSales(1996);
-//		assertEquals(12, salesFor1996.size());
-//		
-//		List<MonthlySales> salesFor1997 = orderRepository.findMonthSales(1997);
-//		assertEquals(12, salesFor1997.size());
-//
-//		List<MonthlySales> salesFor1998 = orderRepository.findMonthSales(1998);
-//		assertEquals(12, salesFor1998.size());
-//
-//		// verify months with zero sales
-//		for(int month = 1; month <= 6; month++) {
-//			assertEquals(0, salesFor1996.get(month - 1).getMonthAmount().doubleValue(), 0);
-//		}
-//		for(int month = 6; month <= 12; month++) {
-//			assertEquals(0, salesFor1998.get(month - 1).getMonthAmount().doubleValue(), 0);
-//		}
-//		
+	@Test
+	public void shouldFindMonthlySalesByYear() {
+		List<MonthlySalesByYear> salesFor1996 = orderRepository.findMonthSales(1996);
+		assertEquals(12, salesFor1996.size());
+		
+		List<MonthlySalesByYear> salesFor1997 = orderRepository.findMonthSales(1997);
+		assertEquals(12, salesFor1997.size());
+
+		List<MonthlySalesByYear> salesFor1998 = orderRepository.findMonthSales(1998);
+		assertEquals(12, salesFor1998.size());
+
+		// verify months with zero sales
+		for(int month = 1; month <= 6; month++) {
+			assertEquals(0, salesFor1996.get(month - 1).getTotalSales().doubleValue(), 0);
+		}
+		for(int month = 6; month <= 12; month++) {
+			assertEquals(0, salesFor1998.get(month - 1).getTotalSales().doubleValue(), 0);
+		}
+		
 //		// verify the first and last result for 1996
 //		MonthlySales month7Year1996 = salesFor1996.get(7 - 1);
 //		assertEquals(7, month7Year1996.getMonth());
@@ -146,7 +147,7 @@ public class Assignment03Test {
 //		MonthlySales month5Year1998 = salesFor1998.get(5 - 1);
 //		assertEquals(5, month5Year1998.getMonth());
 //		assertEquals(18460.28, month5Year1998.getMonthAmount().doubleValue(), 0);
-//	}
+	}
 //	
 //	@Test
 //	public void shouldFindProductSalesForYear() {
