@@ -1,0 +1,79 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
+	
+	<ui:param name="title" value="Northwind - New Customer" />
+	
+	<ui:define name="externalstyles">
+	</ui:define>
+	
+	<ui:define name="internalstyles">
+	</ui:define>
+
+	<ui:define name="maincontent">
+		<b:jumbotron>
+			<h2>Enter New Customer Details</h2>
+		</b:jumbotron>
+		
+		<b:messages id="messages" />
+		<b:form>
+			<b:inputText id="companyName" 
+				value="#{customerController.companyName}"
+				placeholder="enter company name"
+				label="Company Name" />
+			<b:inputText id="contactName" 
+				value="#{customerController.contactName}"
+				placeholder="enter contact name"
+				label="Contact Name" />
+			<b:inputText id="contactTitle" 
+				value="#{customerController.contactTitle}"
+				placeholder="enter contact title"
+				label="Contact Title" />
+			<b:inputText id="address" 
+				value="#{customerController.address}"
+				placeholder="enter address"
+				label="Address" />
+			<b:inputText id="city" 
+				value="#{customerController.city}"
+				placeholder="enter city"
+				label="City" />
+			<b:inputText id="region" 
+				value="#{customerController.region}"
+				placeholder="enter region"
+				label="Region" />
+			<b:inputText id="postalCode" 
+				value="#{customerController.postalCode}"
+				placeholder="enter postal code"
+				label="Postal Code" />
+			<b:inputText id="countryName" 
+				value="#{customerController.country}"
+				placeholder="enter country name"
+				label="Country Name" />
+			<b:inputText id="phone" 
+				value="#{customerController.phone}"
+				placeholder="enter phone number"
+				label="Phone" />
+			<b:inputText id="fax" 
+				value="#{customerController.fax}"
+				placeholder="enter fax number"
+				label="Fax" />
+				
+			<b:commandButton value="Submit"
+				ajax="false"
+				look="primary"
+				actionListener="#{customerController.createNewCustomer()}"
+				/>
+		</b:form>
+		
+	</ui:define>
+</ui:composition>
