@@ -27,6 +27,10 @@
 		
 		<b:messages id="messages" />
 		<b:form>
+			<b:inputText id="customerId" 
+				value="#{customerController.customerId}"
+				placeholder="enter a 5 character customer ID"
+				label="Customer ID" />
 			<b:inputText id="companyName" 
 				value="#{customerController.companyName}"
 				placeholder="enter company name"

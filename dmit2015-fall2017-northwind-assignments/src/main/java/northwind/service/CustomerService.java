@@ -12,8 +12,9 @@ public class CustomerService {
 	@Inject
 	private CustomerRepository customerRepository;
 	
-	public void createCustomer(String companyName, String contactName, String contactTitle, String address, String city, String region, String postalCode, String country, String phone, String fax) {
+	public void createCustomer(String customerID, String companyName, String contactName, String contactTitle, String address, String city, String region, String postalCode, String country, String phone, String fax) {
 		Customer currentCustomer = new Customer();
+		currentCustomer.setCustomerID(customerID);
 		currentCustomer.setCompanyName(companyName);
 		currentCustomer.setContactName(contactName);
 		currentCustomer.setContactTitle(contactTitle);

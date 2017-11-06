@@ -1,12 +1,15 @@
 package northwind.controller;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.omnifaces.util.Messages;
 
@@ -15,8 +18,10 @@ import northwind.model.Customer;
 import northwind.service.CustomerService;
 
 
-@Model
-public class CustomerController {
+@SuppressWarnings("serial")
+@Named
+@ViewScoped	
+public class CustomerController implements Serializable{
 
 	
 
@@ -65,37 +70,54 @@ public class CustomerController {
 		return customers;
 	}
 	
+
+	
 	@Inject 
 	private CustomerService customerService;
-	
+	@NotBlank(message="Customer ID is required.")
+	@Length(min=5, max=5, message="Customer ID must be 5 characters.")
+	//regular expression to make sure its only 5 letters not numbers.
+	private String customerId; // + getter + setter
 	@NotBlank(message="Company Name is required.")
+	@Length(min=2, max=40, message="Company Name must be between 2 and 40 characters.")
 	private String companyName; // + getter + setter
-	@NotBlank(message="Contact Name is required.")
+	//@NotBlank(message="Contact Name is required.")
 	private String contactName; // + getter + setter
-	@NotBlank(message="Contact Title is required.")
+	//@NotBlank(message="Contact Title is required.")
 	private String contactTitle; // + getter + setter
-	@NotBlank(message="Address is required.")
+	//@NotBlank(message="Address is required.")
 	private String address; // + getter + setter
-	@NotBlank(message="City is required.")
+	//@NotBlank(message="City is required.")
 	private String city; // + getter + setter
-	@NotBlank(message="Region is required.")
+	//@NotBlank(message="Region is required.")
 	private String region; // + getter + setter
-	@NotBlank(message="Postal Code is required.")
+	//@NotBlank(message="Postal Code is required.")
 	private String postalCode; // + getter + setter
-	@NotBlank(message="Country Name is required.")
+	//@NotBlank(message="Country Name is required.")
 	private String country; // + getter + setter
-	@NotBlank(message="Phone Number is required.")
+	//@NotBlank(message="Phone Number is required.")
 	private String phone; // + getter + setter
-	@NotBlank(message="Fax Number is required.")
+	//@NotBlank(message="Fax Number is required.")
 	private String fax; // + getter + setter
 
 
 	
 	public void createNewCustomer() {
 		try {
-			customerService.createCustomer(companyName,contactName,contactTitle,address,city,region,postalCode,country,phone,fax);
+			customerService.createCustomer(customerId,companyName,contactName,contactTitle,address,city,region,postalCode,country,phone,fax);
 			Messages.addGlobalInfo("Create customer was successful.");
+			customerId = "";
 			companyName = "";
+			contactName = "";
+			contactTitle = "";
+			address = "";
+			city = "";
+			region = "";
+			postalCode = "";
+			country = "";
+			phone = "";
+			fax =  "";
+			
 		} catch(Exception e) {
 			Messages.addGlobalError("Error creating customer with exception: {0}", e.getMessage());
 		}
@@ -184,4 +206,12 @@ public class CustomerController {
 	public void setCustomers(List<Customer> customers) {
 		this.customers = customers;
 	}
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+
 }
