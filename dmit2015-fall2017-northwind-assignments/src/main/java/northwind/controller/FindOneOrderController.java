@@ -1,6 +1,7 @@
 package northwind.controller;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -24,11 +25,53 @@ public class FindOneOrderController implements Serializable {
 	private Integer searchValue; // +getter+setter
 	private Order querySingleResult; // +getter
 	
+	@Inject
+	private Logger log;
+	
+	public OrderService getOrderService() {
+		return orderService;
+	}
+
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
+	}
+
+	public Integer getSearchValue() {
+		return searchValue;
+	}
+
+	public void setSearchValue(Integer searchValue) {
+		this.searchValue = searchValue;
+	}
+
+	public Order getQuerySingleResult() {
+		return querySingleResult;
+	}
+
+	public void setQuerySingleResult(Order querySingleResult) {
+		this.querySingleResult = querySingleResult;
+	}
+
+	public Logger getLog() {
+		return log;
+	}
+
+	public void setLog(Logger log) {
+		this.log = log;
+	}
+
 	public void findOrder() {
 		try {
 			querySingleResult = orderService.findOneOrder(searchValue);
-			Messages.addGlobalInfo("1 result for {0}", searchValue);
+			if (querySingleResult == null) {
+				Messages.addGlobalInfo("0 results for {0}", searchValue);
+			}
+			else {
+				Messages.addGlobalInfo("1 result for {0}", searchValue);
+			}
+
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			querySingleResult = null;
 			Messages.addGlobalInfo("We found 0 results for {0}", searchValue);
 		
