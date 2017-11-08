@@ -1,5 +1,7 @@
 package northwind.controller;
 
+import java.math.BigDecimal;
+
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
@@ -19,11 +21,30 @@ public class CreateProductController {
 	@NotBlank(message="Discontinued is required")
 	private Byte Discontinued; // getter and setter
 	private String quantityPerUnit; // getter and setter
-	private String reorderLevel; // getter and setter
-	private String unitPrice; // getter and setter
-	private String unitsInStock; // getter and setter
-	private String unitsOnOrder; // getter and setter
+	private short reorderLevel; // getter and setter
+	private BigDecimal unitPrice; // getter and setter
+	private short unitsInStock; // getter and setter
+	private short unitsOnOrder; // getter and setter
 	
+	private int supplierId;
+	private int categoryId;
+	
+	public int getSupplierId() {
+		return supplierId;
+	}
+
+	public void setSupplierId(int supplierId) {
+		this.supplierId = supplierId;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	public Byte getDiscontinued() {
 		return Discontinued;
 	}
@@ -40,35 +61,35 @@ public class CreateProductController {
 		this.quantityPerUnit = quantityPerUnit;
 	}
 
-	public String getReorderLevel() {
+	public short getReorderLevel() {
 		return reorderLevel;
 	}
 
-	public void setReorderLevel(String reorderLevel) {
+	public void setReorderLevel(short reorderLevel) {
 		this.reorderLevel = reorderLevel;
 	}
 
-	public String getUnitPrice() {
+	public BigDecimal getUnitPrice() {
 		return unitPrice;
 	}
 
-	public void setUnitPrice(String unitPrice) {
+	public void setUnitPrice(BigDecimal unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 
-	public String getUnitsInStock() {
+	public short getUnitsInStock() {
 		return unitsInStock;
 	}
 
-	public void setUnitsInStock(String unitsInStock) {
+	public void setUnitsInStock(short unitsInStock) {
 		this.unitsInStock = unitsInStock;
 	}
 
-	public String getUnitsOnOrder() {
+	public short getUnitsOnOrder() {
 		return unitsOnOrder;
 	}
 
-	public void setUnitsOnOrder(String unitsOnOrder) {
+	public void setUnitsOnOrder(short unitsOnOrder) {
 		this.unitsOnOrder = unitsOnOrder;
 	}
 
@@ -85,7 +106,8 @@ public class CreateProductController {
 	
 	public void createNewProduct() {
 		try {
-			productService.createProduct(productName);
+
+			productService.createProduct(productName, supplierId, categoryId, Discontinued, productName, reorderLevel, unitPrice, reorderLevel, reorderLevel);
 			Messages.addGlobalInfo("Create product was successful.");
 			productName="";
 		} catch (Exception e) {

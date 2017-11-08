@@ -12,7 +12,7 @@
 	xmlns:b="http://bootsfaces.net/ui"
 	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
 	
-	<ui:param name="title" value="Create New Product" />
+	<ui:param name="title" value="Northwind - New Product" />
 	
 	<ui:define name="externalstyles">
 	</ui:define>
@@ -22,23 +22,52 @@
 
 	<ui:define name="maincontent">
 		<b:jumbotron>
-			<h2>New Product Details</h2>
+			<h2>Enter New Product Details</h2>
 		</b:jumbotron>
 		
-		<b:messages id="messages"/>
-		
+		<b:messages id="messages" />
 		<b:form>
-			<b:inputText id="productName" placeholder="enter new product name" value="#{createProductController.productName}"/>
-			<b: id="productDiscontinued" placeholder="Discontinued?" value="#{createProductController.discontinued}"/>
-			<b: id="productDiscontinued" placeholder="Discontinued?" value="#{createProductController.quantityPerUnit}"/>
-			<b: id="productDiscontinued" placeholder="Discontinued?" value="#{createProductController.reorderLevel}"/>
-			<b: id="productDiscontinued" placeholder="Discontinued?" value="#{createProductController.unitPrice}"/>
-			<b: id="productDiscontinued" placeholder="Discontinued?" value="#{createProductController.unitsInStock}"/>
-			<b: id="productDiscontinued" placeholder="Discontinued?" value="#{createProductController.unitsOnOrder}"/>
-			<b:commandButton value="Submit" actionListener="#{createProductController.createNewProduct()}"
-				ajax="true" update="messages productName discontinued quantityPerUnit reorderLevel unitPrice unitsInStock unitsOnOrder" 
-				look="primary"/>
+			<b:inputText id="customerId" 
+				value="#{customerController.customerID}"
+				placeholder="enter a 5 character customer ID"
+				label="Customer ID" />
+			<b:inputText id="productname" 
+				value="#{createProductController.productName}"
+				placeholder="enter product name"
+				label="Product Name" />
+			<b:selectOneMenu id="supplier" label="Supplier" value="#{supplierController.suppliers}" >
+				<f:selectItems value="#{supplierController.suppliers}"></f:selectItems>
+			</b:selectOneMenu>
+			<b:selectOneMenu id="category" label="Category">
+				<f:selectItems value="#{categoriesController.categories}"></f:selectItems>
+			</b:selectOneMenu> 
+			<b:inputText id="quantity" 
+				value="#{createProductController.quantityPerUnit}"
+				placeholder="enter quantity per unit"
+				label="Quantity Per Unit" />
+			<b:inputText id="unitprice" 
+				value="#{createProductController.unitPrice}"
+				placeholder="enter unit price"
+				label="Unit Price" />
+			<b:inputText id="unitsinstock" 
+				value="#{createProductController.unitsInStock}"
+				placeholder="0"
+				label="Units In Stock" />
+			<b:inputText id="unitsonorder" 
+				value="#{createProductController.unitsOnOrder}"
+				placeholder="0"
+				label="Units On Order" />
+			<b:inputText id="reorderlevel" 
+				value="#{createProductController.reorderLevel}"
+				placeholder="0"
+				label="Reorder Level" />
+				
+			<b:commandButton value="Submit"
+				ajax="false"
+				look="primary"
+				actionListener="#{customerController.createNewCustomer()}"
+				/>
 		</b:form>
+		
 	</ui:define>
-
 </ui:composition>
