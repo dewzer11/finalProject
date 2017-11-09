@@ -37,17 +37,30 @@
 		<b:messages id="messages" />
 		
 		<b:form id="queryForm">
-			<b:panel>
-				<b:datepicker label="Start Date" value="#{salesByDateRangeController.startDate}">
+			
+			<b:row>
+			<b:column span="1">
+			<h:outputText value="Start Date" style="font-weight:bold;margin-top:7px; position:absolute;"></h:outputText>
+			</b:column>
+			<b:column span="4">
+				<b:datepicker  value="#{salesByDateRangeController.startDate}">
 				</b:datepicker>
-				<b:datepicker label="End Date" value="#{salesByDateRangeController.endDate}">
+				</b:column>
+				<b:column span="1">
+			<h:outputText value="End Date" style="font-weight:bold; margin-top:7px; position:absolute;"></h:outputText>
+			</b:column>
+				<b:column span="4">
+				<b:datepicker  value="#{salesByDateRangeController.endDate}">
 				</b:datepicker>
+				</b:column>
+				<b:column span="2">
 				<b:commandButton value="Search"
 					look="primary"
 					ajax="true"
 					update="messages queryForm:singleResultPanel"
  actionListener="#{salesByDateRangeController.findOrdersByDateRange()}"  />
-			</b:panel>
+ 				</b:column>
+			</b:row>
 			
 <p:outputPanel id="singleResultPanel">						
 			<b:panel title="Orders By Date Range" 

@@ -1,5 +1,4 @@
-<ui:composition 
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -11,122 +10,140 @@
 	xmlns:of="http://omnifaces.org/functions"
 	xmlns:b="http://bootsfaces.net/ui"
 	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
-	
+
 	<ui:param name="title" value="Northwind - Order Details" />
-	
+
 	<ui:define name="externalstyles">
 	</ui:define>
-	
+
 	<ui:define name="internalstyles">
 	</ui:define>
 
 	<ui:define name="maincontent">
-	<f:metadata>
-			<f:viewParam name="id" value="#{orderController.currentSelectedOrderId}" />
-			<f:event listener="#{orderController.findOrder()}" type="preRenderView" />
+		<f:metadata>
+			<f:viewParam name="id"
+				value="#{orderController.currentSelectedOrderId}" />
+			<f:event listener="#{orderController.findOrder()}"
+				type="preRenderView" />
 		</f:metadata>
 		<h1>Order Details</h1>
-		
-		<b:messages id="messages"></b:messages>		
-		
-		<b:form id="orderForm">
-		
-		<b:panelGrid colSpans="6,6" size="sm">
-		<b:panel  
-			rendered="#{orderController.currentSelectedOrder != null}">
-				<f:facet name="heading">Customer Details</f:facet>
-				<h:outputText  
-					value="#{orderController.currentSelectedOrder.customer.companyName}" 
-					 /> <br/>
-				<h:outputText  
-					value="#{orderController.currentSelectedOrder.customer.contactName}" 
-					 /> <br/>
-				<h:outputText  
-					value="#{orderController.currentSelectedOrder.customer.contactTitle}" 
-					 /> <br/>
-				<h:outputText 
-					value="#{orderController.currentSelectedOrder.customer.address} " 
-					 /> <br/>
-				<h:outputText  
-					value="#{orderController.currentSelectedOrder.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}" 
-					 /> <br/>
-				<h:outputText  
-					value="#{orderController.currentSelectedOrder.customer.country}" 
-					 /> <br/>
-				<h:outputText  
-					value="#{orderController.currentSelectedOrder.customer.phone}" 
-					 />
-		</b:panel>
-		
-		<b:panel 
-			rendered="#{orderController.currentSelectedOrder != null}">
-				<f:facet name="heading">Order Details</f:facet>
+
+		<b:messages id="messages"></b:messages>
+
+		<b:panel id="orderForm">
+
 			<b:panelGrid colSpans="6,6" size="sm">
-				<b:panel>
-					<h:outputText  
-						value="Customer ID"  
-						 /> <br/>
-						 
-					
-					<h:outputText  
-						value="Order ID"/>
-					 <br/>
-					<h:outputText  
-						value="Order Date"
-						/> <br/>
-					<h:outputText  
-						value="Shipped Date" 
-						 /> <br/>
-					<h:outputText  
-						value="Employee"
-						 /> <br/>
-					<h:outputText  
-						value="Freight"
-						 /> <br/>
-					
+				<b:panel rendered="#{orderController.currentSelectedOrder != null}">
+					<f:facet name="heading">Customer Details</f:facet>
 					<h:outputText
-						value="Sales Total"
-						 /> <br/>
+						value="#{orderController.currentSelectedOrder.customer.companyName}" style="font-weight:bold;" />
+					<br />
+					<h:outputText
+						value="#{orderController.currentSelectedOrder.customer.contactName}" style="font-weight:bold;"/>
+					<br />
+					<h:outputText
+						value="#{orderController.currentSelectedOrder.customer.contactTitle}" style="font-weight:bold;"/>
+					<br />
+					<h:outputText
+						value="#{orderController.currentSelectedOrder.customer.address} " style="font-weight:bold;"/>
+					<br />
+					<h:outputText
+						value="#{orderController.currentSelectedOrder.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}" style="font-weight:bold;"/>
+					<br />
+					<h:outputText
+						value="#{orderController.currentSelectedOrder.customer.country}" style="font-weight:bold;"/>
+					<br />
+					<h:outputText
+						value="#{orderController.currentSelectedOrder.customer.phone}" style="font-weight:bold;"/>
 				</b:panel>
-				<b:panel>
-					<h:outputText  
-						value="#{orderController.currentSelectedOrder.customer.customerID}"  
-						 /> <br/>
-						 
-					
-					<h:outputText  
-						value="#{orderController.currentSelectedOrder.orderID}"/>
-					 <br/>
-					<h:outputText  
-						value="#{orderController.currentSelectedOrder.orderDate}" converter="javax.faces.DateTime"
-						/> <br/>
-					<h:outputText  
-						value="#{orderController.currentSelectedOrder.shippedDate}" converter="javax.faces.DateTime" 
-						 /> <br/>
-					<h:outputText  
-						value="#{orderController.currentSelectedOrder.employee.firstName} #{orderController.currentSelectedOrder.employee.lastName}"
-						 /> <br/>
-					<h:outputText  
-						value="#{orderController.currentSelectedOrder.freight}" converter="javax.faces.Double"
-						 /> <br/>
-					
-					<h:outputText  title ="subtotal"
-						value="#{orderController.subtotal + orderController.currentSelectedOrder.freight}" converter="javax.faces.Double"
-						 /> <br/>
-					 </b:panel>
-				</b:panelGrid>
-		</b:panel>
-		</b:panelGrid>
-		
-		
-				<b:dataTable value="#{orderController.currentSelectedOrder.orderDetails}" var="o">
+
+				<b:panel rendered="#{orderController.currentSelectedOrder != null}">
+					<f:facet name="heading">Order Details</f:facet>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Customer ID" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{orderController.currentSelectedOrder.customer.customerID}" />
+						</b:column>
+					</b:row>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Order ID" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{orderController.currentSelectedOrder.orderID}" />
+						</b:column>
+					</b:row>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Order Date" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{orderController.currentSelectedOrder.orderDate}"
+								converter="javax.faces.DateTime" />
+						</b:column>
+					</b:row>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Shipped Date" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{orderController.currentSelectedOrder.shippedDate}"
+								converter="javax.faces.DateTime" />
+
+						</b:column>
+					</b:row>
+					<b:row></b:row>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Employee" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{orderController.currentSelectedOrder.employee.firstName} #{orderController.currentSelectedOrder.employee.lastName}" />
+						</b:column>
+					</b:row>
+					<b:row></b:row>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Freight" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{orderController.currentSelectedOrder.freight}"
+								converter="javax.faces.Double" />
+						</b:column>
+					</b:row>
+					<b:row></b:row>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Sales Total" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{orderController.subtotal + orderController.currentSelectedOrder.freight}"
+								converter="javax.faces.Double" />
+						</b:column>
+					</b:row>
+				</b:panel>
+			</b:panelGrid>
+
+
+			<b:dataTable
+			 	searching ="false" paginated="false"
+				value="#{orderController.currentSelectedOrder.orderDetails}" var="o">
 				<b:dataTableColumn value="#{o.product.productID}">
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{o.product.productName}">
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{o.quantity}">
 				</b:dataTableColumn>
-				
+
 				<b:dataTableColumn>
 					<f:facet name="header">
 						Unit Price
@@ -141,23 +158,24 @@
 					</f:facet>
 					<h:outputText value="#{o.discount}" style="float:right;">
 						<f:convertNumber type="percent" />
-						
+
 					</h:outputText>
 				</b:dataTableColumn>
-				<b:dataTableColumn >
+				<b:dataTableColumn>
 					<f:facet name="header">
 						Item Total
 						
 					</f:facet>
-					<h:outputText value="#{(1-o.discount) * o.unitPrice * o.quantity}" style="float:right;">
-					<f:convertNumber type="currency" />
+					<h:outputText value="#{(1-o.discount) * o.unitPrice * o.quantity}"
+						style="float:right;">
+						<f:convertNumber type="currency" />
 					</h:outputText>
 				</b:dataTableColumn>
-				</b:dataTable>	
-			
-		</b:form>
-	
+			</b:dataTable>
 
-	
+		</b:panel>
+
+
+
 	</ui:define>
 </ui:composition>
