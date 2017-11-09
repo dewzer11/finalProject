@@ -101,7 +101,17 @@ public class CustomerController {
 			
 			customerService.createCustomer(customerID, companyName,contactName,contactTitle,address,city,region,postalCode,country,phone,fax);
 			Messages.addGlobalInfo("Create customer was successful.");
+			customerID = "";
 			companyName = "";
+			contactName = "";
+			contactTitle = "";
+			address = "";
+			city = "";
+			region = "";
+			postalCode = "";
+			country = "";
+			phone = "";
+			fax = "";
 		} catch(Exception e) {
 			Messages.addGlobalError("Error creating customer with exception: {0}", e.getMessage());
 		}

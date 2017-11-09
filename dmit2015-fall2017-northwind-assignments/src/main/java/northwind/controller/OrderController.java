@@ -1,14 +1,8 @@
 package northwind.controller;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -17,7 +11,6 @@ import org.omnifaces.util.Messages;
 
 import northwind.data.OrderRepository;
 import northwind.model.Order;
-import northwind.report.EmployeeSales1997;
 import northwind.report.MonthlySalesByYear;
 
 
@@ -152,5 +145,7 @@ public class OrderController {
 		public List<MonthlySalesByYear> retrieveMonthlySales98() {
 			return orderRepository.findMonthSales(1998);
 		}
+	
+		
 		
 	}

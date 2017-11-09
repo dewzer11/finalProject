@@ -1,0 +1,116 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:hf="http://highfaces.org" 
+	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
+	
+	<ui:param name="title" value="View Sales Invoices By Date Range" />
+	
+	<ui:define name="externalstyles">
+	</ui:define>
+	
+	<ui:define name="internalstyles">
+	</ui:define>
+
+	<ui:define name="maincontent">
+		<b:jumbotron>
+			<h1>Find Sales Invoices By Date Range</h1>
+		
+		<p>TO DO:</p>
+		<ol>
+		<li>Change formatting of messages in controller to reflect given formatting</li>
+		<li>Fix input area to be on one line in xhtml</li>
+		<li>Fix formatting on order date and shipped date in xhtml</li>
+		<li>Figure out why the view details button isnt connecting to the view details page</li>
+		</ol>
+		</b:jumbotron>
+		
+		<b:messages id="messages" />
+		
+		<b:form id="queryForm">
+			<b:panel>
+				<b:datepicker label="Start Date" value="#{salesByDateRangeController.startDate}">
+				</b:datepicker>
+				<b:datepicker label="End Date" value="#{salesByDateRangeController.endDate}">
+				</b:datepicker>
+				<b:commandButton value="Search"
+					look="primary"
+					ajax="true"
+					update="messages queryForm:singleResultPanel"
+ actionListener="#{salesByDateRangeController.findOrdersByDateRange()}"  />
+			</b:panel>
+			
+<p:outputPanel id="singleResultPanel">						
+			<b:panel title="Orders By Date Range" 
+rendered="#{not empty salesByDateRangeController.orders}">
+			<b:dataTable value="#{salesByDateRangeController.orders}" var="order">
+				<b:dataTableColumn value="#{order.orderID}">
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">
+						Order Date
+					</f:facet>
+					<h:outputText value="#{order.orderDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+					</b:dataTableColumn>
+					<b:dataTableColumn>
+					<f:facet name="header">
+						Shipped Date
+					</f:facet>
+					<h:outputText value="#{order.shippedDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:outputText>
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{order.customer.companyName}">
+				</b:dataTableColumn>
+				
+				<b:dataTableColumn value="#{order.employee.firstName} #{order.employee.lastName}">
+				</b:dataTableColumn>	
+				
+				<b:dataTableColumn>									
+				<f:facet name="header">
+						View Details
+					</f:facet>
+					<b:navCommandLink outcome="orderDetail.xhtml">
+						<f:param name="id" value="#{order.orderID}" />
+						view details
+					</b:navCommandLink>
+				</b:dataTableColumn>		
+					
+			</b:dataTable>
+			</b:panel>
+</p:outputPanel>			
+		</b:form>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+				
+	</ui:define>
+
+</ui:composition>
