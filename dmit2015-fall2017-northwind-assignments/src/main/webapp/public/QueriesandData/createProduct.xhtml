@@ -35,12 +35,23 @@
 				value="#{createProductController.productName}"
 				placeholder="enter product name"
 				label="Product Name" />
-			<b:selectOneMenu id="supplier" label="Supplier" value="#{supplierController.suppliers}" >
-				<f:selectItems value="#{supplierController.suppliers}"></f:selectItems>
+			<b:selectOneMenu id="supplierId" value="#{supplierController.suppliers}" >
+				<f:selectItem itemLabel="Choose a Product" itemValue="" noSelectionOption="true" />
+				<f:selectItems value="#{supplierController.suppliers}"
+				var="supplier"
+				itemLabel="#{supplier.companyName}"
+				itemValue="#{supplier.supplierID}"/>			
 			</b:selectOneMenu>
-			<b:selectOneMenu id="category" label="Category">
-				<f:selectItems value="#{categoriesController.categories}"></f:selectItems>
-			</b:selectOneMenu> 
+			
+			<b:selectOneMenu id="categoryid" value="#{categoriesController.categories}" >
+				<f:selectItem itemLabel="Choose a Category" itemValue="" noSelectionOption="true" />
+				<f:selectItems value="#{categoriesController.categories}"
+				var="category"
+				itemLabel="#{category.categoryName}"
+				itemValue="#{category.categoryID}"/>			
+			</b:selectOneMenu>
+					
+			
 			<b:inputText id="quantity" 
 				value="#{createProductController.quantityPerUnit}"
 				placeholder="enter quantity per unit"
