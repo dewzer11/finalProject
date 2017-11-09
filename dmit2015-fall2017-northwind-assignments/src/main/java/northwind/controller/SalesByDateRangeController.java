@@ -32,15 +32,15 @@ public class SalesByDateRangeController {
 		try {
 			orders = orderRepository.findByDateRange(startDate, endDate);
 			if( orders.size() == 0 ) {
-				Messages.addGlobalInfo("We found 0 results for orders between {0} and {1}",
+				Messages.addGlobalInfo("We found 0 results for orders between {0,date} and {1,date}",
 						startDate, endDate);
 			} else {
-				Messages.addGlobalInfo("We found these results for orders between {0} and {1}", startDate, endDate);			
+				Messages.addGlobalInfo("There are {0} orders from {1,date} to {2,date}", orders.size(), startDate, endDate);			
 			}
 		} catch(Exception e) {
 			log.info(e.getMessage());
 			orders = null;
-			Messages.addGlobalInfo("We found 0 results for orders between the given start and end date");
+			Messages.addGlobalInfo("This is your catch. Something went wrong!!!!!");
 			}
 		}
 	

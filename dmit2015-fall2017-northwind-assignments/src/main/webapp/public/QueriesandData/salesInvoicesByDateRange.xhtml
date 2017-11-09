@@ -28,9 +28,8 @@
 		
 		<p>TO DO:</p>
 		<ol>
-		<li>Change formatting of messages in controller to reflect given formatting</li>
 		<li>Fix input area to be on one line in xhtml</li>
-		<li>Fix formatting on order date and shipped date in xhtml</li>
+		
 		<li>Figure out why the view details button isnt connecting to the view details page</li>
 		</ol>
 		</b:jumbotron>
@@ -61,7 +60,7 @@ rendered="#{not empty salesByDateRangeController.orders}">
 						Order Date
 					</f:facet>
 					<h:outputText value="#{order.orderDate}">
-						<f:convertDateTime pattern="yyyy-MM-dd" />
+						<f:convertDateTime pattern="MMMM dd, yyyy" />
 					</h:outputText>
 					</b:dataTableColumn>
 					<b:dataTableColumn>
@@ -69,7 +68,7 @@ rendered="#{not empty salesByDateRangeController.orders}">
 						Shipped Date
 					</f:facet>
 					<h:outputText value="#{order.shippedDate}">
-						<f:convertDateTime pattern="yyyy-MM-dd" />
+						<f:convertDateTime pattern="MMMM dd, yyyy" />
 					</h:outputText>
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{order.customer.companyName}">
@@ -82,7 +81,7 @@ rendered="#{not empty salesByDateRangeController.orders}">
 				<f:facet name="header">
 						View Details
 					</f:facet>
-					<b:navCommandLink outcome="orderDetail.xhtml">
+					<b:navCommandLink outcome="SalesInvoiceDetails.xhtml">
 						<f:param name="id" value="#{order.orderID}" />
 						view details
 					</b:navCommandLink>
