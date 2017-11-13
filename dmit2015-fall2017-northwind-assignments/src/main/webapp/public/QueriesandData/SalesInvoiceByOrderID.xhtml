@@ -30,11 +30,11 @@
 		
 		<b:messages id="messages"/>
 		
-		<b:form>
-			<b:panel id="queryForm">
+	<b:form>
+				<b:panel id="queryForm">
 				<b:inputText id="searchValue"
-					value=#{findOneOrderController.searchValue}
-				></b:inputText>
+					value="#{findOneOrderController.searchValue}">
+					</b:inputText>
 				<b:commandButton value="Search"
 					look="primary"
 					ajax="true"
@@ -43,29 +43,29 @@
 				></b:commandButton>
 			</b:panel>
 			
-		<			<b:panelGrid colSpans="6,6" size="sm">
+			<b:panelGrid colSpans="6,6" size="sm">
 				<b:panel rendered="#{findOneOrderController.searchValue != null}">
 					<f:facet name="heading">Customer Details</f:facet>
 					<h:outputText
-						value="#{findOneOrderController.searchValue.customer.companyName}" style="font-weight:bold;" />
+						value="#{findOneOrderController.querySingleResult.customer.companyName}" style="font-weight:bold;" />
 					<br />
 					<h:outputText
-						value="#{findOneOrderController.searchValue.customer.contactName}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.querySingleResult.customer.contactName}" style="font-weight:bold;"/>
 					<br />
 					<h:outputText
-						value="#{findOneOrderController.searchValue.customer.contactTitle}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.querySingleResult.customer.contactTitle}" style="font-weight:bold;"/>
 					<br />
 					<h:outputText
-						value="#{findOneOrderController.searchValue.customer.address} " style="font-weight:bold;"/>
+						value="#{findOneOrderController.querySingleResult.customer.address} " style="font-weight:bold;"/>
 					<br />
 					<h:outputText
-						value="#{findOneOrderController.searchValue.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.querySingleResult.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}" style="font-weight:bold;"/>
 					<br />
 					<h:outputText
-						value="#{findOneOrderController.searchValue.customer.country}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.querySingleResult.customer.country}" style="font-weight:bold;"/>
 					<br />
 					<h:outputText
-						value="#{findOneOrderController.searchValue.customer.phone}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.querySingleResult.customer.phone}" style="font-weight:bold;"/>
 				</b:panel>
 
 				<b:panel rendered="#{findOneOrderController.searchValue != null}">
@@ -76,7 +76,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{findOneOrderController.searchValue.customer.customerID}" />
+								value="#{findOneOrderController.querySingleResult.customer.customerID}" />
 						</b:column>
 					</b:row>
 					<b:row>
@@ -85,7 +85,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{findOneOrderController.searchValue.orderID}" />
+								value="#{findOneOrderController.querySingleResult.orderID}" />
 						</b:column>
 					</b:row>
 					<b:row>
@@ -94,7 +94,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{findOneOrderController.searchValue.orderDate}"
+								value="#{findOneOrderController.querySingleResult.orderDate}"
 								converter="javax.faces.DateTime" />
 						</b:column>
 					</b:row>
@@ -104,7 +104,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{findOneOrderController.searchValue.shippedDate}"
+								value="#{findOneOrderController.querySingleResult.shippedDate}"
 								converter="javax.faces.DateTime" />
 
 						</b:column>
@@ -116,7 +116,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{findOneOrderController.searchValue.employee.firstName} #{orderController.currentSelectedOrder.employee.lastName}" />
+								value="#{findOneOrderController.querySingleResult.employee.firstName} #{findOneOrderController.querySingleResult.employee.lastName}" />
 						</b:column>
 					</b:row>
 					<b:row></b:row>
@@ -126,7 +126,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{findOneOrderController.searchValue.freight}"
+								value="#{findOneOrderController.querySingleResult.freight}"
 								converter="javax.faces.Double" />
 						</b:column>
 					</b:row>
@@ -137,7 +137,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{findOneOrderController.subtotal + findOneOrderController.currentSelectedOrder.freight}"
+								value="#{findOneOrderController.querySingleResult.subtotal + findOneOrderController.querySingleResult.freight}"
 								converter="javax.faces.Double" />
 						</b:column>
 					</b:row>
@@ -147,7 +147,7 @@
 
 			<b:dataTable
 			 	searching ="false" paginated="false"
-				value="#{findOneOrderController.searchValue.orderDetails}" var="o">
+				value="#{findOneOrderController.querySingleResult.orderDetails}" var="o">
 				<b:dataTableColumn value="#{o.product.productID}">
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{o.product.productName}">
@@ -185,7 +185,8 @@
 			</b:dataTable>
 
 		</b:panel>
-				
+		</b:form>
+	
 	</ui:define>
 
 </ui:composition>
