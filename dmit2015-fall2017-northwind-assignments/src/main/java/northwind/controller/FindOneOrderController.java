@@ -12,7 +12,6 @@ import org.omnifaces.util.Messages;
 
 import northwind.data.OrderRepository;
 import northwind.model.Order;
-import northwind.service.OrderService;
 
 @SuppressWarnings("serial")
 @Named
@@ -20,7 +19,7 @@ import northwind.service.OrderService;
 public class FindOneOrderController implements Serializable {
 
 	@Inject
-	private OrderService orderService;
+	private OrderRepository orderRepository;
 	
 	@NotNull(message="OrderID field value is required")
 	private Integer searchValue; // +getter+setter
@@ -28,14 +27,6 @@ public class FindOneOrderController implements Serializable {
 	
 	@Inject
 	private Logger log;
-	
-	public OrderService getOrderService() {
-		return orderService;
-	}
-
-	public void setOrderService(OrderService orderService) {
-		this.orderService = orderService;
-	}
 
 	public Integer getSearchValue() {
 		return searchValue;
@@ -63,7 +54,7 @@ public class FindOneOrderController implements Serializable {
 
 	public void findOrder() {
 		try {
-			querySingleResult = orderService.findOneOrder(searchValue);
+			querySingleResult = orderRepository.findOne(searchValue);
 			if (querySingleResult == null) {
 				Messages.addGlobalInfo("0 results for {0}", searchValue);
 			}
