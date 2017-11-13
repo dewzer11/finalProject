@@ -121,7 +121,7 @@ public class OrderController {
 		
 		public void findOrderByEmployee() {
 			if( !FacesContext.getCurrentInstance().isPostback() ) {
-				// verify that a valid genreId was set
+				// verify that a valid EmployeeID was set
 				if( currentSelectedEmployeeId > 0) {
 					ordersByEmployee = orderRepository.findAllByEmployeeId(currentSelectedEmployeeId);
 					if( ordersByEmployee.size() == 0 ) {

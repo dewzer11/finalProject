@@ -13,14 +13,16 @@ public class CategoryService {
 	@Inject
 	private CategoriesRepository categoriesRepository;
 	
-	public void createCategory(String categoryName) {
+	public void createCategory(String categoryName, String description) {
 		Category currentCategory = new Category();
 		currentCategory.setCategoryName(categoryName);
+		currentCategory.setDescription(description);
 		createCategory(currentCategory);
 	}
 	
 	public void createCategory (Category currentCategory) {
 		categoriesRepository.persist(currentCategory);
 	}
+	
 	
 }

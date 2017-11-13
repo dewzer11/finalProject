@@ -25,7 +25,7 @@
 	<ui:define name="maincontent">
 		
 		<b:jumbotron>
-		<h1>Find Order</h1>
+		<h1>FindSalesOrderByOrderID Result</h1>
 		</b:jumbotron>
 		
 		<b:messages id="messages"/>
@@ -43,17 +43,148 @@
 				></b:commandButton>
 			</b:panel>
 			
-		<p:outputPanel id="singleResultPanel">
-			
-			<b:panel title="Sales Invoice"
-			rendered="#{not empty findOneOrderController.querySingleResult}">
-				<b:inputText id="">
-				
-				</b:inputText>
-			
-			</b:panel>
-		</p:outputPanel>
-		</b:form>
+		<			<b:panelGrid colSpans="6,6" size="sm">
+				<b:panel rendered="#{findOneOrderController.searchValue != null}">
+					<f:facet name="heading">Customer Details</f:facet>
+					<h:outputText
+						value="#{findOneOrderController.searchValue.customer.companyName}" style="font-weight:bold;" />
+					<br />
+					<h:outputText
+						value="#{findOneOrderController.searchValue.customer.contactName}" style="font-weight:bold;"/>
+					<br />
+					<h:outputText
+						value="#{findOneOrderController.searchValue.customer.contactTitle}" style="font-weight:bold;"/>
+					<br />
+					<h:outputText
+						value="#{findOneOrderController.searchValue.customer.address} " style="font-weight:bold;"/>
+					<br />
+					<h:outputText
+						value="#{findOneOrderController.searchValue.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}" style="font-weight:bold;"/>
+					<br />
+					<h:outputText
+						value="#{findOneOrderController.searchValue.customer.country}" style="font-weight:bold;"/>
+					<br />
+					<h:outputText
+						value="#{findOneOrderController.searchValue.customer.phone}" style="font-weight:bold;"/>
+				</b:panel>
+
+				<b:panel rendered="#{findOneOrderController.searchValue != null}">
+					<f:facet name="heading">Order Details</f:facet>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Customer ID" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{findOneOrderController.searchValue.customer.customerID}" />
+						</b:column>
+					</b:row>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Order ID" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{findOneOrderController.searchValue.orderID}" />
+						</b:column>
+					</b:row>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Order Date" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{findOneOrderController.searchValue.orderDate}"
+								converter="javax.faces.DateTime" />
+						</b:column>
+					</b:row>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Shipped Date" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{findOneOrderController.searchValue.shippedDate}"
+								converter="javax.faces.DateTime" />
+
+						</b:column>
+					</b:row>
+					<b:row></b:row>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Employee" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{findOneOrderController.searchValue.employee.firstName} #{orderController.currentSelectedOrder.employee.lastName}" />
+						</b:column>
+					</b:row>
+					<b:row></b:row>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Freight" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{findOneOrderController.searchValue.freight}"
+								converter="javax.faces.Double" />
+						</b:column>
+					</b:row>
+					<b:row></b:row>
+					<b:row>
+						<b:column span="4">
+							<h:outputText value="Sales Total" style="font-weight:bold;" />
+						</b:column>
+						<b:column span="4">
+							<h:outputText
+								value="#{findOneOrderController.subtotal + findOneOrderController.currentSelectedOrder.freight}"
+								converter="javax.faces.Double" />
+						</b:column>
+					</b:row>
+				</b:panel>
+			</b:panelGrid>
+
+
+			<b:dataTable
+			 	searching ="false" paginated="false"
+				value="#{findOneOrderController.searchValue.orderDetails}" var="o">
+				<b:dataTableColumn value="#{o.product.productID}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{o.product.productName}">
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{o.quantity}">
+				</b:dataTableColumn>
+
+				<b:dataTableColumn>
+					<f:facet name="header">
+						Unit Price
+					</f:facet>
+					<h:outputText value="#{o.unitPrice}" style="float:right;">
+						<f:convertNumber type="currency" />
+					</h:outputText>
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">
+						Discount(%)
+					</f:facet>
+					<h:outputText value="#{o.discount}" style="float:right;">
+						<f:convertNumber type="percent" />
+
+					</h:outputText>
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">
+						Item Total
+						
+					</f:facet>
+					<h:outputText value="#{(1-o.discount) * o.unitPrice * o.quantity}"
+						style="float:right;">
+						<f:convertNumber type="currency" />
+					</h:outputText>
+				</b:dataTableColumn>
+			</b:dataTable>
+
+		</b:panel>
 				
 	</ui:define>
 
