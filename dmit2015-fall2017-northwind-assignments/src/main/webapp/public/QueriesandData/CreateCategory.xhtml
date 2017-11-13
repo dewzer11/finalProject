@@ -30,16 +30,15 @@
 		<b:form>
 			<b:inputText placeholder="enter new Category Name"
 				value="#{categoriesController.categoryName}"
-				label="Category Name*"
+				label="Category Name"
 			></b:inputText>
 			<b:inputText id="Description" 
 				value="#{categoriesController.description}"
 				placeholder="enter description of category"
 				label="Description" />
-			<b:inputText id="picture" 
-				value="#{categoriesController.picture}"
-				placeholder=""
-				label="Picture" />
+				
+			<h:outputLabel value="Picture" for="picture" />	
+			<o:inputFile id="picture" value="#{categoryController.uploadedFile}" />	
 
 			<b:commandButton value="Submit"
 				actionListener="#{categoriesController.createNewCategory()}"

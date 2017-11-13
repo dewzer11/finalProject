@@ -13,10 +13,11 @@ public class CategoryService {
 	@Inject
 	private CategoriesRepository categoriesRepository;
 	
-	public void createCategory(String categoryName, String description) {
+	public void createCategory(String categoryName, String description, byte[] picture) {
 		Category currentCategory = new Category();
 		currentCategory.setCategoryName(categoryName);
 		currentCategory.setDescription(description);
+		currentCategory.setPicture(picture);
 		createCategory(currentCategory);
 	}
 	
