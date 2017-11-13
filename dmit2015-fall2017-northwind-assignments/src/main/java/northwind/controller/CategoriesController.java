@@ -43,15 +43,43 @@ public class CategoriesController {
 	@NotBlank(message="Category Name value is required")
 	@Length(min=3, max=20, message="Name must be between 3 and 20 characters")
 	private String categoryName; // +getter+setter
+	private String description; // +getter+setter
+	private byte[] picture; // +getter+setter
 	
 	public void createNewCategory() {
 		try	{
 			categoryService.createCategory(categoryName);
 			Messages.addGlobalError("Create Category was successful");
 			categoryName="";
+			description="";
+			picture="";
 		} catch (Exception e) {
 			Messages.addGlobalError("Error creating category with exception: {0}", e.getMessage());
 			//Messages.addGlobalWarn("Create Category was not successful");
 		}
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public byte[] getPicture() {
+		return picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
 	}
 }

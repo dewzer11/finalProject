@@ -23,13 +23,24 @@
 	<ui:define name="maincontent">
 		
 		<b:jumbotron>
-			<h2>New Category Details</h2>
+			<h2>Enter New Category Details</h2>
 		</b:jumbotron>
+		
 		<b:messages id="messages"></b:messages>
 		<b:form>
 			<b:inputText placeholder="enter new Category Name"
 				value="#{categoriesController.categoryName}"
+				label="Category Name*"
 			></b:inputText>
+			<b:inputText id="Description" 
+				value="#{categoriesController.description}"
+				placeholder="enter description of category"
+				label="Description" />
+			<b:inputText id="picture" 
+				value="#{categoriesController.picture}"
+				placeholder=""
+				label="Picture" />
+
 			<b:commandButton value="Submit"
 				actionListener="#{categoriesController.createNewCategory()}"
 				ajax="true" update="messages"
