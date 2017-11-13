@@ -44,31 +44,31 @@
 			</b:panel>
 			
 		<			<b:panelGrid colSpans="6,6" size="sm">
-				<b:panel rendered="#{orderController.currentSelectedOrder != null}">
+				<b:panel rendered="#{findOneOrderController.searchValue != null}">
 					<f:facet name="heading">Customer Details</f:facet>
 					<h:outputText
-						value="#{orderController.currentSelectedOrder.customer.companyName}" style="font-weight:bold;" />
+						value="#{findOneOrderController.searchValue.customer.companyName}" style="font-weight:bold;" />
 					<br />
 					<h:outputText
-						value="#{orderController.currentSelectedOrder.customer.contactName}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.searchValue.customer.contactName}" style="font-weight:bold;"/>
 					<br />
 					<h:outputText
-						value="#{orderController.currentSelectedOrder.customer.contactTitle}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.searchValue.customer.contactTitle}" style="font-weight:bold;"/>
 					<br />
 					<h:outputText
-						value="#{orderController.currentSelectedOrder.customer.address} " style="font-weight:bold;"/>
+						value="#{findOneOrderController.searchValue.customer.address} " style="font-weight:bold;"/>
 					<br />
 					<h:outputText
-						value="#{orderController.currentSelectedOrder.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.searchValue.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}" style="font-weight:bold;"/>
 					<br />
 					<h:outputText
-						value="#{orderController.currentSelectedOrder.customer.country}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.searchValue.customer.country}" style="font-weight:bold;"/>
 					<br />
 					<h:outputText
-						value="#{orderController.currentSelectedOrder.customer.phone}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.searchValue.customer.phone}" style="font-weight:bold;"/>
 				</b:panel>
 
-				<b:panel rendered="#{orderController.currentSelectedOrder != null}">
+				<b:panel rendered="#{findOneOrderController.searchValue != null}">
 					<f:facet name="heading">Order Details</f:facet>
 					<b:row>
 						<b:column span="4">
@@ -76,7 +76,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{orderController.currentSelectedOrder.customer.customerID}" />
+								value="#{findOneOrderController.searchValue.customer.customerID}" />
 						</b:column>
 					</b:row>
 					<b:row>
@@ -85,7 +85,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{orderController.currentSelectedOrder.orderID}" />
+								value="#{findOneOrderController.searchValue.orderID}" />
 						</b:column>
 					</b:row>
 					<b:row>
@@ -94,7 +94,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{orderController.currentSelectedOrder.orderDate}"
+								value="#{findOneOrderController.searchValue.orderDate}"
 								converter="javax.faces.DateTime" />
 						</b:column>
 					</b:row>
@@ -104,7 +104,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{orderController.currentSelectedOrder.shippedDate}"
+								value="#{findOneOrderController.searchValue.shippedDate}"
 								converter="javax.faces.DateTime" />
 
 						</b:column>
@@ -116,7 +116,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{orderController.currentSelectedOrder.employee.firstName} #{orderController.currentSelectedOrder.employee.lastName}" />
+								value="#{findOneOrderController.searchValue.employee.firstName} #{orderController.currentSelectedOrder.employee.lastName}" />
 						</b:column>
 					</b:row>
 					<b:row></b:row>
@@ -126,7 +126,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{orderController.currentSelectedOrder.freight}"
+								value="#{findOneOrderController.searchValue.freight}"
 								converter="javax.faces.Double" />
 						</b:column>
 					</b:row>
@@ -137,7 +137,7 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{orderController.subtotal + orderController.currentSelectedOrder.freight}"
+								value="#{findOneOrderController.subtotal + findOneOrderController.currentSelectedOrder.freight}"
 								converter="javax.faces.Double" />
 						</b:column>
 					</b:row>
@@ -147,7 +147,7 @@
 
 			<b:dataTable
 			 	searching ="false" paginated="false"
-				value="#{orderController.currentSelectedOrder.orderDetails}" var="o">
+				value="#{findOneOrderController.searchValue.orderDetails}" var="o">
 				<b:dataTableColumn value="#{o.product.productID}">
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{o.product.productName}">

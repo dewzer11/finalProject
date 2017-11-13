@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 import org.omnifaces.util.Messages;
 
+import northwind.data.OrderRepository;
 import northwind.model.Order;
 import northwind.service.OrderService;
 
