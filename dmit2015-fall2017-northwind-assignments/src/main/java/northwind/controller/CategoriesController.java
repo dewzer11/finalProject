@@ -42,6 +42,7 @@ public class CategoriesController {
 		return CategoriesRepository.findCategorySales();
 	}
 	
+	@Inject
 	private CategoryService categoryService;
 	
 	@NotBlank(message="Category Name value is required")

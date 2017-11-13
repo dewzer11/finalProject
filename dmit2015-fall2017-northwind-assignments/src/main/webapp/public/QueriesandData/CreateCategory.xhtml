@@ -27,7 +27,7 @@
 		</b:jumbotron>
 		
 		<b:messages id="messages"></b:messages>
-		<b:form>
+		<b:form enctype="multipart/form-data">
 			<b:inputText placeholder="enter new Category Name"
 				value="#{categoriesController.categoryName}"
 				label="Category Name"
@@ -38,7 +38,7 @@
 				label="Description" />
 				
 			<h:outputLabel value="Picture" for="picture" />	
-			<o:inputFile id="picture" value="#{categoryController.uploadedFile}" />	
+			<o:inputFile id="picture" value="#{categoriesController.uploadedFile}" />	
 
 			<b:commandButton value="Submit"
 				actionListener="#{categoriesController.createNewCategory()}"
