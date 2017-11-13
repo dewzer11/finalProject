@@ -1,5 +1,4 @@
-<ui:composition 
-	xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -9,63 +8,66 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:o="http://omnifaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions"
-	xmlns:b="http://bootsfaces.net/ui"
-	xmlns:p="http://primefaces.org/ui"  
-	xmlns:hf="http://highfaces.org" 
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:hf="http://highfaces.org"
 	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
-	
+
 	<ui:param name="title" value="[put page title here]" />
-	
+
 	<ui:define name="externalstyles">
 	</ui:define>
-	
+
 	<ui:define name="internalstyles">
 	</ui:define>
 
 	<ui:define name="maincontent">
-		
+
 		<b:jumbotron>
-		<h1>FindSalesOrderByOrderID Result</h1>
+			<h1>FindSalesOrderByOrderID Result</h1>
 		</b:jumbotron>
-		
-		<b:messages id="messages"/>
-		
-	<b:form>
-				<b:panel id="queryForm">
+
+		<b:messages id="messages" />
+
+		<b:form>
+			<b:panel id="queryForm">
 				<b:inputText id="searchValue"
 					value="#{findOneOrderController.searchValue}">
-					</b:inputText>
-				<b:commandButton value="Search"
-					look="primary"
-					ajax="true"
-					update="messages queryForm:singleResultPanel"
-					actionListener="#{findOneOrderController.findOrder()}"
-				></b:commandButton>
+				</b:inputText>
+				<b:commandButton value="Search" look="primary" ajax="false"
+					update="querySingleResultPanel messages"
+					actionListener="#{findOneOrderController.findOrder()}"></b:commandButton>
 			</b:panel>
-			
+
 			<b:panelGrid colSpans="6,6" size="sm">
 				<b:panel rendered="#{findOneOrderController.searchValue != null}">
 					<f:facet name="heading">Customer Details</f:facet>
 					<h:outputText
-						value="#{findOneOrderController.querySingleResult.customer.companyName}" style="font-weight:bold;" />
+						value="#{findOneOrderController.querySingleResult.customer.companyName}"
+						style="font-weight:bold;" />
 					<br />
 					<h:outputText
-						value="#{findOneOrderController.querySingleResult.customer.contactName}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.querySingleResult.customer.contactName}"
+						style="font-weight:bold;" />
 					<br />
 					<h:outputText
-						value="#{findOneOrderController.querySingleResult.customer.contactTitle}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.querySingleResult.customer.contactTitle}"
+						style="font-weight:bold;" />
 					<br />
 					<h:outputText
-						value="#{findOneOrderController.querySingleResult.customer.address} " style="font-weight:bold;"/>
+						value="#{findOneOrderController.querySingleResult.customer.address} "
+						style="font-weight:bold;" />
 					<br />
 					<h:outputText
-						value="#{findOneOrderController.querySingleResult.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.querySingleResult.customer.city} #{orderController.currentSelectedOrder.customer.postalCode}"
+						style="font-weight:bold;" />
 					<br />
 					<h:outputText
-						value="#{findOneOrderController.querySingleResult.customer.country}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.querySingleResult.customer.country}"
+						style="font-weight:bold;" />
 					<br />
 					<h:outputText
-						value="#{findOneOrderController.querySingleResult.customer.phone}" style="font-weight:bold;"/>
+						value="#{findOneOrderController.querySingleResult.customer.phone}"
+						style="font-weight:bold;" />
 				</b:panel>
 
 				<b:panel rendered="#{findOneOrderController.searchValue != null}">
@@ -145,9 +147,9 @@
 			</b:panelGrid>
 
 
-			<b:dataTable
-			 	searching ="false" paginated="false"
-				value="#{findOneOrderController.querySingleResult.orderDetails}" var="o">
+			<b:dataTable searching="false" paginated="false"
+				value="#{findOneOrderController.querySingleResult.orderDetails}"
+				var="o">
 				<b:dataTableColumn value="#{o.product.productID}">
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{o.product.productName}">
@@ -184,9 +186,9 @@
 				</b:dataTableColumn>
 			</b:dataTable>
 
-		</b:panel>
+
 		</b:form>
-	
+
 	</ui:define>
 
 </ui:composition>
