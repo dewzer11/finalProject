@@ -36,7 +36,7 @@ public class ProductRepository extends AbstractJpaRepository<Product> {
 	
 	public List<TenExpensiveProducts> findTenExpensiveProducts() {
 		return getEntityManager().createQuery(
-				" SELECT new northwind.report.TenExpensiveProducts (productName, unitPrice) FROM Product ORDER BY unitPrice DESC ",
+				" SELECT new northwind.report.TenExpensiveProducts (name, population) FROM Country ORDER BY population DESC ",
 				TenExpensiveProducts.class)
 				.setMaxResults(10)
 				.getResultList();
