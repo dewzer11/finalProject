@@ -1,11 +1,14 @@
 package northwind.controller;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -15,9 +18,11 @@ import northwind.data.CustomerRepository;
 import northwind.model.Customer;
 import northwind.service.CustomerService;
 
-
+@SuppressWarnings("serial")
+@Named
+@ViewScoped
 @Model
-public class CustomerController {
+public class CustomerController implements Serializable {
 
 	
 
