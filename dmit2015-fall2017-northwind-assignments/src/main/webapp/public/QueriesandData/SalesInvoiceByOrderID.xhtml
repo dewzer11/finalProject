@@ -34,7 +34,7 @@
 					value="#{findOneOrderController.searchValue}">
 				</b:inputText>
 				<b:commandButton value="Search" look="primary" ajax="false"
-					update="querySingleResultPanel messages"
+					update="queryResultListPanel querySingleResultPanel :messages"
 					actionListener="#{findOneOrderController.findOrder()}"></b:commandButton>
 			</b:panel>
 
