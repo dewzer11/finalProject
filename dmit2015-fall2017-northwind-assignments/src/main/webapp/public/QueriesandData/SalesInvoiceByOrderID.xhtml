@@ -29,13 +29,21 @@
 		<b:messages id="messages" />
 
 		<b:form>
+		<b:row>
+		<b:column span="1">
+		<h:outputText value="OrderID " style="font-weight:bold;margin-top:7px; position:absolute;"></h:outputText>
+		</b:column>
+		<b:column span="5">
 				<b:inputText id="searchValue"
-					value="#{findOneOrderController.searchValue}" >
-				</b:inputText>
-				<b:commandButton value="Search" look="primary" ajax="true"
+				 style="font-weight:bold; margin-top:7px; position:absolute;"
+					value="#{findOneOrderController.searchValue}" ></b:inputText>
+		</b:column>
+		<b:column span="1">
+				<b:commandButton value="Search" look="warning" ajax="true"
 					update="querySingleResultPanel :messages"
 					actionListener="#{findOneOrderController.findOrder()}"></b:commandButton>
-
+		</b:column>
+		</b:row>
 	<p:outputPanel id="querySingleResultPanel">
 				<b:panel rendered="#{findOneOrderController.searchValue != null}"><f:facet name="heading">Order Details</f:facet>
 			<b:panelGrid colSpans="6,6" size="sm" rendered="#{findOneOrderController.searchValue != null}">
