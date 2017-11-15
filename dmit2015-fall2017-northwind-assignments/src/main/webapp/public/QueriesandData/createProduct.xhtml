@@ -27,15 +27,12 @@
 		
 		<b:messages id="messages" />
 		<b:form>
-			<b:inputText id="customerId" 
-				value="#{customerController.customerID}"
-				placeholder="enter a 5 character customer ID"
-				label="Customer ID" />
+			
 			<b:inputText id="productname" 
-				value="#{createProductController.productName}"
+				value="#{createProductController.currentNewProduct.productName}"
 				placeholder="enter product name"
 				label="Product Name" />
-			<b:selectOneMenu id="supplierId" value="#{supplierController.suppliers}" label="Supplier">
+			<b:selectOneMenu id="supplierId" value="#{createProductController.supplierId}" label="Supplier">
 				<f:selectItem itemLabel="---select a supplier---" itemValue="" noSelectionOption="true" />
 				<f:selectItems value="#{supplierController.suppliers}"
 				var="supplier"
@@ -43,7 +40,7 @@
 				itemValue="#{supplier.supplierID}"/>			
 			</b:selectOneMenu>
 			
-			<b:selectOneMenu id="categoryid" value="#{categoriesController.categories}" label="Category" >
+			<b:selectOneMenu id="categoryid" value="#{createProductController.categoryId}" label="Category" >
 				<f:selectItem itemLabel="---select a category---" itemValue="" noSelectionOption="true" />
 				<f:selectItems value="#{categoriesController.categories}"
 				var="category"
@@ -53,30 +50,30 @@
 					
 			
 			<b:inputText id="quantity" 
-				value="#{createProductController.quantityPerUnit}"
+				value="#{createProductController.currentNewProduct.quantityPerUnit}"
 				placeholder="enter quantity per unit"
 				label="Quantity Per Unit" />
 			<b:inputText id="unitprice" 
-				value="#{createProductController.unitPrice}"
+				value="#{createProductController.currentNewProduct.unitPrice}"
 				placeholder="enter unit price"
 				label="Unit Price" />
 			<b:inputText id="unitsinstock" 
-				value="#{createProductController.unitsInStock}"
+				value="#{createProductController.currentNewProduct.unitsInStock}"
 				placeholder="0"
 				label="Units In Stock" />
 			<b:inputText id="unitsonorder" 
-				value="#{createProductController.unitsOnOrder}"
+				value="#{createProductController.currentNewProduct.unitsOnOrder}"
 				placeholder="0"
 				label="Units On Order" />
 			<b:inputText id="reorderlevel" 
-				value="#{createProductController.reorderLevel}"
+				value="#{createProductController.currentNewProduct.reorderLevel}"
 				placeholder="0"
 				label="Reorder Level" />
 				
 			<b:commandButton value="Submit"
 				ajax="false"
 				look="primary"
-				actionListener="#{customerController.createNewCustomer()}"
+				actionListener="#{createProductController.createNewProduct()}"
 				/>
 		</b:form>
 		
