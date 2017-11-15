@@ -119,32 +119,38 @@
 						</b:panel>
 					</b:column>
 					<b:column span="6">						
-						<b:panel title="Order Details" collapsible="false" style="height: 350px">
+						<b:panel title="Order Details" collapsible="false" style="height: 250px">
 							<b:panelGrid colSpans="5,7">
 								<h:outputLabel value="CustomerId" />
-								<h:outputText value="#{orderController.currentSelectedOrder.customer.customerID}" /> <br />		
+								<h:outputText value="#{orderController.currentSelectedOrder.customer.customerID}" /> 	
 								
 								<h:outputLabel value="OrderId" />
-								<h:outputText value="#{orderController.currentSelectedOrder.orderID}" /> <br />	
+								<h:outputText value="#{orderController.currentSelectedOrder.orderID}" /> 
 								
 								<h:outputLabel value="Order Date" />
 								<h:outputText value="#{orderController.currentSelectedOrder.orderDate}" >
 									<f:convertDateTime pattern="MMMM dd, yyyy"/>
-								</h:outputText>		<br />		
+								</h:outputText>			
 								
 								<h:outputLabel value="Shipped Date" />
 								<h:outputText value="#{orderController.currentSelectedOrder.shippedDate}" >
 									<f:convertDateTime pattern="MMMM dd, yyyy"/>
-								</h:outputText>		<br />		
+								</h:outputText>			
 								
 								<h:outputLabel value="Employee" />
-								<h:outputText value="#{orderController.currentSelectedOrder.employee.firstName}, #{orderController.currentSelectedOrder.employee.lastName}," /> <br />	
+								<h:outputText value="#{orderController.currentSelectedOrder.employee.firstName}, #{orderController.currentSelectedOrder.employee.lastName}," /> 	
 								
 								<h:outputLabel value="Freight" />
-								<h:outputText value="#{orderController.currentSelectedOrder.freight}" /> <br />	
+									
+								<h:outputText value="#{orderController.currentSelectedOrder.freight}" >
+									<f:convertNumber type="currency"/>
+								</h:outputText> 
 											
 								<h:outputLabel value="Sales Total" />
-							
+									
+								<h:outputText value="#{orderController.subtotal}" > 
+									<f:convertNumber type="currency"/>
+								</h:outputText>
 							</b:panelGrid>													
 						</b:panel>
 					</b:column>
