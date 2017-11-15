@@ -115,8 +115,9 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{orderController.currentSelectedOrder.freight}"
-								converter="javax.faces.Double" />
+								value="#{orderController.currentSelectedOrder.freight}">
+								<f:convertNumber type="currency"/>
+								</h:outputText>
 						</b:column>
 					</b:row>
 					<b:row></b:row>
@@ -126,8 +127,10 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{orderController.subtotal + orderController.currentSelectedOrder.freight}"
-								converter="javax.faces.Double" />
+								value="#{orderController.subtotal + orderController.currentSelectedOrder.freight}">
+								<f:convertNumber type="currency"/>
+								</h:outputText>
+								
 						</b:column>
 					</b:row>
 				</b:panel>

@@ -1,25 +1,61 @@
 package northwind.service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.logging.Logger;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import northwind.data.CategoriesRepository;
 import northwind.data.ProductRepository;
+import northwind.data.SupplierRepository;
+import northwind.model.Category;
 import northwind.model.Product;
-
+import northwind.model.Supplier;
+@Stateless
 public class ProductService {
-
+	@Inject
+	private Logger log;
+	
 	@Inject
 	private ProductRepository productRepository;
 	
-	public void createProduct(String productName, int SupplierId, int CategoryId, Byte discontinued, String quantityPerUnit, short reorderLevel, BigDecimal unitPrice, short unitsInStock, short unitsOnOrder) {
-		Product currentProduct = new Product();
-		currentProduct.setProductName(productName);
-		
-		createProduct(currentProduct);
+	@Inject
+	private SupplierRepository supplierRepository;
+	
+	@Inject 
+	private CategoriesRepository categoriesRepository;
+	
+	public List<Product> findAll(){
+		return productRepository.findAll();
 	}
 	
-	public void createProduct (Product currentProduct) {
-		productRepository.persist(currentProduct);
+	public List<Product> findAllByCategoryId(int categoryId){
+		return productRepository.findAllByCategoryId(categoryId);
 	}
+	
+	private void createProduct(Product newProduct) {
+		
+			productRepository.persist(newProduct);
+		
+			
+		}
+	
+	
+	public void createProduct(Product newProduct, Integer SupplierId, Integer CategoryId) {
+		if(SupplierId != null) {
+			Supplier currentSupplier = supplierRepository.find(SupplierId);
+			newProduct.setSupplier(currentSupplier);
+		}
+		if (CategoryId != null) {
+			Category currentCategory = categoriesRepository.find(CategoryId);
+			newProduct.setCategory(currentCategory);
+		}
+		
+		
+		createProduct(newProduct);
+	}
+	
+
 }

@@ -2,6 +2,10 @@ package northwind.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -24,6 +28,8 @@ public class Product implements Serializable {
 	@Column(name="Discontinued")
 	private byte discontinued;
 
+	@NotBlank(message="Product Name is required")
+	@Length(min=2,max=40, message="Product name must be between 2 and 40 characters")
 	@Column(name="ProductName")
 	private String productName;
 

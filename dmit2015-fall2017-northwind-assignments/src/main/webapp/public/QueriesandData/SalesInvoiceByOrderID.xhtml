@@ -12,7 +12,7 @@
 	xmlns:hf="http://highfaces.org"
 	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
 
-	<ui:param name="title" value="[put page title here]" />
+	<ui:param name="title" value="FindSalesInvoiceByOrderID" />
 
 	<ui:define name="externalstyles">
 	</ui:define>
@@ -29,17 +29,18 @@
 		<b:messages id="messages" />
 
 		<b:form>
-			<b:panel id="queryForm">
 				<b:inputText id="searchValue"
-					value="#{findOneOrderController.searchValue}">
+					value="#{findOneOrderController.searchValue}" >
 				</b:inputText>
-				<b:commandButton value="Search" look="primary" ajax="false"
-					update="queryResultListPanel querySingleResultPanel :messages"
+				<b:commandButton value="Search" look="primary" ajax="true"
+					update="querySingleResultPanel :messages"
 					actionListener="#{findOneOrderController.findOrder()}"></b:commandButton>
-			</b:panel>
 
-			<b:panelGrid colSpans="6,6" size="sm">
-				<b:panel rendered="#{findOneOrderController.searchValue != null}">
+	<p:outputPanel id="querySingleResultPanel">
+				<b:panel rendered="#{findOneOrderController.searchValue != null}"><f:facet name="heading">Order Details</f:facet>
+			<b:panelGrid colSpans="6,6" size="sm" rendered="#{findOneOrderController.searchValue != null}">
+
+				<b:panel>
 					<f:facet name="heading">Customer Details</f:facet>
 					<h:outputText
 						value="#{findOneOrderController.querySingleResult.customer.companyName}"
@@ -129,7 +130,8 @@
 						<b:column span="4">
 							<h:outputText
 								value="#{findOneOrderController.querySingleResult.freight}"
-								converter="javax.faces.Double" />
+								converter="javax.faces.Double">
+								<f:convertNumber type="currency" /></h:outputText>
 						</b:column>
 					</b:row>
 					<b:row></b:row>
@@ -139,17 +141,20 @@
 						</b:column>
 						<b:column span="4">
 							<h:outputText
-								value="#{findOneOrderController.querySingleResult.subtotal + findOneOrderController.querySingleResult.freight}"
-								converter="javax.faces.Double" />
+								value="#{findOneOrderController.subtotal + findOneOrderController.querySingleResult.freight}"
+								converter="javax.faces.Double">
+								<f:convertNumber type="currency" /></h:outputText>
 						</b:column>
 					</b:row>
 				</b:panel>
 			</b:panelGrid>
+			
 
 
 			<b:dataTable searching="false" paginated="false"
 				value="#{findOneOrderController.querySingleResult.orderDetails}"
-				var="o">
+				var="o"
+				rendered="#{findOneOrderController.searchValue != null}">
 				<b:dataTableColumn value="#{o.product.productID}">
 				</b:dataTableColumn>
 				<b:dataTableColumn value="#{o.product.productName}">
@@ -185,7 +190,8 @@
 					</h:outputText>
 				</b:dataTableColumn>
 			</b:dataTable>
-
+				</b:panel>
+</p:outputPanel>
 
 		</b:form>
 

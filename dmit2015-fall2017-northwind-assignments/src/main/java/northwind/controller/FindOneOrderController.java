@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.omnifaces.util.Messages;
 
 import northwind.data.OrderRepository;
@@ -68,8 +69,14 @@ public class FindOneOrderController implements Serializable {
 			Messages.addGlobalInfo("We found 0 results for {0}", searchValue);
 		
 		}
-
+				
 	}
+
+	public Double getSubtotal() {
+		return orderRepository.findSubTotal(getSearchValue());
+		
+	}
+
 	
 	
 }
