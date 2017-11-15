@@ -30,12 +30,12 @@
 		<b:form enctype="multipart/form-data">
 			<b:inputText placeholder="enter new Category Name"
 				value="#{categoriesController.categoryName}"
-				label="Category Name"
-			></b:inputText>
-			<b:inputText id="Description" 
+				label="Category Name"/>
+			<b:inputTextarea id="Description" 
 				value="#{categoriesController.description}"
 				placeholder="enter description of category"
-				label="Description" />
+				label="Description"
+				rows="6" cols="33" />
 				
 			<h:outputLabel value="Picture" for="picture" />	
 			<o:inputFile id="picture" value="#{categoriesController.uploadedFile}" />	
