@@ -1,11 +1,13 @@
 package northwind.controller;
 
 
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.omnifaces.util.Messages;
 
@@ -14,9 +16,13 @@ import northwind.model.Order;
 import northwind.report.MonthlySalesByYear;
 
 
-@Model
-public class OrderController {
+@SuppressWarnings("serial")
+@Named
+@ViewScoped
+public class OrderController implements Serializable {
 	private int currentSelectedOrderId;		// getter/setter
+	private Order currentSelectedOrder;	// getter
+	
 	public int getCurrentSelectedOrderId() {
 		return currentSelectedOrderId;
 	}
@@ -28,7 +34,7 @@ public class OrderController {
 	public Order getCurrentSelectedOrder() {
 		return currentSelectedOrder;
 	}
-	private Order currentSelectedOrder;	// getter
+	
 	
 	public void findOrder() {
 		if( !FacesContext.getCurrentInstance().isPostback() ) {
@@ -51,7 +57,30 @@ public class OrderController {
 		return orderRepository.findSubTotal(getCurrentSelectedOrderId());
 	}
 	
+	public void findOneOrder() {
+		currentSelectedOrder = orderRepository.findOne(currentSelectedOrderId);
+		if( currentSelectedOrder == null ) {
+			Messages.addGlobalInfo("There is no invoice with invoiceID {0}", currentSelectedOrderId);					
+		} else {
+			Messages.addGlobalInfo("We found 1 result with invoiceID {0}", currentSelectedOrderId);								
+		}
+	}
 	
+	public void findAllOrdersByCustomer() {
+		ordersByCustomer = orderRepository.findAllByCustomerId(currentSelectedCustomerId);
+		currentSelectedOrder = null;
+		int resultCount = ordersByCustomer.size();
+		if (ordersByCustomer.size() == 0) {
+			Messages.addGlobalError("Unknown customerId \"{0}\". We found 0 results", currentSelectedCustomerId);
+		} else {
+			Messages.addGlobalInfo("We found {0} results.", resultCount);
+		}
+	}
+	
+	public void findOneOrder(int orderId) {
+		currentSelectedOrderId = orderId;
+		findOneOrder();
+	}
 	
 	@Inject
 	private OrderRepository orderRepository;
@@ -85,6 +114,8 @@ public class OrderController {
 			}
 		}
 		}
+	
+
 		
 	public String getCurrentSelectedCustomerId() {
 		return currentSelectedCustomerId;

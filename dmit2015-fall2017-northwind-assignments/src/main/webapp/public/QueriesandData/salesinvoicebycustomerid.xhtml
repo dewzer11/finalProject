@@ -45,7 +45,7 @@
 						look="primary"
 						ajax="false"
 						update="queryResultListPanel querySingleResultPanel :messages"
-						actionListener="#{orderController.findOrderByCustomer()}">
+						actionListener="#{orderController.findAllOrdersByCustomer()}">
 					</b:commandButton>
 				</b:column>
 			</b:row>
@@ -92,8 +92,8 @@
 							</f:facet>
 							<b:commandButton value="view details" 
 								look="link"
-								actionListener="#{orderController.findOrder(order.orderID)}"
-								ajax="true" update="querySingleResultPanel queryForm:queryResultListPanel">
+								actionListener="#{orderController.findOneOrder(order.orderID)}"
+								ajax="false" update="querySingleResultPanel queryForm:queryResultListPanel">
 							</b:commandButton>
 						</b:dataTableColumn>
 					</b:dataTable>
@@ -119,8 +119,8 @@
 						</b:panel>
 					</b:column>
 					<b:column span="6">						
-						<b:panel title="Order Details" collapsible="false" style="height: 250px">
-							<b:panelGrid colSpans="4,8">
+						<b:panel title="Order Details" collapsible="false" style="height: 350px">
+							<b:panelGrid colSpans="5,7">
 								<h:outputLabel value="CustomerId" />
 								<h:outputText value="#{orderController.currentSelectedOrder.customer.customerID}" /> <br />		
 								
