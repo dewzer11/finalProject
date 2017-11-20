@@ -1,0 +1,75 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:hf="http://highfaces.org" 
+	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
+	
+	<ui:param name="title" value="Point of Sales - Northwind" />
+	
+	<ui:define name="externalstyles">
+	</ui:define>
+	
+	<ui:define name="internalstyles">
+	</ui:define>
+
+	<ui:define name="maincontent">
+		<b:jumbotron>
+			<h1>New Order Details</h1>
+		</b:jumbotron>
+		
+		<b:messages id="messages" />
+		
+		<b:form id="orderProductsForm" inline="true">
+			<b:inputText id="productId" 
+				label="Product ID"
+				value="#{createOrderController.currentSelectedProductId}">
+				<b:focus />
+			</b:inputText>
+				
+			<b:commandButton value="Add Product"
+				ajax="false"
+				actionListener="#{createOrderController.addProductToOrder()}">
+			</b:commandButton>	
+			
+			<b:dataTable id="orders" value="#{createOrderController.products}" var="currentProduct">
+				
+				<b:dataTableColumn label="ProductID" value="#{currentProduct.productID}" />
+				<b:dataTableColumn label="Customer" value="#{currentProduct.productName}" />
+				<b:dataTableColumn label="Quantity" >
+					<h:inputText value="quantity" />
+				</b:dataTableColumn>
+				<b:dataTableColumn label="Unit Price" value="#{currentProduct.unitPrice}" />
+				<b:dataTableColumn label="Product Total"/>	
+				<b:dataTableColumn label="Action">
+					<b:commandButton value="delete"
+						immediate="true"
+						ajax="falxe"
+						actionListener="#{createOrderController.removeProduct()}">
+					</b:commandButton>
+				</b:dataTableColumn>		
+			</b:dataTable>
+		</b:form>
+		
+		<b:form id="orderForm">
+			
+			<b:commandButton value="Create Order"
+				actionListener="#{createOrderController.createNewOrder()}"
+				ajax="false">
+			
+			</b:commandButton>
+			
+		</b:form>
+				
+	</ui:define>
+
+</ui:composition>
