@@ -29,11 +29,11 @@
 		
 		<b:messages id="messages" />
 		
-		<p:outputPanel rendered="#{empty shoppingCartController.items}">
+		<p:outputPanel rendered="#{empty createOrderController.items}">
 			<h2>Your shopping cart is empty</h2>
 		</p:outputPanel>
 		
-		<p:outputPanel id="cartPanel" rendered="#{not empty shoppingCartController.items}">
+		<p:outputPanel id="cartPanel" rendered="#{not empty createOrderController.items}">
 			<b:panel title="Shopping Cart Contents" collapsible="false">
 				<b:form id="orderProductsForm" inline="true">
 					<b:inputText id="productId" 
@@ -44,13 +44,13 @@
 				
 				<b:commandButton value="Add Product"
 					ajax="false"
-					actionListener="#{createOrderController.addProductToOrder()}">
+					actionListener="#{createOrderController.addItem()}">
 				</b:commandButton>	
 			
-			<b:dataTable id="orders" value="#{createOrderController.products}" var="currentProduct">
+			<b:dataTable id="orders" value="#{createOrderController.items}" var="currentProduct">
 				
-				<b:dataTableColumn label="ProductID" value="#{currentProduct.productID}" />
-				<b:dataTableColumn label="Customer" value="#{currentProduct.productName}" />
+				<b:dataTableColumn label="ProductID" value="#{currentProduct.id}" />
+				<b:dataTableColumn label="Customer" value="#{currentProduct.product.productName}" />
 				<b:dataTableColumn label="Quantity" >
 					<h:inputText value="quantity" size="2"  />
 				</b:dataTableColumn>
@@ -60,15 +60,18 @@
 					<b:commandButton value="delete"
 						immediate="true"
 						ajax="falxe"
-						actionListener="#{createOrderController.removeProduct()}">
+						actionListener="#{createOrderController.removeItem()}">
 					</b:commandButton>
 				</b:dataTableColumn>		
 			</b:dataTable>
 		</b:form>
 		
+		</b:panel>
+		</p:outputPanel>
+		
 		<b:form id="orderForm">
 			
-			<b:commandButton value="Create Order"
+			<b:commandButton value="Submit Order"
 				actionListener="#{createOrderController.createNewOrder()}"
 				ajax="false">
 			
