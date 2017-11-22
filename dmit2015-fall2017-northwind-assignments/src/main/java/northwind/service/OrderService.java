@@ -67,13 +67,13 @@ public class OrderService {
 		return orderRepository.findOne(orderID);
 	}
 	
-	public void CancelOrder(int orderID) {
-		if(entityManager.shippedDate != null) {
-			Messages.addGlobalInfo(" {0} has already been shipped, cannot cancel., currentSelectedOrder ");
-		}
-		else {
-			entityManager.remove(currentSelectedOrder);
-			orderRepository.remove(currentSelectedOrder);
-		}
-	}
+//	public void CancelOrder(int orderID) {
+//		if(entityManager.shippedDate != null) {
+//			Messages.addGlobalInfo(" {0} has already been shipped, cannot cancel., currentSelectedOrder ");
+//		}
+//		else {
+//			entityManager.remove(currentSelectedOrder);
+//			orderRepository.remove(currentSelectedOrder);
+//		}
+//	}
 }
