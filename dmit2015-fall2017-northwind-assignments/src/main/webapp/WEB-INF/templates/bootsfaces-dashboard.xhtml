@@ -31,8 +31,12 @@
     <h:body style="padding-top: 60px">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.5.2/holder.min.js"></script>
         <b:navBar brand="Northwind" brandHref="#" inverse="true" fixed="top" fluid="true">
-            
+     
             <b:navbarLinks pull="right">
+            <b:navLink value="Shopping Cart" outcome="/public/TransactionProcessing/ShoppingCart.xhtml"></b:navLink>
+            <b:navLink value="Order Look up" outcome="/public/TransactionProcessing/CompleteOrder.xhtml"></b:navLink>
+            	
+	             
             	<h:form style="display:inline" styleClass="form-inline">
 		          <b:selectOneMenu value="#{theme.currentTheme}" style="width:180px;margin-top:8px"
 		            onchange="$('.theme-selector-button').click()">
