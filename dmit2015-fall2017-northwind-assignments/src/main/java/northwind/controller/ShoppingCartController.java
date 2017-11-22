@@ -7,15 +7,11 @@ import java.util.Set;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.constraints.NotNull;
-
-import org.omnifaces.el.functions.Numbers;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
 import northwind.model.OrderDetail;
 import northwind.model.Product;
-import northwind.service.OrderService;
 import northwind.service.ProductService;
 
 @SuppressWarnings("serial")
@@ -27,14 +23,13 @@ public class ShoppingCartController implements Serializable {
 
 	@Inject
 	private ProductService productService;
-	@Inject
-	private OrderService orderService;
+
 	
 	public String addItem() {	
 		String productIdParam = Faces.getRequestParameter("productId");
 		if( productIdParam != null && !productIdParam.isEmpty() ) {
-			int trackId = Integer.parseInt(productIdParam);
-			Product currentProduct = productService.findOne();
+			int productId = Integer.parseInt(productIdParam);
+			Product currentProduct = productService.findOne(productId);
 			if( currentProduct != null ) {
 				addItem(currentProduct);
 			}
@@ -49,7 +44,7 @@ public class ShoppingCartController implements Serializable {
 		item.setQuantity((short) 1);
 		item.setUnitPrice( currentProduct.getUnitPrice() );
 
-		if (!products.add(item)) {
+		if (!items.add(item)) {
 
 			OrderDetail existingItem = items.stream().filter( singleItem -> singleItem.getId() == item.getId() ).findFirst().orElse(null);
 			if (existingItem != null) {
@@ -62,12 +57,9 @@ public class ShoppingCartController implements Serializable {
 		
 		return "/public/transaction/ShoppingCart.xhtml?faces-redirect=true";
 	}
-	
-	
-	}
-	
+		
 	public void emptyCart() {
-		products.clear();
+		items.clear();
 	}
 
 	public Set<OrderDetail> getItems() {
@@ -81,27 +73,4 @@ public class ShoppingCartController implements Serializable {
 //		}
 //		return Numbers.formatCurrency(totalPrice, "$");
 //	}
-	
-	@NotNull(message="ProductId field value is required")
-	private Integer currentSelectedProductId;						// +getter +setter
-	private Set<Product> products = new HashSet<>();
-	
-
-	
-
-	public void addProductToOrder() {
-		Product currentProduct = productService.findOne(currentSelectedProductId);
-		if (currentProduct == null) {
-			Messages.addGlobalWarn("{0} is not a valid ProductId value.", currentSelectedProductId);
-		} else {
-			products.add(currentProduct);
-			Messages.addGlobalInfo("Add product was successful.");
-		}
-	}
-	
-	public void removeProduct(Product currentProduct) {
-		products.remove(currentProduct);
-		Messages.addGlobalInfo("Remove product was successful");
-	}
-	
-}
+}	
