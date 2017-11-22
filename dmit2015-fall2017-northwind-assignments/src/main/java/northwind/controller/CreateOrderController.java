@@ -41,8 +41,12 @@ public class CreateOrderController implements Serializable{
 		if (currentProduct == null) {
 			Messages.addGlobalWarn("{0} is not a valid ProductId value.", currentSelectedProductId);
 		} else {
-			products.add(currentProduct);
-			Messages.addGlobalInfo("Add product was successful.");
+			if(products.add(currentProduct) )
+				Messages.addGlobalInfo("Add product was successful.");
+			else
+				Messages.addGlobalInfo("Product is already in the shopping cart");
+			currentSelectedProductId = null;
+				
 		}
 	}
 	
