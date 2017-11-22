@@ -29,24 +29,30 @@
 		
 		<b:messages id="messages" />
 		
-		<b:form id="orderProductsForm" inline="true">
-			<b:inputText id="productId" 
-				label="Product ID"
-				value="#{createOrderController.currentSelectedProductId}">
-				<b:focus />
-			</b:inputText>
+		<p:outputPanel rendered="#{empty shoppingCartController.items}">
+			<h2>Your shopping cart is empty</h2>
+		</p:outputPanel>
+		
+		<p:outputPanel id="cartPanel" rendered="#{not empty shoppingCartController.items}">
+			<b:panel title="Shopping Cart Contents" collapsible="false">
+				<b:form id="orderProductsForm" inline="true">
+					<b:inputText id="productId" 
+						label="Product ID"
+						value="#{createOrderController.currentSelectedProductId}">
+					<b:focus />
+				</b:inputText>
 				
-			<b:commandButton value="Add Product"
-				ajax="false"
-				actionListener="#{createOrderController.addProductToOrder()}">
-			</b:commandButton>	
+				<b:commandButton value="Add Product"
+					ajax="false"
+					actionListener="#{createOrderController.addProductToOrder()}">
+				</b:commandButton>	
 			
 			<b:dataTable id="orders" value="#{createOrderController.products}" var="currentProduct">
 				
 				<b:dataTableColumn label="ProductID" value="#{currentProduct.productID}" />
 				<b:dataTableColumn label="Customer" value="#{currentProduct.productName}" />
 				<b:dataTableColumn label="Quantity" >
-					<h:inputText value="quantity" />
+					<h:inputText value="quantity" size="2"  />
 				</b:dataTableColumn>
 				<b:dataTableColumn label="Unit Price" value="#{currentProduct.unitPrice}" />
 				<b:dataTableColumn label="Product Total"/>	
