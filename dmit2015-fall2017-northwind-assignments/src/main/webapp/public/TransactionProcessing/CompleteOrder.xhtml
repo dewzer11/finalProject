@@ -27,7 +27,7 @@
 			
 			<h3>TO DO:</h3>
 			<ol>
-			<li>To complete an order the user enters the <b>orderID</b> of the order to complete and clicks on a button to find the order to complete. The system will display detail information about the order and allow the user to change the <b>shippedDate</b>, <b>shipper</b>, and <b>freight</b> of the order if the order has not been shipped.</li>
+			<li>To complete an order the user enters the <b>orderID</b> of the order to complete and clicks on a button to find the order to complete. The system will display detail information about the order and allow the user to change the <b>shippedDate</b>, <b>shipper</b>, and <b>freight</b> of the order <span style="background-color: #FFFF00">if the order has not been shipped.</span>&#10003;</li>
 			<li>The user changes the <b>shippedDate</b>, <b>shipper</b>, and <b>freight</b> of the order and clicks on a button to complete the order.</li>
 			<li>For each Product in the OrderDetail entity update the <b>unitsInstock</b> for each Product by subtracting the <b>quantity</b> of the OrderDetail. <u>Rollback the transaction if the resulted unitsInStock is less than zero.</u> (There are not enough items in stock to ship the complete order.)</li>
 			</ol>
@@ -36,27 +36,23 @@
 		<b:messages id="messages" />
 
 		<b:form>
-			<b:row>
+			<b:row style="padding-bottom:10px;">
 				<b:column span="1">
 					<h:outputText value="OrderID "
 						style="font-weight:bold;margin-top:7px; position:absolute;"></h:outputText>
 				</b:column>
 				<b:column span="5">
 					<b:inputText id="searchValue"
-						style="font-weight:bold; margin-top:7px; position:absolute;"
+						style="font-weight:bold; position:absolute;"
 						value="#{findOneOrderController.searchValue}"></b:inputText>
 				</b:column>
-				<b:column span="1">
+				<b:column span="2">
 					<b:commandButton value="Search" look="submit" ajax="true"
 						update="querySingleResultPanel :messages"
 						actionListener="#{findOneOrderController.findOrder()}"></b:commandButton>
 				</b:column>
-				<b:column span ="1">
-				<b:commandButton value="Complete Order" look="error"></b:commandButton>
-				</b:column>
-				<b:column span ="1">
-				<b:commandButton value="Cancel" look="error"></b:commandButton>
-				</b:column>
+				
+			
 			</b:row>
 
 			<p:outputPanel id="querySingleResultPanel">
@@ -247,7 +243,14 @@
 							</h:outputText>
 						</b:dataTableColumn>
 					</b:dataTable>
+					<row>
+				<b:column span ="12" style="text-align:center;">
+				<b:commandButton value="Complete Order" look="error" style="margin-right:5px; background-color:green;" rendered="#{findOneOrderController.searchValue != null}"></b:commandButton>
+				<b:commandButton value="Cancel Order" look="error" style="margin-left:5px; background-color:red;" rendered="#{findOneOrderController.searchValue != null}"></b:commandButton>
+				</b:column>
+				</row>
 				</b:panel>
+				
 			</p:outputPanel>
 
 		</b:form>
