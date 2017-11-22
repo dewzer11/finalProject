@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import org.omnifaces.util.Messages;
 
 import northwind.data.OrderRepository;
 import northwind.model.Customer;
@@ -64,5 +65,15 @@ public class OrderService {
 	
 	public Order findOneOrder(int orderID) {
 		return orderRepository.findOne(orderID);
+	}
+	
+	public void CancelOrder(int orderID) {
+		if(entityManager.shippedDate != null) {
+			Messages.addGlobalInfo(" {0} has already been shipped, cannot cancel., currentSelectedOrder ");
+		}
+		else {
+			entityManager.remove(currentSelectedOrder);
+			orderRepository.remove(currentSelectedOrder);
+		}
 	}
 }

@@ -13,7 +13,9 @@ import org.omnifaces.util.Messages;
 
 import northwind.data.OrderRepository;
 import northwind.model.Order;
+import northwind.model.OrderDetail;
 import northwind.report.MonthlySalesByYear;
+import northwind.service.OrderService;
 
 
 @SuppressWarnings("serial")
@@ -175,11 +177,7 @@ public class OrderController implements Serializable {
 			}
 		public List<MonthlySalesByYear> retrieveMonthlySales98() {
 			return orderRepository.findMonthSales(1998);
-		}
-	
-		
-		
-		
+		}	
 		
 	}
 
