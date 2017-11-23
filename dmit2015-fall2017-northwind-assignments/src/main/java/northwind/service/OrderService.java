@@ -1,5 +1,6 @@
 package northwind.service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +19,7 @@ import northwind.model.Employee;
 import northwind.model.Order;
 import northwind.model.OrderDetail;
 import northwind.model.Product;
+import northwind.model.Shipper;
 
 @Stateless
 public class OrderService {
@@ -79,16 +81,13 @@ public class OrderService {
 //		}
 //	}
 	/////////////////////////////////////////////////////////////COMPLETE ORDER SERVICE STUFF//////////////////////////////////////
-	public int completeOrder(Order newOrder, List<OrderDetail> items)
+	public void completeOrder(Order existingOrder, BigDecimal freight, Shipper shipper, Date shippedDate)
 			throws NoInvoiceLinesException, IllegalQuantityException {
-		// ADD THE EXCEPTIONS
-		int orderId = 0;
-		if (items == null || items.size() == 0) {
-			context.setRollbackOnly();
-			throw new NoInvoiceLinesException("There are no items in the invoice");
-		}
 		
-		for(OrderDetail singleItem : items) {
+		
+		
+		
+		for(OrderDetail singleItem : existingOrder.getOrderDetails()) {
 			if (singleItem.getQuantity() > singleItem.getProduct().getUnitsInStock() || singleItem.getQuantity() < 1 ) {
 				context.setRollbackOnly();
 				throw new IllegalQuantityException("Invalid quantity ordered.");
@@ -96,13 +95,13 @@ public class OrderService {
 				//update units in stock of the product
 				short unitsInStock=(short)(singleItem.getProduct().getUnitsInStock() - singleItem.getQuantity());
 				singleItem.getProduct().setUnitsInStock(unitsInStock);
-				entityManager.persist(newOrder);
-				orderId = newOrder.getOrderID();
+				entityManager.merge(singleItem.getProduct());	
 			}
-			singleItem.setOrder(newOrder);
-			entityManager.persist(singleItem);
+			
 		}
-		return orderId;
+		
+		entityManager.merge(existingOrder);
+		
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
