@@ -29,17 +29,17 @@
 		
 		<b:form id="customerForm">
 		<b:panel title="Step 1: Select Customer">
-		<b:selectOneMenu id="customers" label="Customer"
-				value="#{createOrderController.currentSelectedCustomerId}"
-				onchange="ajax:#{createOrderController.changeShippingInfo()}"
-				update="@form">
-				<f:selectItem itemValue="" itemLabel="Choose a customer" />
-				<f:selectItems value="#{customerController.customers}"
-					var="customer" itemValue="#{customer.customerID}"
-					itemLabel="#{customer.companyName}" />
-		</b:selectOneMenu>
+				<b:selectOneMenu id="customers" label="Customer"
+					value="#{createOrderController.currentSelectedCustomerId}"
+					onchange="ajax:#{createOrderController.changeShippingInfo()}"
+					update="@form">
+					<f:selectItem itemValue="" itemLabel="Choose a customer" />
+					<f:selectItems value="#{customerController.customers}"
+						var="customer" itemValue="#{customer.customerID}"
+						itemLabel="#{customer.companyName}" />
+				</b:selectOneMenu>
 		
-		<b:panel title="Customer Details" collapsible="false" style="height: 250px">
+						<b:panel title="Customer Details" collapsible="false" style="height: 250px">
 							<strong>
 								<h:outputText value="#{customerController.currentSelectedCustomer.customerID}" /> <br />									
 								<h:outputText value="#{customerController.currentSelectedCustomer.companyName}" /> <br />
@@ -110,7 +110,23 @@
 
 
 		<b:form id="OrderInfo">
-
+			<b:selectOneMenu id="employees" label="Employee"
+					value="#{employeeController.currentSelectedEmployeeId}">
+					<f:selectItem itemValue="" itemLabel="Choose an employee" />
+					<f:selectItems value="#{employeeController.employees}"
+						var="employee" itemValue="#{employee.employeeID}"
+						itemLabel="#{employee.lastName}, #{employee.firstName}" />
+			</b:selectOneMenu>
+				
+			<b:selectOneMenu id="shipper" label="Shipper"
+					value="#{shipperController.currentSelectedShipperId}">
+					<f:selectItem itemValue="" itemLabel="Choose a shipper" />
+					<f:selectItems value="#{shipperController.shippers}"
+						var="shipper" itemValue="#{shipper.shipperID}"
+						itemLabel="#{shipper.companyName}" />
+			</b:selectOneMenu>	
+			
+			
 		</b:form>
 
 		<b:form id="shippingForm">

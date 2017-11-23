@@ -25,5 +25,14 @@ import northwind.model.Shipper;
 		public List<Shipper> getShippers() {
 			return shippers;
 		}
+		
+		private int currentSelectedShipperId;
 
+		public int getCurrentSelectedShipperId() {
+			return currentSelectedShipperId;
+		}
+
+		public void setCurrentSelectedShipperId(int currentSelectedShipperId) {
+			this.currentSelectedShipperId = currentSelectedShipperId;
+		}
 }
