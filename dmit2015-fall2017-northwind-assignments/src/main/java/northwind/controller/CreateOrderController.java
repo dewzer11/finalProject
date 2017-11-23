@@ -9,12 +9,13 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
+
 import org.omnifaces.el.functions.Numbers;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
-
+import northwind.model.Customer;
+import northwind.data.CustomerRepository;
 import northwind.model.OrderDetail;
 import northwind.model.Product;
 import northwind.service.OrderService;
@@ -27,9 +28,38 @@ import northwind.service.ProductService;
 public class CreateOrderController implements Serializable{
 	
 
-//	@NotNull(message="ProductId field value is required")
-	private Integer currentSelectedProductId;						// +getter +setter
-//	private Set<Product> products = new HashSet<>();
+	@NotNull(message="ProductId field value is required")
+	private Integer currentSelectedProductId;// +getter +setter
+	
+	@NotNull(message="CustomerId field value is required")
+	private Integer currentSelectedCustomerId;
+	
+	@Inject
+	private CustomerRepository customerRepository;
+	
+	private String shippingName;
+	private String shippingAddress;
+	private String shippingCity;
+	private String shippingRegion;
+	private String shippingPostalCode;
+	private String shippingCountry;
+	
+	@Inject
+	private OrderService orderService;
+	
+	public void changeShippingInfo() {
+		int customerId = currentSelectedCustomerId;
+		Customer orderCustomer = customerRepository.find(customerId);
+		shippingName = orderCustomer.getCompanyName();
+		shippingAddress = orderCustomer.getAddress();
+		shippingCity = orderCustomer.getCity();
+		shippingRegion = orderCustomer.getRegion();
+		shippingPostalCode = orderCustomer.getPostalCode();
+		shippingCountry = orderCustomer.getCountry();
+	}
+	
+
+	//	private Set<Product> products = new HashSet<>();
 //	
 //	
 //	@Inject
@@ -99,18 +129,89 @@ public class CreateOrderController implements Serializable{
 //	
 //
 //
+	public Integer getCurrentSelectedCustomerId() {
+		return currentSelectedCustomerId;
+	}
+
+
+	public void setCurrentSelectedCustomerId(Integer currentSelectedCustomerId) {
+		this.currentSelectedCustomerId = currentSelectedCustomerId;
+	}
+	
 	public Integer getCurrentSelectedProductId() {
 		return currentSelectedProductId;
 	}
+	
 
 	public void setCurrentSelectedProductId(Integer currentSelectedProductId) {
 		this.currentSelectedProductId = currentSelectedProductId;
 	}
 
+	
 //	public Set<Product> getProducts() {
 //		return products;
 //	}
 	
+public String getShippingName() {
+		return shippingName;
+	}
+
+
+	public void setShippingName(String shippingName) {
+		this.shippingName = shippingName;
+	}
+
+
+	public String getShippingAddress() {
+		return shippingAddress;
+	}
+
+
+	public void setShippingAddress(String shippingAddress) {
+		this.shippingAddress = shippingAddress;
+	}
+
+
+	public String getShippingCity() {
+		return shippingCity;
+	}
+
+
+	public void setShippingCity(String shippingCity) {
+		this.shippingCity = shippingCity;
+	}
+
+
+	public String getShippingRegion() {
+		return shippingRegion;
+	}
+
+
+	public void setShippingRegion(String shippingRegion) {
+		this.shippingRegion = shippingRegion;
+	}
+
+
+	public String getShippingPostalCode() {
+		return shippingPostalCode;
+	}
+
+
+	public void setShippingPostalCode(String shippingPostalCode) {
+		this.shippingPostalCode = shippingPostalCode;
+	}
+
+
+	public String getShippingCountry() {
+		return shippingCountry;
+	}
+
+
+	public void setShippingCountry(String shippingCountry) {
+		this.shippingCountry = shippingCountry;
+	}
+
+
 private Set<OrderDetail> items = new HashSet<>();	// +getter
 	
 	@Inject

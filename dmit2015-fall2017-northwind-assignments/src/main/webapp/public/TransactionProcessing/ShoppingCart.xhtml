@@ -42,24 +42,24 @@
 					<b:focus />
 				</b:inputText>
 				
-				<b:commandButton value="Add Product"
+				<b:commandButton value="Add to Cart"
 					ajax="false"
 					actionListener="#{createOrderController.addItem()}">
 				</b:commandButton>	
 			
-			<b:dataTable id="orders" value="#{createOrderController.items}" var="currentProduct">
+			<b:dataTable id="shoppingCartTable" value="#{createOrderController.items}" var="currentProduct" class="shoppingCartTable">
 				
 				<b:dataTableColumn label="ProductID" value="#{currentProduct.id}" />
-				<b:dataTableColumn label="Customer" value="#{currentProduct.product.productName}" />
+				<b:dataTableColumn label="Product Name" value="#{currentProduct.product.productName}" />
 				<b:dataTableColumn label="Quantity" >
-					<h:inputText value="quantity" size="2"  />
+					<h:inputText value="#{currentProduct.quantity}" size="2" update="@(.shoppingCartTable)" />
 				</b:dataTableColumn>
-				<b:dataTableColumn label="Unit Price" value="#{currentProduct.unitPrice}" />
-				<b:dataTableColumn label="Product Total"/>	
+				<b:dataTableColumn label="Unit Price" value="#{of:formatCurrency(currentProduct.unitPrice, '$')}" />
+				<b:dataTableColumn label="Product Total" value="#{of:formatCurrency(currentProduct.unitPrice * currentProduct.quantity, '$')}"/>	
 				<b:dataTableColumn label="Action">
 					<b:commandButton value="delete"
 						immediate="true"
-						ajax="falxe"
+						ajax="true" update="cartPanel"
 						actionListener="#{createOrderController.removeItem()}">
 					</b:commandButton>
 				</b:dataTableColumn>		

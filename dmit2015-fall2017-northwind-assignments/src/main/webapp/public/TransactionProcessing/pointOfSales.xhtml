@@ -1,0 +1,154 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:hf="http://highfaces.org"
+	template="/WEB-INF/templates/bootsfaces-dashboard.xhtml">
+
+	<ui:param name="title" value="Northwind - Point of Sales" />
+
+	<ui:define name="externalstyles">
+	</ui:define>
+
+	<ui:define name="internalstyles">
+	</ui:define>
+
+	<ui:define name="maincontent">
+		<b:jumbotron>
+			<h1>Point of Sale System</h1>
+		</b:jumbotron>
+
+		<b:messages id="messages" />
+		
+		<b:form id="customerForm">
+		<b:panel title="Step 1: Select Customer">
+		<b:selectOneMenu id="customers" label="Customer"
+				value="#{createOrderController.currentSelectedCustomerId}"
+				onchange="ajax:#{createOrderController.changeShippingInfo()}"
+				update="@form">
+				<f:selectItem itemValue="" itemLabel="Choose a customer" />
+				<f:selectItems value="#{customerController.customers}"
+					var="customer" itemValue="#{customer.customerID}"
+					itemLabel="#{customer.companyName}" />
+		</b:selectOneMenu>
+		
+		<b:panel title="Customer Details" collapsible="false" style="height: 250px">
+							<strong>
+								<h:outputText value="#{customerController.currentSelectedCustomer.customerID}" /> <br />									
+								<h:outputText value="#{customerController.currentSelectedCustomer.companyName}" /> <br />
+								<h:outputText value="#{customerController.currentSelectedCustomer.contactName}" /> <br />
+								<h:outputText value="#{customerController.currentSelectedCustomer.contactTitle}" /> <br />
+								<h:outputText value="#{customerController.currentSelectedCustomer.address}" /> <br />		
+								<h:outputText value="#{customerController.currentSelectedCustomer.city}" /> <br />	
+								<h:outputText value="#{customerController.currentSelectedCustomer.region}" /> <br />	
+								<h:outputText value="#{customerController.currentSelectedCustomer.postalCode}" /> <br />
+								<h:outputText value="#{customerController.currentSelectedCustomer.country}" /> <br />
+								<h:outputText value="#{customerController.currentSelectedCustomer.phone}" /> <br />
+								<h:outputText value="#{customerController.currentSelectedCustomer.fax}" /> <br />												
+							</strong>
+						</b:panel>
+		</b:panel>
+		</b:form>
+		
+		<b:form id="posForm">
+			<div class="form-inline">
+				<b:inputText id="productId" label="Product Id"
+					value="#{createOrderController.currentSelectedProductId}">
+					<b:focus />
+				</b:inputText>
+				<b:commandButton value="Add to Cart" ajax="true"
+					update=":messages posForm:shoppingCartTable"
+					actionListener="#{createOrderController.addItem()}">
+				</b:commandButton>
+			</div>
+
+
+			<b:dataTable id="shoppingCartTable"
+				value="#{createOrderController.items}" var="singleItem"
+				class="shoppingCartTable">
+
+				<b:dataTableColumn label="">
+					<b:commandButton icon="trash" immediate="true"
+						actionListener="#{createOrderController.removeItem(singleItem)}"
+						ajax="true" update="shoppingCartTable">
+					</b:commandButton>
+				</b:dataTableColumn>
+
+				<b:dataTableColumn label="Product ID"
+					value="#{singleItem.product.productID}">
+				</b:dataTableColumn>
+
+				<b:dataTableColumn label="Product Name"
+					value="#{singleItem.product.productName}">
+				</b:dataTableColumn>
+
+
+				<b:dataTableColumn label="Qty">
+					<b:inputText value="#{singleItem.quantity}" size="2"
+						update="@(.shoppingCartTable)">
+					</b:inputText>
+				</b:dataTableColumn>
+
+				<b:dataTableColumn label="Unit Price"
+					value="#{of:formatCurrency(singleItem.unitPrice, '$')}">
+				</b:dataTableColumn>
+
+				<b:dataTableColumn label="Product Total Total"
+					value="#{of:formatCurrency(singleItem.unitPrice * singleItem.quantity, '$')}">
+				</b:dataTableColumn>
+
+			</b:dataTable>
+
+		</b:form>
+
+
+		<b:form id="OrderInfo">
+
+		</b:form>
+
+		<b:form id="shippingForm">
+			
+
+			<b:inputText id="address" label="Shipping Name"
+				value="#{createOrderController.shippingName}">
+			</b:inputText>
+
+			<b:inputText id="city" label="Shipping Address"
+				value="#{createOrderController.shippingAddress}">
+			</b:inputText>
+
+			<b:inputText id="state" label="Shipping City"
+				value="#{createOrderController.shippingCity}">
+			</b:inputText>
+
+			<b:inputText id="region" label="Shipping Region"
+				value="#{createOrderController.shippingRegion}">
+			</b:inputText>
+
+			<b:inputText id="postalCode" label="Billing Postal Code"
+				value="#{createOrderController.shippingPostalCode}">
+			</b:inputText>
+
+			<b:inputText id="country" label="Shipping Country"
+				value="#{createOrderController.shippingCountry}">
+			</b:inputText>
+
+			<b:commandButton value="Submit Invoice" look="primary" ajax="false"
+				actionListener="#{shoppingCartController.submitOrder}">
+			</b:commandButton>
+
+
+			<f:selectItems></f:selectItems>
+			<b:selectOneMenu></b:selectOneMenu>
+		</b:form>
+
+	</ui:define>
+
+</ui:composition>
