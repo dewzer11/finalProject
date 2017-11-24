@@ -154,13 +154,17 @@
 								<b:column span="4">
 									<h:outputText value="Shipper" style="font-weight:bold;" />
 								</b:column>
-								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate == null}">
-									<h:outputText
-										value="#{findOneOrderController.querySingleResult.shipper.companyName}"
-										/>
+								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate != null}">
+									<b:selectOneMenu id="shipper"
+					value="#{shipperController.currentSelectedShipperId}">
+					<f:selectItem itemValue="" itemLabel="Choose a shipper" />
+					<f:selectItems value="#{shipperController.shippers}"
+						var="shipper" itemValue="#{shipper.shipperID}"
+						itemLabel="#{shipper.companyName}" />
+			</b:selectOneMenu>
 
 								</b:column>
-								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate != null}">
+								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate == null}">
 									<h:inputText
 										value="#{findOneOrderController.querySingleResult.shipper.companyName}"
 										 />

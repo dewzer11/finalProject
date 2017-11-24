@@ -66,6 +66,8 @@ public class ShoppingCartController implements Serializable {
 		return items;
 	}
 	
+	
+	
 //	public String getTotalPrice() {
 //		double totalPrice = 0;
 //		for(Product item : products) {

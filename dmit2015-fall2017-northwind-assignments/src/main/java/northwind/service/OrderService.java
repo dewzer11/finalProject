@@ -83,7 +83,9 @@ public class OrderService {
 	/////////////////////////////////////////////////////////////COMPLETE ORDER SERVICE STUFF//////////////////////////////////////
 	public void completeOrder(Order existingOrder, BigDecimal freight, Shipper shipper, Date shippedDate)
 			throws NoInvoiceLinesException, IllegalQuantityException {
-		
+		existingOrder.setFreight(freight);
+		existingOrder.setShipper(shipper);
+		existingOrder.setShippedDate(shippedDate);
 		
 		
 		
