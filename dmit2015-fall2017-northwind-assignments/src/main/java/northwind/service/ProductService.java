@@ -1,6 +1,6 @@
 package northwind.service;
 
-import java.math.BigDecimal;
+
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -14,6 +14,7 @@ import northwind.data.SupplierRepository;
 import northwind.model.Category;
 import northwind.model.Product;
 import northwind.model.Supplier;
+
 @Stateless
 public class ProductService {
 	@Inject

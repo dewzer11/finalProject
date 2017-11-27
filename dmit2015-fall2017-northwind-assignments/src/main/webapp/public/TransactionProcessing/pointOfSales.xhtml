@@ -58,6 +58,7 @@
 		</b:form>
 		
 		<b:form id="posForm">
+		
 			<div class="form-inline">
 				<b:inputText id="productId" label="Product Id"
 					value="#{createOrderController.currentSelectedProductId}">
@@ -65,7 +66,7 @@
 				</b:inputText>
 				<b:commandButton value="Add to Cart" ajax="true"
 					update=":messages posForm:shoppingCartTable"
-					actionListener="#{createOrderController.addItem()}">
+					actionListener="#{createOrderController.addItemWithProductId()}">
 				</b:commandButton>
 			</div>
 
@@ -108,7 +109,7 @@
 
 		</b:form>
 
-
+		<b:panel>
 		<b:form id="OrderInfo">
 			<b:selectOneMenu id="employees" label="Employee"
 					value="#{employeeController.currentSelectedEmployeeId}">
@@ -126,9 +127,11 @@
 						itemLabel="#{shipper.companyName}" />
 			</b:selectOneMenu>	
 			
-			
+				
 		</b:form>
-
+		</b:panel>
+		
+		
 		<b:form id="shippingForm">
 			
 
