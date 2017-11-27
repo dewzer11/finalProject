@@ -1,6 +1,8 @@
 package northwind.controller;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.logging.Logger;
 
 import javax.faces.view.ViewScoped;
@@ -12,7 +14,10 @@ import org.omg.CORBA.PUBLIC_MEMBER;
 import org.omnifaces.util.Messages;
 
 import northwind.data.OrderRepository;
+import northwind.data.ShipperRepository;
 import northwind.model.Order;
+import northwind.model.Shipper;
+import northwind.service.OrderService;
 
 @SuppressWarnings("serial")
 @Named
@@ -21,6 +26,9 @@ public class FindOneOrderController implements Serializable {
 
 	@Inject
 	private OrderRepository orderRepository;
+	
+	@Inject
+	private OrderService orderService;
 	
 	@NotNull(message="OrderID field value is required")
 	private Integer searchValue; // +getter+setter
@@ -76,7 +84,35 @@ public class FindOneOrderController implements Serializable {
 		return orderRepository.findSubTotal(getSearchValue());
 		
 	}
-
+	@Inject
+	private ShipperRepository shipperRepository;
+	private Integer shipperId;
 	
+	
+	
+
+
+	public void submitOrder() {
+		try {
+			Shipper orderShipper = shipperRepository.find(shipperId);
+			querySingleResult.setShipper(orderShipper);
+			
+			orderService.completeOrder(querySingleResult);
+			Messages.addGlobalInfo("Order completion was successful.");
+		} 
+		catch( Exception e ) {
+			log.info(e.getMessage());
+			Messages.addGlobalError("Complete order was not successful");
+	}
+	}
+	
+
+	public Integer getShipperId() {
+		return shipperId;
+	}
+
+	public void setShipperId(Integer shipperId) {
+		this.shipperId = shipperId;
+	}
 	
 }
