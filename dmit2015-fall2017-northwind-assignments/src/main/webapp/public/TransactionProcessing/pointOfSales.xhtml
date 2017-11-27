@@ -78,7 +78,7 @@
 				<b:dataTableColumn label="">
 					<b:commandButton icon="trash" immediate="true"
 						actionListener="#{createOrderController.removeItem(singleItem)}"
-						ajax="true" update="shoppingCartTable">
+						ajax="true" update="@(.shoppingCartTable)">
 					</b:commandButton>
 				</b:dataTableColumn>
 
