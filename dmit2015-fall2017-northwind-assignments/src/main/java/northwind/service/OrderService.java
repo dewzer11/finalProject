@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import northwind.data.OrderRepository;
+import northwind.exception.AlreadyShippedException;
 import northwind.exception.IllegalQuantityException;
 import northwind.exception.NoInvoiceLinesException;
 import northwind.model.Customer;
@@ -71,15 +72,19 @@ public class OrderService {
 		return orderRepository.findOne(orderID);
 	}
 	
-//	public void CancelOrder(int orderID) {
-//		if(entityManager.shippedDate != null) {
-//			Messages.addGlobalInfo(" {0} has already been shipped, cannot cancel., currentSelectedOrder ");
-//		}
-//		else {
-//			entityManager.remove(currentSelectedOrder);
-//			orderRepository.remove(currentSelectedOrder);
-//		}
-//	}
+	public void CancelOrder(Order currentOrder)
+			throws AlreadyShippedException 		 {
+		if(currentOrder.getShippedDate() != null) {
+			throw new AlreadyShippedException("This order has already been shipped");
+		}
+		else {
+			for (Orderdetail item : items) {
+				
+			}
+			entityManager.remove(currentOrder);
+		}
+	}
+	
 	/////////////////////////////////////////////////////////////COMPLETE ORDER SERVICE STUFF//////////////////////////////////////
 	public void completeOrder(Order existingOrder, BigDecimal freight, Shipper shipper, Date shippedDate)
 			throws NoInvoiceLinesException, IllegalQuantityException {
@@ -107,4 +112,5 @@ public class OrderService {
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 }
