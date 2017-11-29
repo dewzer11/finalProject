@@ -106,6 +106,16 @@ public class FindOneOrderController implements Serializable {
 	}
 	}
 	
+	public void cancelOrder() {
+		try {
+		orderService.CancelOrder(querySingleResult);
+		Messages.addGlobalInfo("Order has been canceled");
+		}
+		catch (Exception e) {
+			log.info(e.getMessage());
+			Messages.addGlobalError("The order was not canceled");
+		}
+	}
 
 	public Integer getShipperId() {
 		return shipperId;
