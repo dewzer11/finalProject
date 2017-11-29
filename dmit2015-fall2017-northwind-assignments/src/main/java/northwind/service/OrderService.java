@@ -72,19 +72,20 @@ public class OrderService {
 		return orderRepository.findOne(orderID);
 	}
 	
-//	public void CancelOrder(Order currentOrder)
-//			throws AlreadyShippedException 		 {
-//		if(currentOrder.getShippedDate() != null) {
-//			throw new AlreadyShippedException("This order has already been shipped");
-//		}
-//		else {
-//			for (Orderdetail item : items) {
-//				
-//			}
-//			entityManager.remove(currentOrder);
-//		}
-//	}
-//	
+	public void CancelOrder(Order currentOrder)
+			throws AlreadyShippedException 		 {
+		if(currentOrder.getShippedDate() != null) {
+			throw new AlreadyShippedException("This order has already been shipped");
+		}
+		else {
+			for (OrderDetail item : currentOrder.getOrderDetails()) {
+				entityManager.remove(item);
+			}
+			entityManager.remove(currentOrder);
+		}
+	}
+	
+	
 	/////////////////////////////////////////////////////////////COMPLETE ORDER SERVICE STUFF//////////////////////////////////////
 	public void completeOrder(Order existingOrder, BigDecimal freight, Shipper shipper, Date shippedDate)
 			throws NoInvoiceLinesException, IllegalQuantityException {
