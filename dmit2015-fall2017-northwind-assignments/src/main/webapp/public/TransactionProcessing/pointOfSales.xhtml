@@ -31,7 +31,7 @@
 		<b:panel title="Step 1: Select Customer">
 				<b:selectOneMenu id="customers" label="Customer"
 					value="#{createOrderController.currentSelectedCustomerId}"
-					onchange="ajax:#{createOrderController.changeShippingInfo()}"
+					onchange="ajax:createOrderController.changeCustomerDetail()"
 					update="@form">
 					<f:selectItem itemValue="" itemLabel="Choose a customer" />
 					<f:selectItems value="#{customerController.customers}"
@@ -41,17 +41,17 @@
 		
 						<b:panel title="Customer Details" collapsible="false" style="height: 250px">
 							<strong>
-								<h:outputText value="#{customerController.currentSelectedCustomer.customerID}" /> <br />									
-								<h:outputText value="#{customerController.currentSelectedCustomer.companyName}" /> <br />
-								<h:outputText value="#{customerController.currentSelectedCustomer.contactName}" /> <br />
-								<h:outputText value="#{customerController.currentSelectedCustomer.contactTitle}" /> <br />
-								<h:outputText value="#{customerController.currentSelectedCustomer.address}" /> <br />		
-								<h:outputText value="#{customerController.currentSelectedCustomer.city}" /> <br />	
-								<h:outputText value="#{customerController.currentSelectedCustomer.region}" /> <br />	
-								<h:outputText value="#{customerController.currentSelectedCustomer.postalCode}" /> <br />
-								<h:outputText value="#{customerController.currentSelectedCustomer.country}" /> <br />
-								<h:outputText value="#{customerController.currentSelectedCustomer.phone}" /> <br />
-								<h:outputText value="#{customerController.currentSelectedCustomer.fax}" /> <br />												
+								<h:outputText value="#{customerController.currentSelectedCustomerId}" /> <br />									
+								<h:outputText value="#{createOrderController.companyName}" /> <br />
+								<h:outputText value="#{createOrderController.contactName}" /> <br />
+								<h:outputText value="#{createOrderController.contactTitle}" /> <br />
+								<h:outputText value="#{createOrderController.address}" /> <br />		
+								<h:outputText value="#{createOrderController.city}" /> <br />	
+								<h:outputText value="#{createOrderController.region}" /> <br />	
+								<h:outputText value="#{createOrderController.postalCode}" /> <br />
+								<h:outputText value="#{createOrderController.country}" /> <br />
+								<h:outputText value="#{createOrderController.phone}" /> <br />
+								<h:outputText value="#{createOrderController.fax}" /> <br />												
 							</strong>
 						</b:panel>
 		</b:panel>
@@ -134,7 +134,11 @@
 		
 		<b:form id="shippingForm">
 			
-
+			<b:selectBooleanCheckbox id="shippinginfo" label="BillingAddress"
+					value="#{createOrderController.currentSelectedCustomerId}"
+					onchange="ajax:createOrderController.changeShippingInfo()"
+					update="@form">Same as Billing Info?</b:selectBooleanCheckbox>
+					
 			<b:inputText id="address" label="Shipping Name"
 				value="#{createOrderController.shippingName}">
 			</b:inputText>
@@ -164,8 +168,6 @@
 			</b:commandButton>
 
 
-			<f:selectItems></f:selectItems>
-			<b:selectOneMenu></b:selectOneMenu>
 		</b:form>
 
 	</ui:define>
