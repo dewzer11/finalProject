@@ -72,6 +72,7 @@ public class OrderService {
 		return orderRepository.findOne(orderID);
 	}
 	
+
 	public void CancelOrder(Order currentOrder)
 			throws AlreadyShippedException 		 {
 		if(currentOrder.getShippedDate() != null) {
@@ -84,19 +85,16 @@ public class OrderService {
 			entityManager.remove(currentOrder);
 		}
 	}
-	
-	
+
 	/////////////////////////////////////////////////////////////COMPLETE ORDER SERVICE STUFF//////////////////////////////////////
-	public void completeOrder(Order existingOrder, BigDecimal freight, Shipper shipper, Date shippedDate)
+	public void completeOrder(Order existingOrder)
 			throws NoInvoiceLinesException, IllegalQuantityException {
-		existingOrder.setFreight(freight);
-		existingOrder.setShipper(shipper);
-		existingOrder.setShippedDate(shippedDate);
+		
 		
 		
 		
 		for(OrderDetail singleItem : existingOrder.getOrderDetails()) {
-			if (singleItem.getQuantity() > singleItem.getProduct().getUnitsInStock() || singleItem.getQuantity() < 1 ) {
+			if ((singleItem.getQuantity() > singleItem.getProduct().getUnitsInStock()) || (singleItem.getQuantity() < 1) ) {
 				context.setRollbackOnly();
 				throw new IllegalQuantityException("Invalid quantity ordered.");
 			}else {
