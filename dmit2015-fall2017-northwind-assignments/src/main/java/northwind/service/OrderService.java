@@ -1,6 +1,7 @@
 package northwind.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -35,17 +36,23 @@ public class OrderService {
 		orderRepository.persist(currentOrder);
 	}
 	
-	public Order createNewOrder(Customer customer, Set<Product> orderProducts, Employee employee, 
-								Date requiredDate, int orderId, Date orderDate, String shipAddress,
+	public int createNewOrder(Customer customer, Employee employee, 
+								Date requiredDate, Date orderDate, String shipAddress,
 								String shipCity, String shipCountry, String shipName, String shipPostalCode,
-								String shipRegion) {
+								String shipRegion, List<OrderDetail>items) throws IllegalQuantityException, NoInvoiceLinesException{
+		int orderId = 0;
+		
+		if (items == null || items.size() == 0) {
+			context.setRollbackOnly();
+			throw new NoInvoiceLinesException("There are no items in the order");			
+		}
+		
 		// Create a new Order entity and persist the entity
 		Order newOrder = new Order();
 
 		newOrder.setCustomer(customer);
 		newOrder.setEmployee(employee);
 		newOrder.setRequiredDate(requiredDate);
-		newOrder.setOrderID(orderId);
 		newOrder.setOrderDate(orderDate);
 		newOrder.setShipAddress(shipAddress);
 		newOrder.setShipCity(shipCity);
@@ -53,8 +60,25 @@ public class OrderService {
 		newOrder.setShipName(shipName);
 		newOrder.setShipPostalCode(shipPostalCode);
 		newOrder.setShipRegion(shipRegion);
+		
+		
+		
 		orderRepository.persist(newOrder);	
-		return newOrder;
+		orderId = newOrder.getOrderID();
+		
+		for (OrderDetail singleItem : items) {
+			// rollback the transaction if quantity is less than one
+			if (singleItem.getQuantity() < 1) {
+				context.setRollbackOnly();
+				throw new IllegalQuantityException("Invalid quantity ordered.");
+			}
+			// set the invoice of each InvoiceLine
+			singleItem.setOrder(newOrder);
+			// persist the InvoiceLine
+			entityManager.persist(singleItem);
+		}		
+		
+		return orderId;
 	}
 	
 	public void updateOrder(Order currentOrder) {

@@ -134,9 +134,10 @@
 		
 		<b:form id="shippingForm">
 			
-			<b:selectBooleanCheckbox id="shippinginfo" label="Billing same as Shipping"
+			<b:selectBooleanCheckbox id="shippinginfo" 
+					label="Billing same as Shipping?"
 					value="#{createOrderController.currentSelectedCustomerId}"
-					onchange="createOrderController.changeShippingInfo()"
+					onchange="ajax:createOrderController.changeShippingInfo()"
 					update="@Form"></b:selectBooleanCheckbox>
 					
 			<b:inputText id="address" label="Shipping Name"
@@ -164,7 +165,7 @@
 			</b:inputText>
 
 			<b:commandButton value="Submit Invoice" look="primary" ajax="false"
-				actionListener="#{shoppingCartController.submitOrder}">
+				actionListener="createOrderController.createOrder()">
 			</b:commandButton>
 
 

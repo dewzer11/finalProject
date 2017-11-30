@@ -1,7 +1,10 @@
 package northwind.controller;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +22,9 @@ import org.omnifaces.util.Messages;
 import northwind.model.Customer;
 import northwind.model.Employee;
 import northwind.data.CustomerRepository;
+import northwind.data.EmployeeRepository;
+import northwind.exception.IllegalQuantityException;
+import northwind.exception.NoInvoiceLinesException;
 import northwind.model.OrderDetail;
 import northwind.model.Product;
 import northwind.service.OrderService;
@@ -51,6 +57,8 @@ public class CreateOrderController implements Serializable{
 
 	@Inject
 	private CustomerRepository customerRepository;
+	@Inject
+	private EmployeeRepository employeeRepository;
 	
 	
 	
@@ -152,42 +160,48 @@ public class CreateOrderController implements Serializable{
 	@Inject
 	private OrderService orderService;
 	
-//	public void createOrder() {
-//		try {
-//			String customerId = currentSelectedCustomerId;
-//			Customer orderCustomer = customerRepository.find(customerId);
-//		
-//			int orderId = orderService.createNewOrder(
-//					orderCustomer,
-//					currentSelectedProductId,
-//					currentSelectedEmployeeId, 
-//					orderId,
-//					
-//					shippingAddress,
-//					shippingCity,
-//					shippingName,
-//					shippingPostalCode,
-//					shippingCountry,
-//					shippingRegion,
-//					new ArrayList<>(items));
-//			Messages.addGlobalInfo("Successfully created order #{0}", orderId);
-//
-//			// clear the form field values
-//			currentSelectedCustomerId = null;
-//			shippingAddress = null;
-//			shippingCity = null;
-//			shippingName = null;
-//			shippingPostalCode = null;
-//			shippingCountry = null;
-//			shippingRegion = null;
-//			// empty the shopping cart
-//			items.clear();			
-//		} catch( NoInvoiceLinesException | IllegalQuantityException e ) {
-//			Messages.addGlobalError(e.getMessage());
-//		} catch( Exception e ) {
-//			Messages.addGlobalError("Create invoice was not successful");
-//		}
-//	}
+
+	
+	public void createOrder() {
+		try {
+			String customerId = currentSelectedCustomerId;
+			Customer orderCustomer = customerRepository.find(customerId);
+			int employeeId = currentSelectedEmployeeId;
+			Employee orderEmployee = employeeRepository.find(employeeId);
+			Date today = Calendar.getInstance().getTime();
+			Date requiredDate = new Timestamp(today.getTime());
+			Date orderDate = new Timestamp(today.getTime());
+		
+			int orderId = orderService.createNewOrder(
+					orderCustomer,
+					orderEmployee,
+					requiredDate,
+					orderDate,
+					shippingAddress,
+					shippingCity,
+					shippingCountry,
+					shippingName,
+					shippingPostalCode,
+					shippingRegion,
+					new ArrayList<>(items));
+			Messages.addGlobalInfo("Successfully created order #{0}", orderId);
+
+			// clear the form field values
+			currentSelectedCustomerId = null;
+			shippingAddress = null;
+			shippingCity = null;
+			shippingName = null;
+			shippingPostalCode = null;
+			shippingCountry = null;
+			shippingRegion = null;
+			// empty the shopping cart
+		items.clear();			
+		} catch( NoInvoiceLinesException | IllegalQuantityException e ) {
+			Messages.addGlobalError(e.getMessage());
+		} catch( Exception e ) {
+			Messages.addGlobalError("Create Order was not successful");
+		}
+	}
 	
 
 	
