@@ -1,14 +1,10 @@
 package northwind.data;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Query;
-
 import northwind.model.Order;
-import northwind.report.EmployeeSales1997;
 import northwind.report.MonthlySalesByYear;
 
 public class OrderRepository extends AbstractJpaRepository<Order> {

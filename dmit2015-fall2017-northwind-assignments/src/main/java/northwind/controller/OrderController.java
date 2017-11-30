@@ -13,9 +13,7 @@ import org.omnifaces.util.Messages;
 
 import northwind.data.OrderRepository;
 import northwind.model.Order;
-import northwind.model.OrderDetail;
 import northwind.report.MonthlySalesByYear;
-import northwind.service.OrderService;
 
 
 @SuppressWarnings("serial")

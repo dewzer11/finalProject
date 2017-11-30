@@ -7,14 +7,12 @@ import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.omnifaces.util.Messages;
 
 import northwind.data.ProductRepository;
 import northwind.model.Product;
 import northwind.report.ProductSales1997;
 import northwind.report.TenExpensiveProducts;
-import northwind.service.ProductService;
 
 @Model
 public class ProductController {
