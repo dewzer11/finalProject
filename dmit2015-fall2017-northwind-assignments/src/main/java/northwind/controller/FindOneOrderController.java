@@ -1,8 +1,6 @@
 package northwind.controller;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.logging.Logger;
 
 import javax.faces.view.ViewScoped;
@@ -10,7 +8,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
 import org.omnifaces.util.Messages;
 
 import northwind.data.OrderRepository;
