@@ -75,7 +75,7 @@ public class CreateOrderController implements Serializable{
 		address = customerDetail.getAddress();
 		city = customerDetail.getCity();
 		region = customerDetail.getRegion();
-		postalCode = customerDetail.getRegion();
+		postalCode = customerDetail.getPostalCode();
 		country = customerDetail.getCountry();
 		phone = customerDetail.getPhone();
 		fax = customerDetail.getFax();
