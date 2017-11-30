@@ -70,15 +70,15 @@
 				</b:commandButton>
 			</div>
 
-
+		<p:outputPanel id="cartPanel">
 			<b:dataTable id="shoppingCartTable"
 				value="#{createOrderController.items}" var="singleItem"
 				class="shoppingCartTable">
 
 				<b:dataTableColumn label="">
 					<b:commandButton icon="trash" immediate="true"
-						actionListener="createOrderController.removeItem(singleItem)"
-						ajax="true" update="shoppingCartTable">
+						actionListener="#{createOrderController.removeItem(singleItem)}"
+						ajax="true" update="posForm:cartPanel">
 					</b:commandButton>
 				</b:dataTableColumn>
 
@@ -106,7 +106,7 @@
 				</b:dataTableColumn>
 
 			</b:dataTable>
-
+			</p:outputPanel>
 		</b:form>
 
 		<b:panel>
@@ -134,10 +134,10 @@
 		
 		<b:form id="shippingForm">
 			
-			<b:selectBooleanCheckbox id="shippinginfo" label="BillingAddress"
+			<b:selectBooleanCheckbox id="shippinginfo" label="Billing same as Shipping"
 					value="#{createOrderController.currentSelectedCustomerId}"
-					onchange="ajax:createOrderController.changeShippingInfo()"
-					update="shippingForm">Same as Billing Info?</b:selectBooleanCheckbox>
+					onchange="createOrderController.changeShippingInfo()"
+					update="@Form"></b:selectBooleanCheckbox>
 					
 			<b:inputText id="address" label="Shipping Name"
 				value="#{createOrderController.shippingName}">

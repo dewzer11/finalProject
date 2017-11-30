@@ -1,6 +1,7 @@
 package northwind.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,10 +15,13 @@ import org.omnifaces.el.functions.Numbers;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
+
 import northwind.model.Customer;
+import northwind.model.Employee;
 import northwind.data.CustomerRepository;
 import northwind.model.OrderDetail;
 import northwind.model.Product;
+import northwind.service.OrderService;
 import northwind.service.ProductService;
 
 
@@ -31,10 +35,24 @@ public class CreateOrderController implements Serializable{
 	private Integer currentSelectedProductId;// +getter +setter
 	
 	@NotNull(message="CustomerId field value is required")
-	private Integer currentSelectedCustomerId;
+	private String currentSelectedCustomerId;
 	
+	@NotNull(message="Employee field value is required")
+	private int currentSelectedEmployeeId;
+	
+	public int getCurrentSelectedEmployeeId() {
+		return currentSelectedEmployeeId;
+	}
+
+	public void setCurrentSelectedEmployeeId(int currentSelectedEmployeeId) {
+		this.currentSelectedEmployeeId = currentSelectedEmployeeId;
+	}
+
+
 	@Inject
 	private CustomerRepository customerRepository;
+	
+	
 	
 	private String shippingName;
 	private String shippingAddress;
@@ -56,7 +74,7 @@ public class CreateOrderController implements Serializable{
 	
 	
 	public void changeShippingInfo() {
-		int customerId = currentSelectedCustomerId;
+		String customerId = currentSelectedCustomerId;
 		Customer orderCustomer = customerRepository.find(customerId);
 		shippingName = orderCustomer.getCompanyName();
 		shippingAddress = orderCustomer.getAddress();
@@ -67,7 +85,7 @@ public class CreateOrderController implements Serializable{
 	}
 	
 	public void changeCustomerDetail() {
-		int customerId = currentSelectedCustomerId;
+		String customerId = currentSelectedCustomerId;
 		Customer customerDetail = customerRepository.find(customerId);
 		companyName = customerDetail.getCompanyName();
 		contactName = customerDetail.getContactName();
@@ -131,6 +149,46 @@ public class CreateOrderController implements Serializable{
 		return "/public/TransactionProcessing/pointOfSales.xhtml?faces-redirect=true";
 	}
 	
+	@Inject
+	private OrderService orderService;
+	
+//	public void createOrder() {
+//		try {
+//			String customerId = currentSelectedCustomerId;
+//			Customer orderCustomer = customerRepository.find(customerId);
+//		
+//			int orderId = orderService.createNewOrder(
+//					orderCustomer,
+//					currentSelectedProductId,
+//					currentSelectedEmployeeId, 
+//					orderId,
+//					
+//					shippingAddress,
+//					shippingCity,
+//					shippingName,
+//					shippingPostalCode,
+//					shippingCountry,
+//					shippingRegion,
+//					new ArrayList<>(items));
+//			Messages.addGlobalInfo("Successfully created order #{0}", orderId);
+//
+//			// clear the form field values
+//			currentSelectedCustomerId = null;
+//			shippingAddress = null;
+//			shippingCity = null;
+//			shippingName = null;
+//			shippingPostalCode = null;
+//			shippingCountry = null;
+//			shippingRegion = null;
+//			// empty the shopping cart
+//			items.clear();			
+//		} catch( NoInvoiceLinesException | IllegalQuantityException e ) {
+//			Messages.addGlobalError(e.getMessage());
+//		} catch( Exception e ) {
+//			Messages.addGlobalError("Create invoice was not successful");
+//		}
+//	}
+	
 
 	
 	
@@ -156,12 +214,12 @@ public class CreateOrderController implements Serializable{
 	}
 
 
-	public Integer getCurrentSelectedCustomerId() {
+	public String getCurrentSelectedCustomerId() {
 		return currentSelectedCustomerId;
 	}
 
 
-	public void setCurrentSelectedCustomerId(Integer currentSelectedCustomerId) {
+	public void setCurrentSelectedCustomerId(String currentSelectedCustomerId) {
 		this.currentSelectedCustomerId = currentSelectedCustomerId;
 	}
 	
