@@ -1,8 +1,6 @@
 package northwind.service;
 
-import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -20,7 +18,6 @@ import northwind.model.Employee;
 import northwind.model.Order;
 import northwind.model.OrderDetail;
 import northwind.model.Product;
-import northwind.model.Shipper;
 
 @Stateless
 public class OrderService {
