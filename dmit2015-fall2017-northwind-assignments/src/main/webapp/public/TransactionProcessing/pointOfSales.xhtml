@@ -32,7 +32,7 @@
 				<b:selectOneMenu id="customers" label="Customer"
 					value="#{createOrderController.currentSelectedCustomerId}"
 					onchange="ajax:createOrderController.changeCustomerDetail()"
-					update="@form">
+					update="@Form">
 					<f:selectItem itemValue="" itemLabel="Choose a customer" />
 					<f:selectItems value="#{customerController.customers}"
 						var="customer" itemValue="#{customer.customerID}"
@@ -41,7 +41,7 @@
 		
 						<b:panel title="Customer Details" collapsible="false" style="height: 250px">
 							<strong>
-								<h:outputText value="#{customerController.currentSelectedCustomerId}" /> <br />									
+								<h:outputText value="#{createOrderController.currentSelectedCustomerId}" /> <br />									
 								<h:outputText value="#{createOrderController.companyName}" /> <br />
 								<h:outputText value="#{createOrderController.contactName}" /> <br />
 								<h:outputText value="#{createOrderController.contactTitle}" /> <br />
@@ -77,8 +77,8 @@
 
 				<b:dataTableColumn label="">
 					<b:commandButton icon="trash" immediate="true"
-						actionListener="#{createOrderController.removeItem(singleItem)}"
-						ajax="true" update="@(.shoppingCartTable)">
+						actionListener="createOrderController.removeItem(singleItem)"
+						ajax="true" update="shoppingCartTable">
 					</b:commandButton>
 				</b:dataTableColumn>
 
@@ -137,7 +137,7 @@
 			<b:selectBooleanCheckbox id="shippinginfo" label="BillingAddress"
 					value="#{createOrderController.currentSelectedCustomerId}"
 					onchange="ajax:createOrderController.changeShippingInfo()"
-					update="@form">Same as Billing Info?</b:selectBooleanCheckbox>
+					update="shippingForm">Same as Billing Info?</b:selectBooleanCheckbox>
 					
 			<b:inputText id="address" label="Shipping Name"
 				value="#{createOrderController.shippingName}">
