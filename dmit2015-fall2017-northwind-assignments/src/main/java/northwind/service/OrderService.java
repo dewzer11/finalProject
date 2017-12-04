@@ -101,9 +101,9 @@ public class OrderService {
 		}
 		else {
 			for (OrderDetail item : currentOrder.getOrderDetails()) {
-				entityManager.remove(item);
+				entityManager.remove(entityManager.merge(item));
 			}
-			entityManager.remove(currentOrder);
+			entityManager.remove(entityManager.merge(currentOrder));
 		}
 	}
 
