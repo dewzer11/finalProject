@@ -82,7 +82,7 @@ public class CreateOrderController implements Serializable{
 	
 	private Date requiredDate;
 	
-	
+	//useless comment
 
 	public void changeShippingInfo() {
 		String customerId = currentSelectedCustomerId;
