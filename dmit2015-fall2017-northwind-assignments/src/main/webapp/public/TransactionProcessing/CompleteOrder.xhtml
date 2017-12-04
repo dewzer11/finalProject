@@ -157,7 +157,7 @@
 								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate != null}">
 									<b:selectOneMenu id="shipper"
 					value="#{findOneOrderController.shipperId}">
-					<f:selectItem itemValue="" itemLabel="Choose a shipper" />
+					<f:selectItem itemValue="#{findOneOrderController.querySingleResult.shipper.shipperID}" itemLabel="Choose a shipper" />
 					<f:selectItems value="#{shipperController.shippers}"
 						var="shipper" itemValue="#{shipper.shipperID}"
 						itemLabel="#{shipper.companyName}" />

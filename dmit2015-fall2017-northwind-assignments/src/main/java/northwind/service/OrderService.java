@@ -18,6 +18,7 @@ import northwind.model.Customer;
 import northwind.model.Employee;
 import northwind.model.Order;
 import northwind.model.OrderDetail;
+import northwind.model.OrderDetailPK;
 import northwind.model.Product;
 
 @Stateless
@@ -72,6 +73,15 @@ public class OrderService {
 				context.setRollbackOnly();
 				throw new IllegalQuantityException("Invalid quantity ordered.");
 			}
+			
+			OrderDetailPK id = new OrderDetailPK();
+			id.setOrderID(orderId);
+			id.setProductID(singleItem.getProduct().getProductID());
+			
+			
+			singleItem.setId(id);
+			
+			
 			// set the invoice of each InvoiceLine
 			singleItem.setOrder(newOrder);
 			// persist the InvoiceLine

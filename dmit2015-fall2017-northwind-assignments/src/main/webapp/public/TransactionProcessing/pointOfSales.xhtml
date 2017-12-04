@@ -76,7 +76,7 @@
 			<div class="form-inline">
 				<b:inputText id="productId" label="Product Id"
 					value="#{createOrderController.currentSelectedProductId}">
-					<b:focus />
+					<b:focus />		
 				</b:inputText>
 				<b:commandButton value="Add to Cart" ajax="true"
 					update=":messages posForm:shoppingCartTable"
@@ -124,8 +124,9 @@
 		</b:form>
 		</b:panel>
 
-		<b:panel title="Step 3: Order Info">
 		<b:form id="OrderInfo">
+
+		<b:panel title="Step 3: Order Info">
 			<b:selectOneMenu id="employees" label="Employee"
 					value="#{employeeController.currentSelectedEmployeeId}">
 					<f:selectItem itemValue="" itemLabel="Choose an employee" />
@@ -149,11 +150,11 @@
 					</b:dateTimePicker>
 			
 				
-		</b:form>
+
 		</b:panel>
 		
 		<b:panel title="Step 4: Shipping Info">
-		<b:form id="shippingForm">
+	
 			
 			<b:selectBooleanCheckbox id="shippinginfo" caption="Same as Shipping?"
 					onchange="ajax:createOrderController.changeShippingInfo()"
@@ -184,13 +185,13 @@
 			</b:inputText>
 
 			<b:commandButton value="Create Order" look="primary" ajax="false"
-				actionListener="createOrderController.createOrder()">
+				actionListener="#{createOrderController.createOrder()}">
 			</b:commandButton>
 
 
-		</b:form>
-		</b:panel>
 
+		</b:panel>
+		</b:form>
 	</ui:define>
 
 </ui:composition>
