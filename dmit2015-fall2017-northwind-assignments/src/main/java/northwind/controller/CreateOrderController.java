@@ -80,7 +80,10 @@ public class CreateOrderController implements Serializable{
 	private String phone;
 	private String fax;
 	
+	private Date requiredDate;
 	
+	
+
 	public void changeShippingInfo() {
 		String customerId = currentSelectedCustomerId;
 		Customer orderCustomer = customerRepository.find(customerId);
@@ -169,7 +172,7 @@ public class CreateOrderController implements Serializable{
 			int employeeId = currentSelectedEmployeeId;
 			Employee orderEmployee = employeeRepository.find(employeeId);
 			Date today = Calendar.getInstance().getTime();
-			Date requiredDate = new Timestamp(today.getTime());
+			
 			Date orderDate = new Timestamp(today.getTime());
 		
 			int orderId = orderService.createNewOrder(
@@ -385,6 +388,14 @@ public class CreateOrderController implements Serializable{
 
 	public void setFax(String fax) {
 		this.fax = fax;
+	}
+	
+	public Date getRequiredDate() {
+		return requiredDate;
+	}
+
+	public void setRequiredDate(Date requiredDate) {
+		this.requiredDate = requiredDate;
 	}
 
 

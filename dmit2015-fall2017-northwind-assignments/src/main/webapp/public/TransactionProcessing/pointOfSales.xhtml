@@ -39,24 +39,38 @@
 						itemLabel="#{customer.companyName}" />
 				</b:selectOneMenu>
 		
-						<b:panel title="Customer Details" collapsible="false" style="height: 250px">
+						<b:panel title="Customer Details" collapsible="false" style="height: 350px">
 							<strong>
-								<h:outputText value="#{createOrderController.currentSelectedCustomerId}" /> <br />									
-								<h:outputText value="#{createOrderController.companyName}" /> <br />
-								<h:outputText value="#{createOrderController.contactName}" /> <br />
-								<h:outputText value="#{createOrderController.contactTitle}" /> <br />
-								<h:outputText value="#{createOrderController.address}" /> <br />		
-								<h:outputText value="#{createOrderController.city}" /> <br />	
-								<h:outputText value="#{createOrderController.region}" /> <br />	
-								<h:outputText value="#{createOrderController.postalCode}" /> <br />
-								<h:outputText value="#{createOrderController.country}" /> <br />
-								<h:outputText value="#{createOrderController.phone}" /> <br />
-								<h:outputText value="#{createOrderController.fax}" /> <br />												
+							  <b:panelGrid colSpans="2,10">
+								<h:outputLabel value="CustomerID:" />
+								<h:outputText value="#{createOrderController.currentSelectedCustomerId}" /> 
+								<h:outputLabel value="Company Name:" />									
+								<h:outputText value="#{createOrderController.companyName}" /> 
+								<h:outputLabel value="Contact Name:" />
+								<h:outputText value="#{createOrderController.contactName}" /> 
+								<h:outputLabel value="Contact Title:		" />
+								<h:outputText value="#{createOrderController.contactTitle}" /> 
+								<h:outputLabel value="Address:" />
+								<h:outputText value="#{createOrderController.address}" />	
+								<h:outputLabel value="City:" />	
+								<h:outputText value="#{createOrderController.city}" /> 	
+								<h:outputLabel value="Region:" />
+								<h:outputText value="#{createOrderController.region}" /> 
+								<h:outputLabel value="Postal Code:" />
+								<h:outputText value="#{createOrderController.postalCode}" /> 
+								<h:outputLabel value="Country:" />
+								<h:outputText value="#{createOrderController.country}" /> 
+								<h:outputLabel value="Phone:" />
+								<h:outputText value="#{createOrderController.phone}" /> 
+								<h:outputLabel value="Fax:" />
+								<h:outputText value="#{createOrderController.fax}" /> 
+							  </b:panelGrid>												
 							</strong>
 						</b:panel>
 		</b:panel>
 		</b:form>
 		
+		<b:panel title="Step 2: Add Products">
 		<b:form id="posForm">
 		
 			<div class="form-inline">
@@ -108,8 +122,9 @@
 			</b:dataTable>
 			</p:outputPanel>
 		</b:form>
+		</b:panel>
 
-		<b:panel>
+		<b:panel title="Step 3: Order Info">
 		<b:form id="OrderInfo">
 			<b:selectOneMenu id="employees" label="Employee"
 					value="#{employeeController.currentSelectedEmployeeId}">
@@ -127,18 +142,23 @@
 						itemLabel="#{shipper.companyName}" />
 			</b:selectOneMenu>	
 			
+			<b:dateTimePicker id="requiredDate"
+						label="Required Date"
+						show-time="false"
+						value="#{createOrderController.requiredDate}">
+					</b:dateTimePicker>
+			
 				
 		</b:form>
 		</b:panel>
 		
-		
+		<b:panel title="Step 4: Shipping Info">
 		<b:form id="shippingForm">
 			
-			<b:selectBooleanCheckbox id="shippinginfo" 
-					label="Billing same as Shipping?"
+			<b:selectBooleanCheckbox id="shippinginfo" caption="Same as Shipping?"
 					value="#{createOrderController.currentSelectedCustomerId}"
 					onchange="ajax:createOrderController.changeShippingInfo()"
-					update="@Form"></b:selectBooleanCheckbox>
+					update="@form"/>
 					
 			<b:inputText id="address" label="Shipping Name"
 				value="#{createOrderController.shippingName}">
@@ -164,12 +184,13 @@
 				value="#{createOrderController.shippingCountry}">
 			</b:inputText>
 
-			<b:commandButton value="Submit Invoice" look="primary" ajax="false"
+			<b:commandButton value="Create Order" look="primary" ajax="false"
 				actionListener="createOrderController.createOrder()">
 			</b:commandButton>
 
 
 		</b:form>
+		</b:panel>
 
 	</ui:define>
 
