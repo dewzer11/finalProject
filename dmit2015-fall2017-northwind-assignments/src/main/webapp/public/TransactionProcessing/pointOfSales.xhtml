@@ -156,7 +156,6 @@
 		<b:form id="shippingForm">
 			
 			<b:selectBooleanCheckbox id="shippinginfo" caption="Same as Shipping?"
-					value="#{createOrderController.currentSelectedCustomerId}"
 					onchange="ajax:createOrderController.changeShippingInfo()"
 					update="@form"/>
 					
