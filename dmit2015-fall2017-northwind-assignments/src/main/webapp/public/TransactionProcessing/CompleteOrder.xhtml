@@ -137,16 +137,17 @@
 								<b:column span="4">
 									<h:outputText value="Shipped Date" style="font-weight:bold;" />
 								</b:column>
-								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate == null}">
+								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate != null}">
 									<h:outputText
 										value="#{findOneOrderController.querySingleResult.shippedDate}"
 										converter="javax.faces.DateTime" />
 
 								</b:column>
-								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate != null}">
+								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate == null}">
 									<h:inputText
 										value="#{findOneOrderController.querySingleResult.shippedDate}"
 										converter="javax.faces.DateTime" />
+										
 
 								</b:column>
 							</b:row>
@@ -154,7 +155,7 @@
 								<b:column span="4">
 									<h:outputText value="Shipper" style="font-weight:bold;" />
 								</b:column>
-								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate != null}">
+								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate == null}">
 									<b:selectOneMenu id="shipper"
 					value="#{findOneOrderController.shipperId}">
 					<f:selectItem itemValue="#{findOneOrderController.querySingleResult.shipper.shipperID}" itemLabel="Choose a shipper" />
@@ -164,8 +165,8 @@
 			</b:selectOneMenu>
 
 								</b:column>
-								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate == null}">
-									<h:inputText
+								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate != null}">
+									<h:outputText
 										value="#{findOneOrderController.querySingleResult.shipper.companyName}"
 										 />
 
@@ -175,14 +176,14 @@
 								<b:column span="4">
 									<h:outputText value="Freight" style="font-weight:bold;" />
 								</b:column>
-								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate == null}">
+								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate != null}">
 									<h:outputText
 										value="#{findOneOrderController.querySingleResult.freight}"
 										converter="javax.faces.Double">
 										<f:convertNumber type="currency" />
 									</h:outputText>
 								</b:column>
-								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate != null}">
+								<b:column span="4" rendered="#{findOneOrderController.querySingleResult.shippedDate == null}">
 									<h:inputText
 										value="#{findOneOrderController.querySingleResult.freight}"
 										converter="javax.faces.Double">

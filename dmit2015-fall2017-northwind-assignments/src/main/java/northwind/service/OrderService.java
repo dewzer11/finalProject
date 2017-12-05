@@ -121,10 +121,13 @@ public class OrderService {
 	public void completeOrder(Order existingOrder)
 			throws NoInvoiceLinesException, IllegalQuantityException {
 		
-		
-		
+		if(existingOrder.getShippedDate() == null) {
+			throw new IllegalQuantityException("Need Shipping date.");
+			// since i added this, if there is a shipped date and you put an order that has already been completed, it will complete again.
+		}else {
 		
 		for(OrderDetail singleItem : existingOrder.getOrderDetails()) {
+			
 			if ((singleItem.getQuantity() > singleItem.getProduct().getUnitsInStock()) || (singleItem.getQuantity() < 1) ) {
 				context.setRollbackOnly();
 				throw new IllegalQuantityException("Invalid quantity ordered.");
@@ -138,7 +141,7 @@ public class OrderService {
 		}
 		
 		entityManager.merge(existingOrder);
-		
+		}
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
